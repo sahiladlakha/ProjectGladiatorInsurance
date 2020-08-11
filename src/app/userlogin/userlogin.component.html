@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        #search {
+            position:relative;
+            top:2px;
+            width: 13em;
+            height: 2em;
+        }
+        p{
+            text-align: center;
+        }
+        #aref{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login</h1>
+    <form name="frmLogin">
+        <table align="center">
+            <tr>
+                <td>
+                    <label>Username</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" id="txtUN" placeholder="Enter Username" class="form-control" onblur="checkUser()" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Password</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="password" id="txtPass" placeholder="Enter Password" class="form-control" onblur="checkPass()"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button id="search" class="btn btn-primary"><a id="aref" href="">Login</a></button>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" value="Remember me" checked/> Remember me
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" class="btn btn-danger" value="Cancel" class="btn btn-danger" /> &nbsp; &nbsp;
+                    <label>Forgot </label> <a href=" "><u>password?</u></a>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <p>
+            <label>Not having Account ? </label> <a href="Register.html"><u>Register here</u></a>
+        </p>
+    </form>
+    
+</body>
+</html>

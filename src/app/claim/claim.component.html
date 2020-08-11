@@ -1,0 +1,35 @@
+<body style="background-color:aqua;">
+    <div class="bodyContainer">
+<form action="/fileClaim" class="form-horizontal">
+<div class="center" >
+
+    <div class="form-group">
+        <label for="pwd">Policy Number</label>
+        <input type="text" class="form-control" id="policy" required>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Mobile Number</label>
+        <input type="text" class="form-control" id="mobile" required>
+      </div>
+      <label for="pwd"> Reason To Claim</label>
+      
+      <div class="radio">
+        <label><input type="radio" name="optradio" checked>Natural Disaster</label>
+      </div>
+      <div class="radio">
+        <label><input type="radio" name="optradio">Man Made Diaster</label>
+      </div>
+      <div class="radio disabled">
+        <label><input type="radio" name="optradio" >Road Accident</label>
+      </div>
+
+      <div class="radio disabled">
+        <label><input type="radio" name="optradio" >Theft</label>
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+
+</div>
+</form>
+</div>
+</body>
