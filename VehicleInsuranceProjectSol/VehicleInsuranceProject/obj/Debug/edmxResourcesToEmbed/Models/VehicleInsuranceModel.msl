@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db_ProjectGladiatorModelStoreContainer" CdmEntityContainer="db_ProjectGladiatorEntities">
+    <EntitySetMapping Name="tbl_Admin">
+      <EntityTypeMapping TypeName="db_ProjectGladiatorModel.tbl_Admin">
+        <MappingFragment StoreEntitySet="tbl_Admin">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Claim">
+      <EntityTypeMapping TypeName="db_ProjectGladiatorModel.tbl_Claim">
+        <MappingFragment StoreEntitySet="tbl_Claim">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Reason_of_Claim" ColumnName="Reason_of_Claim" />
+          <ScalarProperty Name="Date_Of_Claim" ColumnName="Date_Of_Claim" />
+          <ScalarProperty Name="Claim_Approved" ColumnName="Claim_Approved" />
+          <ScalarProperty Name="Claim_Amount" ColumnName="Claim_Amount" />
+          <ScalarProperty Name="Pol_Id" ColumnName="Pol_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Payment">
+      <EntityTypeMapping TypeName="db_ProjectGladiatorModel.tbl_Payment">
+        <MappingFragment StoreEntitySet="tbl_Payment">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Cust_Id" ColumnName="Cust_Id" />
+          <ScalarProperty Name="Pol_Id" ColumnName="Pol_Id" />
+          <ScalarProperty Name="Payment_Date" ColumnName="Payment_Date" />
+          <ScalarProperty Name="Payment_Amount" ColumnName="Payment_Amount" />
+          <ScalarProperty Name="Payment_Status" ColumnName="Payment_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Policy">
+      <EntityTypeMapping TypeName="db_ProjectGladiatorModel.tbl_Policy">
+        <MappingFragment StoreEntitySet="tbl_Policy">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Policy_Type" ColumnName="Policy_Type" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="Veh_Id" ColumnName="Veh_Id" />
+          <ScalarProperty Name="Policy_Amount" ColumnName="Policy_Amount" />
+          <ScalarProperty Name="Policy_Date" ColumnName="Policy_Date" />
+          <ScalarProperty Name="Policy_Purchase_Date" ColumnName="Policy_Purchase_Date" />
+          <ScalarProperty Name="Total_IDV" ColumnName="Total_IDV" />
+          <ScalarProperty Name="Policy_Expiry_Date" ColumnName="Policy_Expiry_Date" />
+          <ScalarProperty Name="Approved_By" ColumnName="Approved_By" />
+          <ScalarProperty Name="Policy_Approve_Status" ColumnName="Policy_Approve_Status" />
+          <ScalarProperty Name="Policy_Payment_Status" ColumnName="Policy_Payment_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Renew">
+      <EntityTypeMapping TypeName="db_ProjectGladiatorModel.tbl_Renew">
+        <MappingFragment StoreEntitySet="tbl_Renew">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Veh_Id" ColumnName="Veh_Id" />
+          <ScalarProperty Name="Policy_Type" ColumnName="Policy_Type" />
+          <ScalarProperty Name="Policy_Renew_Date" ColumnName="Policy_Renew_Date" />
+          <ScalarProperty Name="Policy_Expiry_Date" ColumnName="Policy_Expiry_Date" />
+          <ScalarProperty Name="Pol_Id" ColumnName="Pol_Id" />
+          <ScalarProperty Name="Policy_Renew_Duration" ColumnName="Policy_Renew_Duration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_User">
+      <EntityTypeMapping TypeName="db_ProjectGladiatorModel.tbl_User">
+        <MappingFragment StoreEntitySet="tbl_User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Date_of_Birth" ColumnName="Date_of_Birth" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Vehicle_Price">
+      <EntityTypeMapping TypeName="db_ProjectGladiatorModel.tbl_Vehicle_Price">
+        <MappingFragment StoreEntitySet="tbl_Vehicle_Price">
+          <ScalarProperty Name="Vehicle_Model" ColumnName="Vehicle_Model" />
+          <ScalarProperty Name="Vehicle_Showroom_Price" ColumnName="Vehicle_Showroom_Price" />
+          <ScalarProperty Name="Vehicle_Age" ColumnName="Vehicle_Age" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_VehicleInfo">
+      <EntityTypeMapping TypeName="db_ProjectGladiatorModel.tbl_VehicleInfo">
+        <MappingFragment StoreEntitySet="tbl_VehicleInfo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Vehicle_Type" ColumnName="Vehicle_Type" />
+          <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+          <ScalarProperty Name="Veh_Model" ColumnName="Veh_Model" />
+          <ScalarProperty Name="Driving_Licence" ColumnName="Driving_Licence" />
+          <ScalarProperty Name="Purchase_Date" ColumnName="Purchase_Date" />
+          <ScalarProperty Name="Registration_Number" ColumnName="Registration_Number" />
+          <ScalarProperty Name="Engine_No" ColumnName="Engine_No" />
+          <ScalarProperty Name="ChasisNo" ColumnName="ChasisNo" />
+          <ScalarProperty Name="Cust_Id" ColumnName="Cust_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_activateStatus" FunctionName="db_ProjectGladiatorModel.Store.sp_activateStatus" />
+  </EntityContainerMapping>
+</Mapping>
