@@ -14,7 +14,14 @@ constructor(private http:HttpClient)
 
 
 public login(login:Login){
-    return this.http.post("https://localhost:44308/api/tbl_User",login);
+    return this.http.post("https://localhost:44308/api/Login",login);
+}
+
+
+
+public adminlogin(login:Login){
+    return this.http.post("https://localhost:44308/api/AminLogin",login);
 }
 
 }
+

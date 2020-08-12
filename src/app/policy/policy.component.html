@@ -1,4 +1,9 @@
 <section  class="alert alert-success">
+   
+
+
+
+
 
     <label>Plans</label>
     <br/>
@@ -6,18 +11,52 @@
         <label>Choose your Policy Type</label>
     </div>
     <div class ="row2">
-            <input type="radio">Third Party Liability<br/>
-            <input type="radio">Comprehensive<br/>
+
+        
+           
+
+            <label>Select Policy Type</label>
+            <br/>
+            <input list = "types" [(ngModel)]="policy.Policy_Type">
+            <datalist id="types">
+               <option *ngFor="let c of types" [value]="c">{{c}}</option>
+              
+            </datalist>
+            <br/>
+
+             <select name="types" [(ngModel)]="policy.Policy_Type"> 
+                <option *ngFor="let c of types" [value]="c">{{c}}</option> 
+            </select>  
+           
+        
+
         </div>
     <div class="row3">
         <label>Choose you Policy Duartion</label>
     </div>
         <div class="row4">
-            <input type="radio">One Year<br/>
-            <input type="radio">Two Year<br/>
-            <input type="radio">Three Year
+           
+            <br/>
+            <input list = "years" [(ngModel)]="policy.Duration">
+            <datalist id="years">
+               <option *ngFor="let c of years" [value]="c">{{c}}</option>
+              
+            </datalist>
+            <br/>
         </div>
+
+
+        
+
+
+
         <div class="row5">
-            <button type="button" class="alert-success">Payment</button>
+            <button (click)="generatePolicyDetails()" class="alert-success">Payment</button>
         </div>
-    </section>
+
+        <button (click)="generatePolicyDetails()" class="btn btn-primary">Submit</button>  
+
+
+
+        
+

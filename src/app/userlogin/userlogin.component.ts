@@ -29,18 +29,22 @@ export class UserloginComponent implements OnInit {
     {
       
 
-      // this.loginService.login(this.login).subscribe((data)=>
-      // {
-      //     this.result=data;
+       this.loginService.login(this.login).subscribe((data)=>
+      {
+          this.result=data;
 
-      //     if(this.result!=null)
-      //     {
-      //       this.routes.navigate(["/userlogin"]);
-      //     }
+          if(this.result!=null)
+          {
+            this.service.setuserId(this.result);
+            this.routes.navigate(["/userhome"]);
+          }
 
 
-      // })
+       })
     }
+
+
+   
 
   ngOnInit(): void {
 

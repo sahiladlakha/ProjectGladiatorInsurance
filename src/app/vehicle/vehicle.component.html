@@ -1,35 +1,75 @@
-<form>
+<h1>Register Your Vehicle With Us !!</h1>
     <label>Enter Car/Bike Manufacturer</label>
-         <input type="text" class="form-control" >
-       
-       
-          <label>Enter Car/Bike Model</label>
-          <input type="text" class="form-control">
+        <input type="text" class="form-control" [(ngModel)]="vehicle.Manufacturer" > 
         
+       
+       <!--
+           <label>Enter Car/Bike Model</label>
+          <input type="text" class="form-control" [(ngModel)]="vehicle.Veh_Model">  
+        
+
+          <label>Select Car/Bike Model</label>
+          <br/>
+
+           <select [(ngModel)]="vehicle.Veh_Model">
+            <option *ngFor="let c of models" [value]="c.Vehicle_Model">{{c.Vehicle_Model}}</option>
+         </select>` 
+      <br/>
+      -->
+
+      <label>Select Car/Bike Model</label>
+      <br/>
+      <input list = "models" [(ngModel)]="vehicle.Veh_Model">
+      <datalist id="models">
+         <option *ngFor="let c of models" [value]="c.Vehicle_Model">{{c.Vehicle_Model}}</option>
+        
+      </datalist>
+        
+   
+
+
+      
+   <br/>
+
+
+<br/>
     
           <label>Enter Driving License</label>
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" [(ngModel)]="vehicle.Driving_Licence">
        
             
        
       
           <label>Enter Purchase Date</label>
-          <input type="date" class="form-control" >
+          <input type="date" class="form-control" [(ngModel)]="vehicle.Purchase_Date">
        
              
        
           <label>Enter Registeration Number</label>
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" [(ngModel)]="vehicle.Registration_Number">
        
        <label>Enter Engine Number </label>
-       <input type="text" class="form-control" >
+       <input type="text" class="form-control" [(ngModel)]="vehicle.Engine_No">
      
     
     <label>Enter Chaissis Number</label>
-    <input type="text" class="form-control">
+    <input type="text" class="form-control" [(ngModel)]="vehicle.ChasisNo">
     
        
     
      
-      <button click="" class="btn btn-primary">Submit</button>  
-       </form>
+      <button (click)="insertVehicleDetails()" class="btn btn-primary">Submit</button>  
+
+
+
+      
+       <p *ngIf="error">
+          Error Inserting . Check Your Entries Again 
+       </p>
+
+
+       {{userId}}
+
+
+
+      

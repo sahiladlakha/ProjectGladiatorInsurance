@@ -24,6 +24,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { LoginService } from './services/loginService';
 import { SharedService } from './services/sharedService';
+import { VehicleService } from './services/vehicleService';
+import { PolicyService } from './services/policyService';
+import { PaymentService } from './services/paymentService';
 
 
 var myRoutes:Routes=[
@@ -34,6 +37,11 @@ var myRoutes:Routes=[
   {path:"adminlogin",component:AdminloginComponent},
   {path:"forgotpassword",component:ResetpasswordComponent},
   {path:"resetpassword",component:ResetpasswordComponent},
+  {path:"vehicle",component:VehicleComponent},
+  {path:"policy",component:PolicyComponent},
+  {path:"userdashboard",component:UserhomeComponent},
+  {path:"userhome",component:UserhomeComponent},
+  {path:"payment",component:PaymentComponent},
 
   {path:'**',component:HomepageComponent}
   
@@ -65,7 +73,7 @@ var myRoutes:Routes=[
     HttpClientModule,
     RouterModule.forRoot(myRoutes)
   ],
-  providers: [RegisterationService,DatePipe,LoginService,SharedService],
+  providers: [RegisterationService,DatePipe,LoginService,SharedService,VehicleService,PolicyService,PaymentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
