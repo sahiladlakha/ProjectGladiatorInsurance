@@ -22,6 +22,9 @@ import {RegisterationService} from './services/registerationService';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { LoginService } from './services/loginService';
+import { SharedService } from './services/sharedService';
+
 
 var myRoutes:Routes=[
   {path:"register",component:RegisterComponent},
@@ -29,6 +32,8 @@ var myRoutes:Routes=[
   {path:"userlogin",component:UserloginComponent},
   {path:"p",component:UserloginComponent},
   {path:"adminlogin",component:AdminloginComponent},
+  {path:"forgotpassword",component:ResetpasswordComponent},
+  {path:"resetpassword",component:ResetpasswordComponent},
 
   {path:'**',component:HomepageComponent}
   
@@ -60,7 +65,7 @@ var myRoutes:Routes=[
     HttpClientModule,
     RouterModule.forRoot(myRoutes)
   ],
-  providers: [RegisterationService,DatePipe],
+  providers: [RegisterationService,DatePipe,LoginService,SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

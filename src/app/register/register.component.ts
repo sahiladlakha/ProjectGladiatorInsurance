@@ -4,6 +4,7 @@ import {FormGroup,FormControl,Validators} from '@angular/forms';
 import {RegisterationService} from '../services/registerationService'
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { SharedService } from '../services/sharedService';
 
 
 
@@ -20,7 +21,8 @@ export class RegisterComponent implements OnInit {
   result;
   dateformat;
   nomatch:boolean;
-  constructor(private registerationService:RegisterationService,private routes:Router,public datePipe:DatePipe) {
+  public service;
+  constructor(private registerationService:RegisterationService,private routes:Router,public datePipe:DatePipe, public sharedService:SharedService) {
     this.register=new Register();
         this.myregister=new FormGroup({
             firstname:new FormControl(null,[Validators.required,Validators.min(4)]),
@@ -35,6 +37,7 @@ export class RegisterComponent implements OnInit {
             })
             this.showDetails=false;
             this.nomatch=false;
+            this.service = sharedService;
            }
         
            public get fn(){
@@ -94,6 +97,10 @@ export class RegisterComponent implements OnInit {
 
                   if(this.result!=null)
                   {
+                    console.log(this.result);
+                    console.log("After Get User ")
+                    this.service.setuserData(this.result);
+                    
                     this.routes.navigate(["/userlogin"]);
                   }
 
