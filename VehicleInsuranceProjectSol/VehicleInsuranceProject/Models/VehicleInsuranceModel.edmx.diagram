@@ -21,7 +21,7 @@
         <AssociationConnector Association="db_ProjectGladiatorModel.FK__tbl_Renew__Veh_I__2C3393D0" ManuallyRouted="false" />
         <AssociationConnector Association="db_ProjectGladiatorModel.FK__tbl_Vehic__Cust___1A14E395" ManuallyRouted="false" />
         <AssociationConnector Association="db_ProjectGladiatorModel.FK__tbl_Vehic__Veh_M__1920BF5C" ManuallyRouted="false" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

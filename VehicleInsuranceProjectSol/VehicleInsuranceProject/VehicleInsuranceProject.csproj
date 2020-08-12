@@ -109,8 +109,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminLoginController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PolicyController.cs" />
     <Compile Include="Controllers\tbl_UserController.cs" />
+    <Compile Include="Controllers\VehicleController.cs" />
+    <Compile Include="Controllers\VehiclePriceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -133,6 +137,9 @@
       <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_VehicleInfo.cs">
+      <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_VehicleInfoDemo.cs">
       <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_Vehicle_Price.cs">

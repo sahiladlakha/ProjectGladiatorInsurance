@@ -9,9 +9,11 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using VehicleInsuranceProject.Models;
+using System.Web.Http.Cors;
 
 namespace VehicleInsuranceProject.Controllers
 {
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class LoginController : ApiController
     {
         private db_ProjectGladiatorEntities db = new db_ProjectGladiatorEntities();

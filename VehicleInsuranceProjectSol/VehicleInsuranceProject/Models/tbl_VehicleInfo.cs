@@ -11,7 +11,9 @@ namespace VehicleInsuranceProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+
+    [DataContract]
     public partial class tbl_VehicleInfo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,22 +23,38 @@ namespace VehicleInsuranceProject.Models
             this.tbl_Renew = new HashSet<tbl_Renew>();
         }
     
+        [DataMember]
         public int Id { get; set; }
+        [DataMember]
         public string Vehicle_Type { get; set; }
+        [DataMember]
         public string Manufacturer { get; set; }
+        [DataMember]
         public string Veh_Model { get; set; }
+        [DataMember]
         public string Driving_Licence { get; set; }
+        [DataMember]
         public System.DateTime Purchase_Date { get; set; }
+        [DataMember]
         public string Registration_Number { get; set; }
+        [DataMember]
         public string Engine_No { get; set; }
+        [DataMember]
         public string ChasisNo { get; set; }
+        [DataMember]
         public Nullable<int> Cust_Id { get; set; }
+        
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [DataMember]
         public virtual ICollection<tbl_Policy> tbl_Policy { get; set; }
+        [DataMember]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        
         public virtual ICollection<tbl_Renew> tbl_Renew { get; set; }
+        [DataMember]
         public virtual tbl_User tbl_User { get; set; }
+        [DataMember]
         public virtual tbl_Vehicle_Price tbl_Vehicle_Price { get; set; }
     }
 }

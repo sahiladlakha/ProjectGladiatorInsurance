@@ -35,6 +35,7 @@ namespace VehicleInsuranceProject.Models
         public virtual DbSet<tbl_User> tbl_User { get; set; }
         public virtual DbSet<tbl_Vehicle_Price> tbl_Vehicle_Price { get; set; }
         public virtual DbSet<tbl_VehicleInfo> tbl_VehicleInfo { get; set; }
+        public virtual DbSet<tbl_VehicleInfoDemo> tbl_VehicleInfoDemo { get; set; }
     
         public virtual int sp_activateStatus(Nullable<int> id)
         {
@@ -43,6 +44,19 @@ namespace VehicleInsuranceProject.Models
                 new ObjectParameter("Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_activateStatus", idParameter);
+        }
+    
+        public virtual int sp_passwordReset(string email, string password)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_passwordReset", emailParameter, passwordParameter);
         }
     }
 }

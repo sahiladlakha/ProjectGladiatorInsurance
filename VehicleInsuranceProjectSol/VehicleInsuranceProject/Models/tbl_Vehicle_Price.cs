@@ -18,6 +18,7 @@ namespace VehicleInsuranceProject.Models
         public tbl_Vehicle_Price()
         {
             this.tbl_VehicleInfo = new HashSet<tbl_VehicleInfo>();
+            this.tbl_VehicleInfoDemo = new HashSet<tbl_VehicleInfoDemo>();
         }
     
         public string Vehicle_Model { get; set; }
@@ -26,5 +27,7 @@ namespace VehicleInsuranceProject.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_VehicleInfo> tbl_VehicleInfo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_VehicleInfoDemo> tbl_VehicleInfoDemo { get; set; }
     }
 }

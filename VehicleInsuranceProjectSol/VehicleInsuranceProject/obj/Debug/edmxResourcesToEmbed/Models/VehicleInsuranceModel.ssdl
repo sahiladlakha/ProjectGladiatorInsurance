@@ -94,6 +94,21 @@
     <Property Name="ChasisNo" Type="nvarchar" MaxLength="300" Nullable="false" />
     <Property Name="Cust_Id" Type="int" />
   </EntityType>
+  <EntityType Name="tbl_VehicleInfoDemo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vehicle_Type" Type="varchar" MaxLength="250" />
+    <Property Name="Manufacturer" Type="nvarchar" MaxLength="200" />
+    <Property Name="Veh_Model" Type="varchar" MaxLength="200" />
+    <Property Name="Driving_Licence" Type="varchar" MaxLength="200" />
+    <Property Name="Purchase_Date" Type="date" />
+    <Property Name="Registration_Number" Type="nvarchar" MaxLength="200" />
+    <Property Name="Engine_No" Type="nvarchar" MaxLength="300" />
+    <Property Name="ChasisNo" Type="nvarchar" MaxLength="300" />
+    <Property Name="Cust_Id" Type="int" />
+  </EntityType>
   <Association Name="FK__tbl_Claim__Pol_I__29572725">
     <End Role="tbl_Policy" Type="Self.tbl_Policy" Multiplicity="0..1" />
     <End Role="tbl_Claim" Type="Self.tbl_Claim" Multiplicity="*" />
@@ -182,6 +197,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__tbl_Vehic__Cust___4D94879B">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_VehicleInfoDemo" Type="Self.tbl_VehicleInfoDemo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_VehicleInfoDemo">
+        <PropertyRef Name="Cust_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__tbl_Vehic__Veh_M__1920BF5C">
     <End Role="tbl_Vehicle_Price" Type="Self.tbl_Vehicle_Price" Multiplicity="0..1" />
     <End Role="tbl_VehicleInfo" Type="Self.tbl_VehicleInfo" Multiplicity="*" />
@@ -194,8 +223,24 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__tbl_Vehic__Veh_M__4CA06362">
+    <End Role="tbl_Vehicle_Price" Type="Self.tbl_Vehicle_Price" Multiplicity="0..1" />
+    <End Role="tbl_VehicleInfoDemo" Type="Self.tbl_VehicleInfoDemo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Vehicle_Price">
+        <PropertyRef Name="Vehicle_Model" />
+      </Principal>
+      <Dependent Role="tbl_VehicleInfoDemo">
+        <PropertyRef Name="Veh_Model" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Function Name="sp_activateStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_passwordReset" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
   </Function>
   <EntityContainer Name="db_ProjectGladiatorModelStoreContainer">
     <EntitySet Name="tbl_Admin" EntityType="Self.tbl_Admin" Schema="dbo" store:Type="Tables" />
@@ -206,6 +251,7 @@
     <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Vehicle_Price" EntityType="Self.tbl_Vehicle_Price" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_VehicleInfo" EntityType="Self.tbl_VehicleInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_VehicleInfoDemo" EntityType="Self.tbl_VehicleInfoDemo" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__tbl_Claim__Pol_I__29572725" Association="Self.FK__tbl_Claim__Pol_I__29572725">
       <End Role="tbl_Policy" EntitySet="tbl_Policy" />
       <End Role="tbl_Claim" EntitySet="tbl_Claim" />
@@ -234,9 +280,17 @@
       <End Role="tbl_User" EntitySet="tbl_User" />
       <End Role="tbl_VehicleInfo" EntitySet="tbl_VehicleInfo" />
     </AssociationSet>
+    <AssociationSet Name="FK__tbl_Vehic__Cust___4D94879B" Association="Self.FK__tbl_Vehic__Cust___4D94879B">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_VehicleInfoDemo" EntitySet="tbl_VehicleInfoDemo" />
+    </AssociationSet>
     <AssociationSet Name="FK__tbl_Vehic__Veh_M__1920BF5C" Association="Self.FK__tbl_Vehic__Veh_M__1920BF5C">
       <End Role="tbl_Vehicle_Price" EntitySet="tbl_Vehicle_Price" />
       <End Role="tbl_VehicleInfo" EntitySet="tbl_VehicleInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Vehic__Veh_M__4CA06362" Association="Self.FK__tbl_Vehic__Veh_M__4CA06362">
+      <End Role="tbl_Vehicle_Price" EntitySet="tbl_Vehicle_Price" />
+      <End Role="tbl_VehicleInfoDemo" EntitySet="tbl_VehicleInfoDemo" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

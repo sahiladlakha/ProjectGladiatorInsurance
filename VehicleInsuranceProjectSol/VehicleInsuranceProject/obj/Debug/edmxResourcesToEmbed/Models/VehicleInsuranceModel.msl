@@ -104,5 +104,22 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="sp_activateStatus" FunctionName="db_ProjectGladiatorModel.Store.sp_activateStatus" />
+    <FunctionImportMapping FunctionImportName="sp_passwordReset" FunctionName="db_ProjectGladiatorModel.Store.sp_passwordReset" />
+    <EntitySetMapping Name="tbl_VehicleInfoDemo">
+      <EntityTypeMapping TypeName="db_ProjectGladiatorModel.tbl_VehicleInfoDemo">
+        <MappingFragment StoreEntitySet="tbl_VehicleInfoDemo">
+          <ScalarProperty Name="Cust_Id" ColumnName="Cust_Id" />
+          <ScalarProperty Name="ChasisNo" ColumnName="ChasisNo" />
+          <ScalarProperty Name="Engine_No" ColumnName="Engine_No" />
+          <ScalarProperty Name="Registration_Number" ColumnName="Registration_Number" />
+          <ScalarProperty Name="Purchase_Date" ColumnName="Purchase_Date" />
+          <ScalarProperty Name="Driving_Licence" ColumnName="Driving_Licence" />
+          <ScalarProperty Name="Veh_Model" ColumnName="Veh_Model" />
+          <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+          <ScalarProperty Name="Vehicle_Type" ColumnName="Vehicle_Type" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
