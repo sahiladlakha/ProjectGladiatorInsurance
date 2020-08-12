@@ -9,25 +9,21 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using VehicleInsuranceProject.Models;
-using System.Web.Http.Cors;
-using System.Globalization;
 
 namespace VehicleInsuranceProject.Controllers
 {
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-    public class tbl_UserController : ApiController
+    public class LoginController : ApiController
     {
         private db_ProjectGladiatorEntities db = new db_ProjectGladiatorEntities();
-        
 
-        // GET: api/tbl_User
+        // GET: api/Login
         public IQueryable<tbl_User> Gettbl_User()
         {
             db.Configuration.ProxyCreationEnabled = false;
             return db.tbl_User;
         }
 
-        // GET: api/tbl_User/5
+        // GET: api/Login/5
         [ResponseType(typeof(tbl_User))]
         public IHttpActionResult Gettbl_User(int id)
         {
@@ -40,7 +36,7 @@ namespace VehicleInsuranceProject.Controllers
             return Ok(tbl_User);
         }
 
-        // PUT: api/tbl_User/5
+        // PUT: api/Login/5
         [ResponseType(typeof(void))]
         public IHttpActionResult Puttbl_User(int id, tbl_User tbl_User)
         {
@@ -75,7 +71,7 @@ namespace VehicleInsuranceProject.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/tbl_User
+        // POST: api/Login
         [ResponseType(typeof(tbl_User))]
         public IHttpActionResult Posttbl_User(tbl_User tbl_User)
         {
@@ -83,16 +79,49 @@ namespace VehicleInsuranceProject.Controllers
             {
                 return BadRequest(ModelState);
             }
-            string x = tbl_User.Date_of_Birth.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
-            DateTime oDate = Convert.ToDateTime(x);
-            tbl_User.Date_of_Birth = oDate;
-            db.tbl_User.Add(tbl_User);
-            db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = tbl_User.Id }, tbl_User);
+
+            if (tbl_User == null)
+            {
+                return NotFound();
+            }
+
+            string email = tbl_User.Email;
+            
+
+            int myUser = db.tbl_User.Where(u => u.Email == tbl_User.Email && u.Password == tbl_User.Password).Count();
+
+           tbl_User tbl_User2=  db.tbl_User.ToList().Find(u => u.Email == tbl_User.Email && u.Password == tbl_User.Password);
+
+
+            if (tbl_User2 == null)
+            {
+                return NotFound();
+            }
+
+
+
+            if (myUser == 1)
+            {
+                //tbl_User tbl_User1 = db.tbl_User.Find(email);
+                return Ok(tbl_User2.Id);
+
+            }
+
+            else
+            {
+                return NotFound();
+            }
+
+
+
+            //db.tbl_User.Add(tbl_User);
+            // db.SaveChanges();
+
+            //return CreatedAtRoute("DefaultApi", new { id = tbl_User.Id }, tbl_User);
         }
 
-        // DELETE: api/tbl_User/5
+        // DELETE: api/Login/5
         [ResponseType(typeof(tbl_User))]
         public IHttpActionResult Deletetbl_User(int id)
         {
