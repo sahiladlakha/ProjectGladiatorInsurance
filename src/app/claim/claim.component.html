@@ -1,35 +1,41 @@
 <body style="background-color:aqua;">
     <div class="bodyContainer">
-<form action="/fileClaim" class="form-horizontal">
+
 <div class="center" >
 
-    <div class="form-group">
+    
+
+
+      <div class="form-group">
         <label for="pwd">Policy Number</label>
-        <input type="text" class="form-control" id="policy" required>
+        <input type="text" class="form-control"  required [(ngModel)]="claim.Pol_Id" readonly >
       </div>
+
       <div class="form-group">
         <label for="pwd">Mobile Number</label>
-        <input type="text" class="form-control" id="mobile" required>
+        <input type="text" class="form-control"  required [(ngModel)]="claim.Mobile_No">
       </div>
+      
       <label for="pwd"> Reason To Claim</label>
       
-      <div class="radio">
-        <label><input type="radio" name="optradio" checked>Natural Disaster</label>
-      </div>
-      <div class="radio">
-        <label><input type="radio" name="optradio">Man Made Diaster</label>
-      </div>
-      <div class="radio disabled">
-        <label><input type="radio" name="optradio" >Road Accident</label>
-      </div>
+      <div class="row3">
+        
+    </div>
+        <div class="row4">
+           
+            <br/>
+            <input list = "reasons" [(ngModel)]="claim.Reason_of_Claim">
+            <datalist id="reasons">
+               <option *ngFor="let c of reasons" [value]="c">{{c}}</option>
+              
+            </datalist>
+            <br/>
+        </div>
 
-      <div class="radio disabled">
-        <label><input type="radio" name="optradio" >Theft</label>
-      </div>
 
-      <button type="submit" class="btn btn-default">Submit</button>
+      <button (click)="fileClaim()">File Claim</button>
 
 </div>
-</form>
+
 </div>
 </body>

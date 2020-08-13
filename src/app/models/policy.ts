@@ -11,6 +11,7 @@ export class Policy{
     Approved_By:string;
     Policy_Approve_Status:string;
     Policy_Payment_Status:string;
+    Cust_Id:number;
 
     constructor(){
 

@@ -15,19 +15,74 @@ import { SharedService } from '../services/sharedService';
 export class PaymentComponent implements OnInit {
   public service;
   payment:Payment;
+  policyId;
+  paymentAmount;
+  totalIDV;
+  vehicleId;
+  customerId;
+  paymentdetails;
+  result;
+  error;
+  
   constructor(private paymentService:PaymentService,private routes:Router,private sharedService:SharedService) 
   
   {
     this.service=sharedService;
     this.payment = new Payment();
+    this.payment=new Payment();
 
 
    }
 
+
+   makePayment()
+   {
+     this.payment.Cust_Id=this.customerId;
+     this.payment.Payment_Amount=this.paymentAmount;
+     this.payment.Pol_Id=this.policyId;
+     
+     this.paymentService.makePayment(this.payment).subscribe((data)=>
+    {
+        this.result=data;
+
+        if(this.result!=null)
+        {
+          console.log(this.result);
+         // this.service.setpaymentDetails(this.result);
+         this.service.setfinalDetails(this.result);
+          this.routes.navigate(["/success"]);
+        }
+
+
+        else
+        {
+         this.error=true;
+        }
+
+
+     })
+
+
+
+
+   }
+
+
+
+
+
+
+   
   ngOnInit(): void {
 
 
-    console.log(this.service.getpaymentDetails());
+    this.paymentdetails=this.service.getpaymentDetails();
+    this.policyId=this.paymentdetails[0];
+    this.paymentAmount=this.paymentdetails[1];
+    this.totalIDV=this.paymentdetails[2];
+    this.vehicleId=this.paymentdetails[3];
+    this.customerId=this.paymentdetails[4];
+    
   }
 
 }

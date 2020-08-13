@@ -22,6 +22,7 @@ export class PolicyComponent implements OnInit {
   years;
   priceShow:boolean;
   policy:Policy;
+  customerId;
   
   constructor(private policyService:PolicyService,private routes:Router,private sharedService:SharedService)
    
@@ -92,6 +93,7 @@ export class PolicyComponent implements OnInit {
     this.policy.Total_IDV=this.fromVehicle[0];
      this.policy.Policy_Amount=this.fromVehicle[1];
     this.policy.Veh_Id =this.fromVehicle[2];
+    this.policy.Cust_Id=this.fromVehicle[3];
     //console.log(this.policy.Total_IDV);
   // console.log(this.policy.Policy_Amount);
     // console.log(this.policy.Veh_Id);

@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit {
 
           registeruser()
           {
-
+              console.log("In register");
 
             if(this.pw.value==this.confirmpw.value)
             {

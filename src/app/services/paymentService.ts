@@ -13,7 +13,7 @@ constructor(private http:HttpClient)
 
 
 public makePayment(payment:Payment){
-    return this.http.post("https://localhost:44308/api/Policy",payment);
+    return this.http.post("https://localhost:44308/api/Payment",payment);
 }
 
 }

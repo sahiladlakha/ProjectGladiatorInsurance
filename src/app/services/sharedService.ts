@@ -12,6 +12,61 @@ export class SharedService
     public Policy_price;
     public Vehicle_Id;
     public paymentData;
+    public finalData;
+    public profileData;
+    public policyIdForClaim;
+
+
+
+public setPolicyIdForClaim(policyids)
+{
+    
+this.policyIdForClaim=policyids;
+console.log("In set policy id for claim");
+console.log(this.policyIdForClaim);
+
+}
+
+public getPolicyIdForClaim()
+{
+    console.log("In get policy id for claim");
+    console.log(this.policyIdForClaim);
+
+    return this.policyIdForClaim;
+
+    
+}
+
+
+
+
+
+    public setprofileDatass(profile)
+    {
+        this.profileData=profile;
+        console.log(profile);
+        //console.log(this.profileData);
+       // console.log(profile);
+       // console.log("In profile service");
+    }
+
+    public getprofileDatass()
+    {
+        return this.profileData;
+    }
+
+public setfinalDetails(finaldata)
+{
+    this.finalData=finaldata;
+}
+
+public getfinalDetails()
+{
+    return this.finalData;
+
+}
+
+
 
 
 public setpaymentDetails(paymentdata)
@@ -62,6 +117,7 @@ public getAllDetails()
     public setuserId(userId)
     {
         this.userId=userId;
+       // console.log("setuserid");
     }
 
 
@@ -69,6 +125,7 @@ public getAllDetails()
     public getuserId()
     {
         return this.userId;
+        //console.log("in userid");
     }
 
     

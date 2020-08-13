@@ -29,6 +29,14 @@ import { PolicyService } from './services/policyService';
 import { PaymentService } from './services/paymentService';
 
 
+import { ProfileService } from './services/profileService';
+
+import { SuccessComponent } from './success/success.component';
+import { ClaimsuccessComponent } from './claimsuccess/claimsuccess.component';
+import { ClaimService } from './services/claimService';
+import { UserprofileComponent } from './userprofile/userprofile.component';
+
+
 var myRoutes:Routes=[
   {path:"register",component:RegisterComponent},
   {path:"login",component:LoginComponent},
@@ -42,6 +50,10 @@ var myRoutes:Routes=[
   {path:"userdashboard",component:UserhomeComponent},
   {path:"userhome",component:UserhomeComponent},
   {path:"payment",component:PaymentComponent},
+  {path:"success",component:SuccessComponent},
+  {path:"claimsuccess",component:ClaimsuccessComponent},
+  {path:"claim",component:ClaimComponent},
+  {path:"profile",component:UserprofileComponent},
 
   {path:'**',component:HomepageComponent}
   
@@ -64,7 +76,10 @@ var myRoutes:Routes=[
     AdminloginComponent,
     ForgetpasswordComponent,
     ResetpasswordComponent,
-    AdmindashboardComponent
+    AdmindashboardComponent,
+    SuccessComponent,
+    ClaimsuccessComponent,
+    UserprofileComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +88,7 @@ var myRoutes:Routes=[
     HttpClientModule,
     RouterModule.forRoot(myRoutes)
   ],
-  providers: [RegisterationService,DatePipe,LoginService,SharedService,VehicleService,PolicyService,PaymentService],
+  providers: [RegisterationService,DatePipe,LoginService,SharedService,VehicleService,PolicyService,PaymentService,ClaimService,ProfileService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
