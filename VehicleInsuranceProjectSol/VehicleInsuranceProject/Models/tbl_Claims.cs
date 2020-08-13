@@ -14,20 +14,24 @@ namespace VehicleInsuranceProject.Models
     using System.Runtime.Serialization;
 
     [DataContract]
-    public partial class tbl_Payment
+    public partial class tbl_Claims
     {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
-        public Nullable<int> Cust_Id { get; set; }
+        public string Mobile_No { get; set; }
+        [DataMember]
+        public string Reason_of_Claim { get; set; }
+        [DataMember]
+        public System.DateTime Date_Of_Claim { get; set; }
+        [DataMember]
+        public string Claim_Approved { get; set; }
+        [DataMember]
+        public int Claim_Amount { get; set; }
         [DataMember]
         public Nullable<int> Pol_Id { get; set; }
         [DataMember]
-        public System.DateTime Payment_Date { get; set; }
-        [DataMember]
-        public int Payment_Amount { get; set; }
-        [DataMember]
-        public string Payment_Status { get; set; }
+        public Nullable<int> Customer_Id { get; set; }
         [DataMember]
     
         public virtual tbl_User tbl_User { get; set; }

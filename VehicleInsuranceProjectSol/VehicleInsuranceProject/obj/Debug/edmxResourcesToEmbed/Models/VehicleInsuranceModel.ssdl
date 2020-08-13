@@ -7,16 +7,18 @@
     <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Password" Type="varchar" MaxLength="100" />
   </EntityType>
-  <EntityType Name="tbl_Claim">
+  <EntityType Name="tbl_Claims">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Mobile_No" Type="varchar" MaxLength="200" />
     <Property Name="Reason_of_Claim" Type="varchar" MaxLength="200" />
     <Property Name="Date_Of_Claim" Type="date" Nullable="false" />
-    <Property Name="Claim_Approved" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Claim_Approved" Type="varchar" MaxLength="10" />
     <Property Name="Claim_Amount" Type="int" Nullable="false" />
     <Property Name="Pol_Id" Type="int" />
+    <Property Name="Customer_Id" Type="int" />
   </EntityType>
   <EntityType Name="tbl_Payment">
     <Key>
@@ -29,7 +31,7 @@
     <Property Name="Payment_Amount" Type="int" Nullable="false" />
     <Property Name="Payment_Status" Type="nvarchar" MaxLength="10" />
   </EntityType>
-  <EntityType Name="tbl_Policy">
+  <EntityType Name="tbl_Policies">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -45,18 +47,25 @@
     <Property Name="Approved_By" Type="varchar" MaxLength="100" />
     <Property Name="Policy_Approve_Status" Type="nvarchar" MaxLength="50" />
     <Property Name="Policy_Payment_Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Cust_Id" Type="int" />
   </EntityType>
-  <EntityType Name="tbl_Renew">
+  <EntityType Name="tbl_RenewPolicy">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Veh_Id" Type="int" />
     <Property Name="Policy_Type" Type="varchar" MaxLength="200" />
-    <Property Name="Policy_Renew_Date" Type="date" Nullable="false" />
-    <Property Name="Policy_Expiry_Date" Type="date" Nullable="false" />
-    <Property Name="Pol_Id" Type="int" />
-    <Property Name="Policy_Renew_Duration" Type="int" Nullable="false" />
+    <Property Name="Duration" Type="int" />
+    <Property Name="Veh_Id" Type="int" />
+    <Property Name="Policy_Amount" Type="int" Nullable="false" />
+    <Property Name="Policy_StartDate" Type="date" />
+    <Property Name="Policy_Purchase_Date" Type="date" />
+    <Property Name="Total_IDV" Type="int" />
+    <Property Name="Policy_Expiry_Date" Type="date" />
+    <Property Name="Approved_By" Type="varchar" MaxLength="100" />
+    <Property Name="Policy_Approve_Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Policy_Payment_Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="previousPolicyId" Type="int" />
   </EntityType>
   <EntityType Name="tbl_User">
     <Key>
@@ -94,34 +103,31 @@
     <Property Name="ChasisNo" Type="nvarchar" MaxLength="300" Nullable="false" />
     <Property Name="Cust_Id" Type="int" />
   </EntityType>
-  <EntityType Name="tbl_VehicleInfoDemo">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Vehicle_Type" Type="varchar" MaxLength="250" />
-    <Property Name="Manufacturer" Type="nvarchar" MaxLength="200" />
-    <Property Name="Veh_Model" Type="varchar" MaxLength="200" />
-    <Property Name="Driving_Licence" Type="varchar" MaxLength="200" />
-    <Property Name="Purchase_Date" Type="date" />
-    <Property Name="Registration_Number" Type="nvarchar" MaxLength="200" />
-    <Property Name="Engine_No" Type="nvarchar" MaxLength="300" />
-    <Property Name="ChasisNo" Type="nvarchar" MaxLength="300" />
-    <Property Name="Cust_Id" Type="int" />
-  </EntityType>
-  <Association Name="FK__tbl_Claim__Pol_I__29572725">
-    <End Role="tbl_Policy" Type="Self.tbl_Policy" Multiplicity="0..1" />
-    <End Role="tbl_Claim" Type="Self.tbl_Claim" Multiplicity="*" />
+  <Association Name="FK__tbl_Claim__Custo__5224328E">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+    <End Role="tbl_Claims" Type="Self.tbl_Claims" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="tbl_Policy">
+      <Principal Role="tbl_User">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="tbl_Claim">
+      <Dependent Role="tbl_Claims">
+        <PropertyRef Name="Customer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Claim__Pol_I__51300E55">
+    <End Role="tbl_Policies" Type="Self.tbl_Policies" Multiplicity="0..1" />
+    <End Role="tbl_Claims" Type="Self.tbl_Claims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Policies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_Claims">
         <PropertyRef Name="Pol_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Payme__Cust___239E4DCF">
+  <Association Name="FK__tbl_Payme__Cust___4C6B5938">
     <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
@@ -135,11 +141,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Payme__Pol_I__24927208">
-    <End Role="tbl_Policy" Type="Self.tbl_Policy" Multiplicity="0..1" />
+  <Association Name="FK__tbl_Payme__Pol_I__4D5F7D71">
+    <End Role="tbl_Policies" Type="Self.tbl_Policies" Multiplicity="0..1" />
     <End Role="tbl_Payment" Type="Self.tbl_Payment" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="tbl_Policy">
+      <Principal Role="tbl_Policies">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="tbl_Payment">
@@ -147,43 +153,55 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Polic__Veh_I__1ED998B2">
+  <Association Name="FK__tbl_Polic__Cust___498EEC8D">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+    <End Role="tbl_Policies" Type="Self.tbl_Policies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_Policies">
+        <PropertyRef Name="Cust_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Polic__Veh_I__46B27FE2">
     <End Role="tbl_VehicleInfo" Type="Self.tbl_VehicleInfo" Multiplicity="0..1" />
-    <End Role="tbl_Policy" Type="Self.tbl_Policy" Multiplicity="*" />
+    <End Role="tbl_Policies" Type="Self.tbl_Policies" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbl_VehicleInfo">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="tbl_Policy">
+      <Dependent Role="tbl_Policies">
         <PropertyRef Name="Veh_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Renew__Pol_I__2D27B809">
-    <End Role="tbl_Policy" Type="Self.tbl_Policy" Multiplicity="0..1" />
-    <End Role="tbl_Renew" Type="Self.tbl_Renew" Multiplicity="*" />
+  <Association Name="FK__tbl_Renew__previ__57DD0BE4">
+    <End Role="tbl_Policies" Type="Self.tbl_Policies" Multiplicity="0..1" />
+    <End Role="tbl_RenewPolicy" Type="Self.tbl_RenewPolicy" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="tbl_Policy">
+      <Principal Role="tbl_Policies">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="tbl_Renew">
-        <PropertyRef Name="Pol_Id" />
+      <Dependent Role="tbl_RenewPolicy">
+        <PropertyRef Name="previousPolicyId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Renew__Veh_I__2C3393D0">
+  <Association Name="FK__tbl_Renew__Veh_I__55009F39">
     <End Role="tbl_VehicleInfo" Type="Self.tbl_VehicleInfo" Multiplicity="0..1" />
-    <End Role="tbl_Renew" Type="Self.tbl_Renew" Multiplicity="*" />
+    <End Role="tbl_RenewPolicy" Type="Self.tbl_RenewPolicy" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbl_VehicleInfo">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="tbl_Renew">
+      <Dependent Role="tbl_RenewPolicy">
         <PropertyRef Name="Veh_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Vehic__Cust___1A14E395">
+  <Association Name="FK__tbl_Vehic__Cust___41EDCAC5">
     <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
@@ -197,21 +215,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Vehic__Cust___4D94879B">
-    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="tbl_VehicleInfoDemo" Type="Self.tbl_VehicleInfoDemo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="tbl_VehicleInfoDemo">
-        <PropertyRef Name="Cust_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__tbl_Vehic__Veh_M__1920BF5C">
+  <Association Name="FK__tbl_Vehic__Veh_M__40F9A68C">
     <End Role="tbl_Vehicle_Price" Type="Self.tbl_Vehicle_Price" Multiplicity="0..1" />
     <End Role="tbl_VehicleInfo" Type="Self.tbl_VehicleInfo" Multiplicity="*" />
     <ReferentialConstraint>
@@ -219,18 +223,6 @@
         <PropertyRef Name="Vehicle_Model" />
       </Principal>
       <Dependent Role="tbl_VehicleInfo">
-        <PropertyRef Name="Veh_Model" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__tbl_Vehic__Veh_M__4CA06362">
-    <End Role="tbl_Vehicle_Price" Type="Self.tbl_Vehicle_Price" Multiplicity="0..1" />
-    <End Role="tbl_VehicleInfoDemo" Type="Self.tbl_VehicleInfoDemo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbl_Vehicle_Price">
-        <PropertyRef Name="Vehicle_Model" />
-      </Principal>
-      <Dependent Role="tbl_VehicleInfoDemo">
         <PropertyRef Name="Veh_Model" />
       </Dependent>
     </ReferentialConstraint>
@@ -238,59 +230,70 @@
   <Function Name="sp_activateStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_claimApprove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Mobile_No" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_passwordReset" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Email" Type="varchar" Mode="In" />
     <Parameter Name="Password" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="sp_paymentStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_paymentStatuses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_GetRoleDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="db_ProjectGladiatorModelStoreContainer">
     <EntitySet Name="tbl_Admin" EntityType="Self.tbl_Admin" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbl_Claim" EntityType="Self.tbl_Claim" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Claims" EntityType="Self.tbl_Claims" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Payment" EntityType="Self.tbl_Payment" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbl_Policy" EntityType="Self.tbl_Policy" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbl_Renew" EntityType="Self.tbl_Renew" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Policies" EntityType="Self.tbl_Policies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_RenewPolicy" EntityType="Self.tbl_RenewPolicy" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Vehicle_Price" EntityType="Self.tbl_Vehicle_Price" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_VehicleInfo" EntityType="Self.tbl_VehicleInfo" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbl_VehicleInfoDemo" EntityType="Self.tbl_VehicleInfoDemo" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__tbl_Claim__Pol_I__29572725" Association="Self.FK__tbl_Claim__Pol_I__29572725">
-      <End Role="tbl_Policy" EntitySet="tbl_Policy" />
-      <End Role="tbl_Claim" EntitySet="tbl_Claim" />
+    <AssociationSet Name="FK__tbl_Claim__Custo__5224328E" Association="Self.FK__tbl_Claim__Custo__5224328E">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_Claims" EntitySet="tbl_Claims" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Payme__Cust___239E4DCF" Association="Self.FK__tbl_Payme__Cust___239E4DCF">
+    <AssociationSet Name="FK__tbl_Claim__Pol_I__51300E55" Association="Self.FK__tbl_Claim__Pol_I__51300E55">
+      <End Role="tbl_Policies" EntitySet="tbl_Policies" />
+      <End Role="tbl_Claims" EntitySet="tbl_Claims" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Payme__Cust___4C6B5938" Association="Self.FK__tbl_Payme__Cust___4C6B5938">
       <End Role="tbl_User" EntitySet="tbl_User" />
       <End Role="tbl_Payment" EntitySet="tbl_Payment" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Payme__Pol_I__24927208" Association="Self.FK__tbl_Payme__Pol_I__24927208">
-      <End Role="tbl_Policy" EntitySet="tbl_Policy" />
+    <AssociationSet Name="FK__tbl_Payme__Pol_I__4D5F7D71" Association="Self.FK__tbl_Payme__Pol_I__4D5F7D71">
+      <End Role="tbl_Policies" EntitySet="tbl_Policies" />
       <End Role="tbl_Payment" EntitySet="tbl_Payment" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Polic__Veh_I__1ED998B2" Association="Self.FK__tbl_Polic__Veh_I__1ED998B2">
+    <AssociationSet Name="FK__tbl_Polic__Cust___498EEC8D" Association="Self.FK__tbl_Polic__Cust___498EEC8D">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_Policies" EntitySet="tbl_Policies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Polic__Veh_I__46B27FE2" Association="Self.FK__tbl_Polic__Veh_I__46B27FE2">
       <End Role="tbl_VehicleInfo" EntitySet="tbl_VehicleInfo" />
-      <End Role="tbl_Policy" EntitySet="tbl_Policy" />
+      <End Role="tbl_Policies" EntitySet="tbl_Policies" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Renew__Pol_I__2D27B809" Association="Self.FK__tbl_Renew__Pol_I__2D27B809">
-      <End Role="tbl_Policy" EntitySet="tbl_Policy" />
-      <End Role="tbl_Renew" EntitySet="tbl_Renew" />
+    <AssociationSet Name="FK__tbl_Renew__previ__57DD0BE4" Association="Self.FK__tbl_Renew__previ__57DD0BE4">
+      <End Role="tbl_Policies" EntitySet="tbl_Policies" />
+      <End Role="tbl_RenewPolicy" EntitySet="tbl_RenewPolicy" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Renew__Veh_I__2C3393D0" Association="Self.FK__tbl_Renew__Veh_I__2C3393D0">
+    <AssociationSet Name="FK__tbl_Renew__Veh_I__55009F39" Association="Self.FK__tbl_Renew__Veh_I__55009F39">
       <End Role="tbl_VehicleInfo" EntitySet="tbl_VehicleInfo" />
-      <End Role="tbl_Renew" EntitySet="tbl_Renew" />
+      <End Role="tbl_RenewPolicy" EntitySet="tbl_RenewPolicy" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Vehic__Cust___1A14E395" Association="Self.FK__tbl_Vehic__Cust___1A14E395">
+    <AssociationSet Name="FK__tbl_Vehic__Cust___41EDCAC5" Association="Self.FK__tbl_Vehic__Cust___41EDCAC5">
       <End Role="tbl_User" EntitySet="tbl_User" />
       <End Role="tbl_VehicleInfo" EntitySet="tbl_VehicleInfo" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Vehic__Cust___4D94879B" Association="Self.FK__tbl_Vehic__Cust___4D94879B">
-      <End Role="tbl_User" EntitySet="tbl_User" />
-      <End Role="tbl_VehicleInfoDemo" EntitySet="tbl_VehicleInfoDemo" />
-    </AssociationSet>
-    <AssociationSet Name="FK__tbl_Vehic__Veh_M__1920BF5C" Association="Self.FK__tbl_Vehic__Veh_M__1920BF5C">
+    <AssociationSet Name="FK__tbl_Vehic__Veh_M__40F9A68C" Association="Self.FK__tbl_Vehic__Veh_M__40F9A68C">
       <End Role="tbl_Vehicle_Price" EntitySet="tbl_Vehicle_Price" />
       <End Role="tbl_VehicleInfo" EntitySet="tbl_VehicleInfo" />
-    </AssociationSet>
-    <AssociationSet Name="FK__tbl_Vehic__Veh_M__4CA06362" Association="Self.FK__tbl_Vehic__Veh_M__4CA06362">
-      <End Role="tbl_Vehicle_Price" EntitySet="tbl_Vehicle_Price" />
-      <End Role="tbl_VehicleInfoDemo" EntitySet="tbl_VehicleInfoDemo" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

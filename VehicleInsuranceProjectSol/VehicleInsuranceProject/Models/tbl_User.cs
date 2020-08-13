@@ -11,31 +11,49 @@ namespace VehicleInsuranceProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+
+    [DataContract]
     public partial class tbl_User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbl_User()
         {
+            this.tbl_Claims = new HashSet<tbl_Claims>();
             this.tbl_Payment = new HashSet<tbl_Payment>();
+            this.tbl_Policies = new HashSet<tbl_Policies>();
             this.tbl_VehicleInfo = new HashSet<tbl_VehicleInfo>();
-            this.tbl_VehicleInfoDemo = new HashSet<tbl_VehicleInfoDemo>();
         }
     
+        [DataMember]
         public int Id { get; set; }
+        [DataMember]
         public string Firstname { get; set; }
+        [DataMember]
         public string Lastname { get; set; }
+        [DataMember]
         public string Email { get; set; }
+        [DataMember]
         public System.DateTime Date_of_Birth { get; set; }
+        [DataMember]
         public string Contact { get; set; }
+        [DataMember]
         public string Address { get; set; }
+        [DataMember]
         public string Password { get; set; }
+        [DataMember]
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        
+        public virtual ICollection<tbl_Claims> tbl_Claims { get; set; }
+        [DataMember]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_Payment> tbl_Payment { get; set; }
+        [DataMember]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_Policies> tbl_Policies { get; set; }
+        [DataMember]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_VehicleInfo> tbl_VehicleInfo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_VehicleInfoDemo> tbl_VehicleInfoDemo { get; set; }
     }
 }

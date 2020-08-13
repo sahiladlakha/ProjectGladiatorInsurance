@@ -21,17 +21,17 @@ namespace VehicleInsuranceProject.Controllers
 
 
         // GET: api/Policy
-        public IQueryable<tbl_Policy> Gettbl_Policy()
+        public IQueryable<tbl_Policies> Gettbl_Policy()
         {
             db.Configuration.ProxyCreationEnabled = false;
-            return db.tbl_Policy;
+            return db.tbl_Policies;
         }
 
         // GET: api/Policy/5
-        [ResponseType(typeof(tbl_Policy))]
+        [ResponseType(typeof(tbl_Policies))]
         public IHttpActionResult Gettbl_Policy(int id)
         {
-            tbl_Policy tbl_Policy = db.tbl_Policy.Find(id);
+            tbl_Policies tbl_Policy = db.tbl_Policies.Find(id);
             if (tbl_Policy == null)
             {
                 return NotFound();
@@ -42,7 +42,7 @@ namespace VehicleInsuranceProject.Controllers
 
         // PUT: api/Policy/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Puttbl_Policy(int id, tbl_Policy tbl_Policy)
+        public IHttpActionResult Puttbl_Policy(int id, tbl_Policies tbl_Policy)
         {
             if (!ModelState.IsValid)
             {
@@ -76,9 +76,15 @@ namespace VehicleInsuranceProject.Controllers
         }
 
         // POST: api/Policy
-        [ResponseType(typeof(tbl_Policy))]
-        public IHttpActionResult Posttbl_Policy(tbl_Policy tbl_Policy)
+        [ResponseType(typeof(tbl_Policies))]
+        public IHttpActionResult Posttbl_Policy(tbl_Policies tbl_Policy)
         {
+            tbl_Policy.Policy_Purchase_Date = DateTime.Today;
+            int year = tbl_Policy.Policy_Purchase_Date.Year;
+
+            tbl_Policy.Policy_Expiry_Date =  tbl_Policy.Policy_Purchase_Date.AddDays(year); ;
+            tbl_Policy.Policy_Approve_Status = "Activated";
+            tbl_Policy.Policy_Payment_Status = "Not Done";
             int[] paymentDetails = new int[5];
             if(tbl_Policy.Policy_Type=="Third Party")
             {
@@ -94,7 +100,7 @@ namespace VehicleInsuranceProject.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.tbl_Policy.Add(tbl_Policy);
+            db.tbl_Policies.Add(tbl_Policy);
             db.SaveChanges();
             paymentDetails[0] = tbl_Policy.Id;
             paymentDetails[1] = tbl_Policy.Policy_Amount;
@@ -102,7 +108,7 @@ namespace VehicleInsuranceProject.Controllers
 
 
 
-            int? vehicleid = db.tbl_Policy.ToList().Find(m => m.Id == tbl_Policy.Id).Veh_Id;
+            int? vehicleid = db.tbl_Policies.ToList().Find(m => m.Id == tbl_Policy.Id).Veh_Id;
 
             tbl_VehicleInfo tbl_VehicleInfo = db.tbl_VehicleInfo.Where(m => m.Id == vehicleid).First();
 
@@ -121,16 +127,16 @@ namespace VehicleInsuranceProject.Controllers
         }
 
         // DELETE: api/Policy/5
-        [ResponseType(typeof(tbl_Policy))]
+        [ResponseType(typeof(tbl_Policies))]
         public IHttpActionResult Deletetbl_Policy(int id)
         {
-            tbl_Policy tbl_Policy = db.tbl_Policy.Find(id);
+            tbl_Policies tbl_Policy = db.tbl_Policies.Find(id);
             if (tbl_Policy == null)
             {
                 return NotFound();
             }
 
-            db.tbl_Policy.Remove(tbl_Policy);
+            db.tbl_Policies.Remove(tbl_Policy);
             db.SaveChanges();
 
             return Ok(tbl_Policy);
@@ -147,7 +153,7 @@ namespace VehicleInsuranceProject.Controllers
 
         private bool tbl_PolicyExists(int id)
         {
-            return db.tbl_Policy.Count(e => e.Id == id) > 0;
+            return db.tbl_Policies.Count(e => e.Id == id) > 0;
         }
     }
 }

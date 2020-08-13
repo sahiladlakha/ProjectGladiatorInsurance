@@ -17,11 +17,13 @@ namespace VehicleInsuranceProject.Controllers
     public class LoginController : ApiController
     {
         private db_ProjectGladiatorEntities db = new db_ProjectGladiatorEntities();
+       
 
         // GET: api/Login
         public IQueryable<tbl_User> Gettbl_User()
         {
             db.Configuration.ProxyCreationEnabled = false;
+            
             return db.tbl_User;
         }
 
@@ -35,6 +37,7 @@ namespace VehicleInsuranceProject.Controllers
                 return NotFound();
             }
 
+            
             return Ok(tbl_User);
         }
 
@@ -138,6 +141,8 @@ namespace VehicleInsuranceProject.Controllers
 
             return Ok(tbl_User);
         }
+
+        
 
         protected override void Dispose(bool disposing)
         {

@@ -9,25 +9,21 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using VehicleInsuranceProject.Models;
-using System.Web.Http.Cors;
-using System.Globalization;
 
 namespace VehicleInsuranceProject.Controllers
 {
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-    public class tbl_UserController : ApiController
+    public class UserDetailsFetchController : ApiController
     {
         private db_ProjectGladiatorEntities db = new db_ProjectGladiatorEntities();
         
 
-        // GET: api/tbl_User
+        // GET: api/UserDetailsFetch
         public IQueryable<tbl_User> Gettbl_User()
         {
-            db.Configuration.ProxyCreationEnabled = false;
             return db.tbl_User;
         }
 
-        // GET: api/tbl_User/5
+        // GET: api/UserDetailsFetch/5
         [ResponseType(typeof(tbl_User))]
         public IHttpActionResult Gettbl_User(int id)
         {
@@ -36,12 +32,23 @@ namespace VehicleInsuranceProject.Controllers
             {
                 return NotFound();
             }
+
+
+            // int? policyid = db.tbl_Payment.ToList().Find(m => m.Id == tbl_Payment.Id).Pol_Id;
+            // tbl_Policy tbl_Policy = db.tbl_Policy.Where(m => m.Id == policyid).First();
+
+
+
+
+            db.Configuration.ProxyCreationEnabled = false;
+            //List<tbl_VehicleInfo> tbl_VehicleInfos= db.tbl_VehicleInfo.Where(m => m.Cust_Id == id);
            
-            List<usp_GetRoleDetails_Result> list = db.usp_GetRoleDetails(id).ToList();
-            return Ok(db.usp_GetRoleDetails(id));
+
+
+           return Ok();
         }
 
-        // PUT: api/tbl_User/5
+        // PUT: api/UserDetailsFetch/5
         [ResponseType(typeof(void))]
         public IHttpActionResult Puttbl_User(int id, tbl_User tbl_User)
         {
@@ -76,7 +83,7 @@ namespace VehicleInsuranceProject.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/tbl_User
+        // POST: api/UserDetailsFetch
         [ResponseType(typeof(tbl_User))]
         public IHttpActionResult Posttbl_User(tbl_User tbl_User)
         {
@@ -84,16 +91,14 @@ namespace VehicleInsuranceProject.Controllers
             {
                 return BadRequest(ModelState);
             }
-            string x = tbl_User.Date_of_Birth.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
-            DateTime oDate = Convert.ToDateTime(x);
-            tbl_User.Date_of_Birth = oDate;
+
             db.tbl_User.Add(tbl_User);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = tbl_User.Id }, tbl_User);
         }
 
-        // DELETE: api/tbl_User/5
+        // DELETE: api/UserDetailsFetch/5
         [ResponseType(typeof(tbl_User))]
         public IHttpActionResult Deletetbl_User(int id)
         {

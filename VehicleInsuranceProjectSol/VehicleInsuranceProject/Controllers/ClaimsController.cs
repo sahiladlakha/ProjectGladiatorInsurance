@@ -7,55 +7,52 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using VehicleInsuranceProject.Models;
-using System.Web.Http.Cors;
-using System.Globalization;
 
 namespace VehicleInsuranceProject.Controllers
 {
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-    public class tbl_UserController : ApiController
+    public class ClaimsController : ApiController
     {
         private db_ProjectGladiatorEntities db = new db_ProjectGladiatorEntities();
-        
 
-        // GET: api/tbl_User
-        public IQueryable<tbl_User> Gettbl_User()
+        // GET: api/Claims
+        public IQueryable<tbl_Claims> Gettbl_Claims()
         {
             db.Configuration.ProxyCreationEnabled = false;
-            return db.tbl_User;
+            return db.tbl_Claims;
         }
 
-        // GET: api/tbl_User/5
-        [ResponseType(typeof(tbl_User))]
-        public IHttpActionResult Gettbl_User(int id)
+        // GET: api/Claims/5
+        [ResponseType(typeof(tbl_Claims))]
+        public IHttpActionResult Gettbl_Claims(int id)
         {
-            tbl_User tbl_User = db.tbl_User.Find(id);
-            if (tbl_User == null)
+            tbl_Claims tbl_Claims = db.tbl_Claims.Find(id);
+            if (tbl_Claims == null)
             {
                 return NotFound();
             }
-           
-            List<usp_GetRoleDetails_Result> list = db.usp_GetRoleDetails(id).ToList();
-            return Ok(db.usp_GetRoleDetails(id));
+
+            return Ok(tbl_Claims);
         }
 
-        // PUT: api/tbl_User/5
+        // PUT: api/Claims/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Puttbl_User(int id, tbl_User tbl_User)
+        public IHttpActionResult Puttbl_Claims(int id, tbl_Claims tbl_Claims)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != tbl_User.Id)
+            if (id != tbl_Claims.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(tbl_User).State = EntityState.Modified;
+            db.Entry(tbl_Claims).State = EntityState.Modified;
 
             try
             {
@@ -63,7 +60,7 @@ namespace VehicleInsuranceProject.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!tbl_UserExists(id))
+                if (!tbl_ClaimsExists(id))
                 {
                     return NotFound();
                 }
@@ -76,37 +73,36 @@ namespace VehicleInsuranceProject.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/tbl_User
-        [ResponseType(typeof(tbl_User))]
-        public IHttpActionResult Posttbl_User(tbl_User tbl_User)
+        // POST: api/Claims
+        [ResponseType(typeof(tbl_Claims))]
+        public IHttpActionResult Posttbl_Claims(tbl_Claims tbl_Claims)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            string x = tbl_User.Date_of_Birth.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
-            DateTime oDate = Convert.ToDateTime(x);
-            tbl_User.Date_of_Birth = oDate;
-            db.tbl_User.Add(tbl_User);
+            tbl_Claims.Claim_Approved = "No";
+            tbl_Claims.Date_Of_Claim = DateTime.Now;
+            db.tbl_Claims.Add(tbl_Claims);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = tbl_User.Id }, tbl_User);
+            return CreatedAtRoute("DefaultApi", new { id = tbl_Claims.Id }, tbl_Claims);
         }
 
-        // DELETE: api/tbl_User/5
-        [ResponseType(typeof(tbl_User))]
-        public IHttpActionResult Deletetbl_User(int id)
+        // DELETE: api/Claims/5
+        [ResponseType(typeof(tbl_Claims))]
+        public IHttpActionResult Deletetbl_Claims(int id)
         {
-            tbl_User tbl_User = db.tbl_User.Find(id);
-            if (tbl_User == null)
+            tbl_Claims tbl_Claims = db.tbl_Claims.Find(id);
+            if (tbl_Claims == null)
             {
                 return NotFound();
             }
 
-            db.tbl_User.Remove(tbl_User);
+            db.tbl_Claims.Remove(tbl_Claims);
             db.SaveChanges();
 
-            return Ok(tbl_User);
+            return Ok(tbl_Claims);
         }
 
         protected override void Dispose(bool disposing)
@@ -118,9 +114,9 @@ namespace VehicleInsuranceProject.Controllers
             base.Dispose(disposing);
         }
 
-        private bool tbl_UserExists(int id)
+        private bool tbl_ClaimsExists(int id)
         {
-            return db.tbl_User.Count(e => e.Id == id) > 0;
+            return db.tbl_Claims.Count(e => e.Id == id) > 0;
         }
     }
 }

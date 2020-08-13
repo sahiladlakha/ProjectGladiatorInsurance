@@ -99,7 +99,7 @@ namespace VehicleInsuranceProject.Controllers
 
             int IDV = 0;
             int policyPrice = 0;
-            int[] bothPrice = new int[3]; 
+            int[] bothPrice = new int[4]; 
 
 
             if (difference < 1)
@@ -172,6 +172,7 @@ namespace VehicleInsuranceProject.Controllers
             db.tbl_VehicleInfo.Add(tbl_VehicleInfo);
             db.SaveChanges();
             bothPrice[2] = tbl_VehicleInfo.Id;
+            bothPrice[3] = tbl_VehicleInfo.Cust_Id.Value;
 
             return CreatedAtRoute("DefaultApi", new { id = tbl_VehicleInfo.Id }, bothPrice);
         }

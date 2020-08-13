@@ -28,14 +28,13 @@ namespace VehicleInsuranceProject.Models
         }
     
         public virtual DbSet<tbl_Admin> tbl_Admin { get; set; }
-        public virtual DbSet<tbl_Claim> tbl_Claim { get; set; }
+        public virtual DbSet<tbl_Claims> tbl_Claims { get; set; }
         public virtual DbSet<tbl_Payment> tbl_Payment { get; set; }
-        public virtual DbSet<tbl_Policy> tbl_Policy { get; set; }
-        public virtual DbSet<tbl_Renew> tbl_Renew { get; set; }
+        public virtual DbSet<tbl_Policies> tbl_Policies { get; set; }
+        public virtual DbSet<tbl_RenewPolicy> tbl_RenewPolicy { get; set; }
         public virtual DbSet<tbl_User> tbl_User { get; set; }
         public virtual DbSet<tbl_Vehicle_Price> tbl_Vehicle_Price { get; set; }
         public virtual DbSet<tbl_VehicleInfo> tbl_VehicleInfo { get; set; }
-        public virtual DbSet<tbl_VehicleInfoDemo> tbl_VehicleInfoDemo { get; set; }
     
         public virtual int sp_activateStatus(Nullable<int> id)
         {
@@ -44,6 +43,15 @@ namespace VehicleInsuranceProject.Models
                 new ObjectParameter("Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_activateStatus", idParameter);
+        }
+    
+        public virtual int sp_claimApprove(string mobile_No)
+        {
+            var mobile_NoParameter = mobile_No != null ?
+                new ObjectParameter("Mobile_No", mobile_No) :
+                new ObjectParameter("Mobile_No", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_claimApprove", mobile_NoParameter);
         }
     
         public virtual int sp_passwordReset(string email, string password)
@@ -57,6 +65,33 @@ namespace VehicleInsuranceProject.Models
                 new ObjectParameter("Password", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_passwordReset", emailParameter, passwordParameter);
+        }
+    
+        public virtual int sp_paymentStatus(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_paymentStatus", idParameter);
+        }
+    
+        public virtual int sp_paymentStatuses(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_paymentStatuses", idParameter);
+        }
+    
+        public virtual ObjectResult<usp_GetRoleDetails_Result> usp_GetRoleDetails(Nullable<int> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetRoleDetails_Result>("usp_GetRoleDetails", userIdParameter);
         }
     }
 }
