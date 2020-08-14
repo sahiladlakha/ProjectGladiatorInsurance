@@ -15,6 +15,55 @@ export class SharedService
     public finalData;
     public profileData;
     public policyIdForClaim;
+    public policyIdForRenew;
+    public policyId;
+    public renewProfileData;
+
+
+
+    public setrenewProfileData(renewdata)
+    {
+            this.renewProfileData=renewdata;
+    }
+
+    public getrenewProfileData()
+    {
+            return this.renewProfileData;
+    }
+
+
+
+
+    public setPolicyId(policy)
+    {
+        this.policyId=policy;
+    }
+
+    public getPolicyId()
+    {
+        return this.policyId;
+
+    }
+   
+
+
+
+
+
+public setPolicyIdForRenew(policyIdforrenew)
+{
+
+this.policyIdForRenew=policyIdforrenew;
+
+}
+
+
+public getPolicyIdForRenew()
+{
+
+return this.policyIdForRenew;
+
+}
 
 
 
@@ -130,3 +179,5 @@ public getAllDetails()
 
     
 }
+
+

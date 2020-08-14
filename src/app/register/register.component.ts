@@ -5,6 +5,7 @@ import {RegisterationService} from '../services/registerationService'
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { SharedService } from '../services/sharedService';
+import { combineLatest } from 'rxjs';
 
 
 
@@ -119,6 +120,7 @@ export class RegisterComponent implements OnInit {
        ngOnInit(): void {
 
         this.nomatch=false;
+        
       }
     
           

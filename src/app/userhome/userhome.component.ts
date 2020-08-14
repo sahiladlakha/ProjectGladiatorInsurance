@@ -14,6 +14,7 @@ export class UserhomeComponent implements OnInit {
   result;
   public service;
   userId;
+  result1;
 
   constructor(private routes:Router,private profileService:ProfileService,private sharedService:SharedService) 
   
@@ -31,6 +32,9 @@ export class UserhomeComponent implements OnInit {
      this.profileService.fetchProfile(this.userId).subscribe((data)=>
      {
          this.result=data;
+         console.log("Before Renewing");
+         console.log(this.result);
+         console.log("Normal Over");
  
          if(this.result!=null)
          {
@@ -39,18 +43,39 @@ export class UserhomeComponent implements OnInit {
            //console.log(this.service.getprofileDatass());
            //console.log(this.result);
            this.routes.navigate(["/profile"]);
+           
          }
- 
- 
-         else
-         {
-          this.error=true;
-         }
+
  
  
       })
  
- 
+      this.profileService.fetchRenewProfile(this.userId).subscribe((data)=>
+    {
+        this.result1=data;
+        console.log(this.result1);
+
+        if(this.result1!=null)
+        {
+          this.service.setrenewProfileData(this.result1);
+          console.log(this.result1);
+        
+        }
+
+        console.log("In renew before redirect");
+        console.log(this.result);
+        if(this.result!=null)
+          {
+        this.routes.navigate(["/profile"]);
+          }
+
+        if(this.result==null)
+        {
+         this.error=true;
+        }
+
+
+     })
  
  
     }

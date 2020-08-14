@@ -5,7 +5,44 @@ POLICY TABLE
 <button type="submit" class="btn btn-default">See User Details</button>
 
 
+
+<button (click)="fetchClaimTable()">See All Claims</button>
+<div>
+<p *ngFor="let pol of result1">
+    Policy ID {{pol.Id}}<br/>
+    Mobile No {{pol.Mobile_No}}<br/>
+    Reason {{pol.Reason_of_Claim}}<br/>
+   Date of Claim  {{pol.Date_Of_Claim}} <br/>
+   Claim Amount {{pol.Claim_Amount}}<br/>
+   Policy Id {{pol.Pol_Id}}<br/>
+   Customer Id {{pol.Customer_Id}}<br/>
+      <button (click)="Approveclaim(pol.Id)">Approve Claim</button>
+     
+
+      
+    
+  </p>
+
+
+</div>
+
 CLAIM TABLE   
 
-<button type="submit" class="btn btn-default">Approve</button>
 
+
+
+
+<p *ngFor="let pol of result">
+    Policy ID {{pol.Id}}<br/>
+    Mobile No {{pol.Mobile_No}}<br/>
+    Reason {{pol.Reason_of_Claim}}<br/>
+   Date of Claim  {{pol.Date_Of_Claim}} <br/>
+   Claim Amount {{pol.Claim_Amount}}<br/>
+   Policy Id {{pol.Pol_Id}}<br/>
+   Customer Id {{pol.Customer_Id}}<br/>
+      <button (click)="Approveclaim(pol.Id)">Approve Claim</button>
+     
+
+      
+    
+  </p>

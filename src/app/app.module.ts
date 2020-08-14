@@ -35,6 +35,9 @@ import { SuccessComponent } from './success/success.component';
 import { ClaimsuccessComponent } from './claimsuccess/claimsuccess.component';
 import { ClaimService } from './services/claimService';
 import { UserprofileComponent } from './userprofile/userprofile.component';
+import { RenewPolicyComponent } from './renew-policy/renew-policy.component';
+import { RenewService } from './services/renewService';
+import { AdminService } from './services/adminService';
 
 
 var myRoutes:Routes=[
@@ -54,6 +57,9 @@ var myRoutes:Routes=[
   {path:"claimsuccess",component:ClaimsuccessComponent},
   {path:"claim",component:ClaimComponent},
   {path:"profile",component:UserprofileComponent},
+  {path:"profile",component:UserprofileComponent},
+  {path:"renew",component:RenewPolicyComponent},
+  {path:"admindashboard",component:AdmindashboardComponent},
 
   {path:'**',component:HomepageComponent}
   
@@ -79,7 +85,8 @@ var myRoutes:Routes=[
     AdmindashboardComponent,
     SuccessComponent,
     ClaimsuccessComponent,
-    UserprofileComponent
+    UserprofileComponent,
+    RenewPolicyComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +95,7 @@ var myRoutes:Routes=[
     HttpClientModule,
     RouterModule.forRoot(myRoutes)
   ],
-  providers: [RegisterationService,DatePipe,LoginService,SharedService,VehicleService,PolicyService,PaymentService,ClaimService,ProfileService],
+  providers: [RegisterationService,DatePipe,LoginService,SharedService,VehicleService,PolicyService,PaymentService,ClaimService,ProfileService,RenewService,AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

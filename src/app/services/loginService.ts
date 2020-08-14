@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Login } from '../models/login'
 import {HttpClient} from '@angular/common/http'
+import { Admin } from '../models/admin'
 
 
 @Injectable()
@@ -20,7 +21,7 @@ public login(login:Login){
 
 
 public adminlogin(login:Login){
-    return this.http.post("https://localhost:44308/api/AminLogin",login);
+    return this.http.post("https://localhost:44308/api/AdminLogin",login);
 }
 
 }

@@ -15,24 +15,24 @@
         
            
 
-            <label>Select Policy Type</label>
+             <label>Select Policy Type</label>
             <br/>
             <input list = "types" [(ngModel)]="policy.Policy_Type">
             <datalist id="types">
                <option *ngFor="let c of types" [value]="c">{{c}}</option>
               
             </datalist>
-            <br/>
-
+            <br/> 
+<!--
              <select name="types" [(ngModel)]="policy.Policy_Type"> 
                 <option *ngFor="let c of types" [value]="c">{{c}}</option> 
             </select>  
            
-        
+        -->
 
         </div>
     <div class="row3">
-        <label>Choose you Policy Duartion</label>
+        <label>Choose you Policy Duration</label>
     </div>
         <div class="row4">
            
