@@ -80,18 +80,29 @@ namespace VehicleInsuranceProject.Controllers
         public IHttpActionResult Posttbl_Policy(tbl_Policies tbl_Policy)
         {
             tbl_Policy.Policy_Purchase_Date = DateTime.Today;
-            int year = tbl_Policy.Policy_Purchase_Date.Year;
+            int year = tbl_Policy.Duration;
+            tbl_Policy.Policy_Date = DateTime.Today;
 
-            tbl_Policy.Policy_Expiry_Date =  tbl_Policy.Policy_Purchase_Date.AddDays(year); ;
+            tbl_Policy.Policy_Expiry_Date =  tbl_Policy.Policy_Purchase_Date.AddDays(year);
             tbl_Policy.Policy_Approve_Status = "Activated";
             tbl_Policy.Policy_Payment_Status = "Not Done";
             int[] paymentDetails = new int[5];
             if(tbl_Policy.Policy_Type=="Third Party")
             {
                 tbl_Policy.Total_IDV = tbl_Policy.Total_IDV / 50;
+                tbl_Policy.Policy_Amount = tbl_Policy.Policy_Amount / 100;
             }
 
-           
+           if(tbl_Policy.Total_IDV<5000)
+            {
+                tbl_Policy.Total_IDV = 6460;
+            }
+
+           if(tbl_Policy.Policy_Amount<1000)
+            {
+                tbl_Policy.Policy_Amount = 2900;
+            }
+                
 
 
             tbl_Policy.Policy_Amount = tbl_Policy.Policy_Amount * tbl_Policy.Duration;

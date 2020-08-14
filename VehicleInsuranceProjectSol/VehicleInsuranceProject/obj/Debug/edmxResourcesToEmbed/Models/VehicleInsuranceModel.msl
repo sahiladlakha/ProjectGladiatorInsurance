@@ -54,9 +54,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbl_RenewPolicy">
-      <EntityTypeMapping TypeName="db_ProjectGladiatorModel.tbl_RenewPolicy">
-        <MappingFragment StoreEntitySet="tbl_RenewPolicy">
+    <EntitySetMapping Name="tbl_RenewPolicies">
+      <EntityTypeMapping TypeName="db_ProjectGladiatorModel.tbl_RenewPolicies">
+        <MappingFragment StoreEntitySet="tbl_RenewPolicies">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Policy_Type" ColumnName="Policy_Type" />
           <ScalarProperty Name="Duration" ColumnName="Duration" />
@@ -70,6 +70,7 @@
           <ScalarProperty Name="Policy_Approve_Status" ColumnName="Policy_Approve_Status" />
           <ScalarProperty Name="Policy_Payment_Status" ColumnName="Policy_Payment_Status" />
           <ScalarProperty Name="previousPolicyId" ColumnName="previousPolicyId" />
+          <ScalarProperty Name="Cust_Id" ColumnName="Cust_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -113,10 +114,12 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="sp_activateStatus" FunctionName="db_ProjectGladiatorModel.Store.sp_activateStatus" />
-    <FunctionImportMapping FunctionImportName="sp_claimApprove" FunctionName="db_ProjectGladiatorModel.Store.sp_claimApprove" />
     <FunctionImportMapping FunctionImportName="sp_passwordReset" FunctionName="db_ProjectGladiatorModel.Store.sp_passwordReset" />
     <FunctionImportMapping FunctionImportName="sp_paymentStatus" FunctionName="db_ProjectGladiatorModel.Store.sp_paymentStatus" />
     <FunctionImportMapping FunctionImportName="sp_paymentStatuses" FunctionName="db_ProjectGladiatorModel.Store.sp_paymentStatuses" />
+    <FunctionImportMapping FunctionImportName="sp_paymentStatusesforRenew" FunctionName="db_ProjectGladiatorModel.Store.sp_paymentStatusesforRenew" />
+    <FunctionImportMapping FunctionImportName="us_claimApprove" FunctionName="db_ProjectGladiatorModel.Store.us_claimApprove" />
+    <FunctionImportMapping FunctionImportName="us_claimDecline" FunctionName="db_ProjectGladiatorModel.Store.us_claimDecline" />
     <FunctionImportMapping FunctionImportName="usp_GetRoleDetails" FunctionName="db_ProjectGladiatorModel.Store.usp_GetRoleDetails">
       <ResultMapping>
         <ComplexTypeMapping TypeName="db_ProjectGladiatorModel.usp_GetRoleDetails_Result">
@@ -125,6 +128,61 @@
           <ScalarProperty Name="Registration_Number" ColumnName="Registration_Number" />
           <ScalarProperty Name="Total_IDV" ColumnName="Total_IDV" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Policy_Expiry_Date" ColumnName="Policy_Expiry_Date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_RenewDetails" FunctionName="db_ProjectGladiatorModel.Store.usp_RenewDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db_ProjectGladiatorModel.usp_RenewDetails_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Veh_Model" ColumnName="Veh_Model" />
+          <ScalarProperty Name="Registration_Number" ColumnName="Registration_Number" />
+          <ScalarProperty Name="Total_IDV" ColumnName="Total_IDV" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Policy_Expiry_Date" ColumnName="Policy_Expiry_Date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="us_ClaimDetailForUser" FunctionName="db_ProjectGladiatorModel.Store.us_ClaimDetailForUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db_ProjectGladiatorModel.us_ClaimDetailForUser_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Mobile_No" ColumnName="Mobile_No" />
+          <ScalarProperty Name="Reason_of_Claim" ColumnName="Reason_of_Claim" />
+          <ScalarProperty Name="Date_Of_Claim" ColumnName="Date_Of_Claim" />
+          <ScalarProperty Name="Claim_Approved" ColumnName="Claim_Approved" />
+          <ScalarProperty Name="Claim_Amount" ColumnName="Claim_Amount" />
+          <ScalarProperty Name="Pol_Id" ColumnName="Pol_Id" />
+          <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="us_claimDetails2" FunctionName="db_ProjectGladiatorModel.Store.us_claimDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db_ProjectGladiatorModel.us_claimDetails2_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Mobile_No" ColumnName="Mobile_No" />
+          <ScalarProperty Name="Reason_of_Claim" ColumnName="Reason_of_Claim" />
+          <ScalarProperty Name="Date_Of_Claim" ColumnName="Date_Of_Claim" />
+          <ScalarProperty Name="Claim_Approved" ColumnName="Claim_Approved" />
+          <ScalarProperty Name="Claim_Amount" ColumnName="Claim_Amount" />
+          <ScalarProperty Name="Pol_Id" ColumnName="Pol_Id" />
+          <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="us_claimDetailsofAllUsers" FunctionName="db_ProjectGladiatorModel.Store.us_claimDetailsofAllUsers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db_ProjectGladiatorModel.us_claimDetailsofAllUsers_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Mobile_No" ColumnName="Mobile_No" />
+          <ScalarProperty Name="Reason_of_Claim" ColumnName="Reason_of_Claim" />
+          <ScalarProperty Name="Date_Of_Claim" ColumnName="Date_Of_Claim" />
+          <ScalarProperty Name="Claim_Approved" ColumnName="Claim_Approved" />
+          <ScalarProperty Name="Claim_Amount" ColumnName="Claim_Amount" />
+          <ScalarProperty Name="Pol_Id" ColumnName="Pol_Id" />
+          <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

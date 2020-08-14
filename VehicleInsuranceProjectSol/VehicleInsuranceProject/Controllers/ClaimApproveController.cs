@@ -14,31 +14,51 @@ using VehicleInsuranceProject.Models;
 namespace VehicleInsuranceProject.Controllers
 {
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-    public class ClaimsController : ApiController
+    public class ClaimApproveController : ApiController
     {
         private db_ProjectGladiatorEntities db = new db_ProjectGladiatorEntities();
 
-        // GET: api/Claims
+        // GET: api/ClaimAprrove
         public IQueryable<tbl_Claims> Gettbl_Claims()
         {
             db.Configuration.ProxyCreationEnabled = false;
             return db.tbl_Claims;
         }
 
-        // GET: api/Claims/5
+        // GET: api/ClaimAprrove/5
         [ResponseType(typeof(tbl_Claims))]
         public IHttpActionResult Gettbl_Claims(int id)
         {
-            tbl_User tbl_User = db.tbl_User.Find(id);
-            if (tbl_User == null)
+           
+
+
+            tbl_Claims tbl_Claims = db.tbl_Claims.Find(id);
+            if (tbl_Claims == null)
             {
                 return NotFound();
             }
-            return Ok(db.us_ClaimDetailForUser(id));
-           
+            db.us_claimApprove(id);
+            try
+            {
+                db.SaveChanges();
+            }
+
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!tbl_ClaimsExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Ok(db.us_claimDetailsofAllUsers());
         }
 
-        // PUT: api/Claims/5
+        // PUT: api/ClaimAprrove/5
         [ResponseType(typeof(void))]
         public IHttpActionResult Puttbl_Claims(int id, tbl_Claims tbl_Claims)
         {
@@ -73,7 +93,7 @@ namespace VehicleInsuranceProject.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Claims
+        // POST: api/ClaimAprrove
         [ResponseType(typeof(tbl_Claims))]
         public IHttpActionResult Posttbl_Claims(tbl_Claims tbl_Claims)
         {
@@ -81,21 +101,14 @@ namespace VehicleInsuranceProject.Controllers
             {
                 return BadRequest(ModelState);
             }
-            int? policyId = tbl_Claims.Pol_Id;
 
-            tbl_Policies tbl_Policies = db.tbl_Policies.Find(policyId);
-            int claimAmount = tbl_Policies.Total_IDV;
-            tbl_Claims.Claim_Amount = claimAmount;
-
-            tbl_Claims.Claim_Approved = "Pending";
-            tbl_Claims.Date_Of_Claim = DateTime.Now;
             db.tbl_Claims.Add(tbl_Claims);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = tbl_Claims.Id }, tbl_Claims);
         }
 
-        // DELETE: api/Claims/5
+        // DELETE: api/ClaimAprrove/5
         [ResponseType(typeof(tbl_Claims))]
         public IHttpActionResult Deletetbl_Claims(int id)
         {

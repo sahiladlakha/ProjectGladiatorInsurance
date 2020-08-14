@@ -110,14 +110,16 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminLoginController.cs" />
+    <Compile Include="Controllers\ClaimApproveController.cs" />
     <Compile Include="Controllers\ClaimsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PolicyController.cs" />
+    <Compile Include="Controllers\RenewedPolicyController.cs" />
+    <Compile Include="Controllers\RenewPoliciesController.cs" />
     <Compile Include="Controllers\tbl_UserController.cs" />
     <Compile Include="Controllers\UserDashboard.cs" />
     <Compile Include="Controllers\UserDetailsFetchController.cs" />
-    <Compile Include="Controllers\UserpageController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Controllers\VehiclePriceController.cs" />
     <Compile Include="Global.asax.cs">
@@ -136,7 +138,7 @@
     <Compile Include="Models\tbl_Policies.cs">
       <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbl_RenewPolicy.cs">
+    <Compile Include="Models\tbl_RenewPolicies.cs">
       <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_User.cs">
@@ -149,6 +151,24 @@
       <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_GetRoleDetails_Result.cs">
+      <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_RenewDetails_Result.cs">
+      <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\us_ClaimDetailForUser_Result.cs">
+      <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\us_ClaimDetails1_Result.cs">
+      <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\us_claimDetails2_Result.cs">
+      <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\us_claimDetailsofAllUsers_Result.cs">
+      <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\us_claimDetails_Result.cs">
       <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VehicleInsuranceModel.Context.cs">

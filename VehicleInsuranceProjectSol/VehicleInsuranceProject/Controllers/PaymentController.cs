@@ -85,6 +85,7 @@ namespace VehicleInsuranceProject.Controllers
                 return BadRequest(ModelState);
             }
             tbl_Payment.Payment_Date = DateTime.Now;
+            tbl_Payment.Payment_Status = "Done";
             db.tbl_Payment.Add(tbl_Payment);
             db.SaveChanges();
 
@@ -115,6 +116,7 @@ namespace VehicleInsuranceProject.Controllers
            
 
             db.sp_paymentStatuses(tbl_Payment.Pol_Id);
+            db.sp_paymentStatusesforRenew(tbl_Payment.Pol_Id);
 
             return CreatedAtRoute("DefaultApi", new { id = tbl_Payment.Id }, success);
         }

@@ -10,18 +10,14 @@
 namespace VehicleInsuranceProject.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class tbl_Payment
+    public partial class usp_RenewDetails_Result
     {
         public int Id { get; set; }
-        public Nullable<int> Cust_Id { get; set; }
-        public Nullable<int> Pol_Id { get; set; }
-        public System.DateTime Payment_Date { get; set; }
-        public int Payment_Amount { get; set; }
-        public string Payment_Status { get; set; }
-    
-        public virtual tbl_User tbl_User { get; set; }
-        public virtual tbl_Policies tbl_Policies { get; set; }
+        public string Veh_Model { get; set; }
+        public string Registration_Number { get; set; }
+        public Nullable<int> Total_IDV { get; set; }
+        public int UserId { get; set; }
+        public Nullable<System.DateTime> Policy_Expiry_Date { get; set; }
     }
 }

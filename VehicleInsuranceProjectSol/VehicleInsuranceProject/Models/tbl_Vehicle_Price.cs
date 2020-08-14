@@ -11,9 +11,7 @@ namespace VehicleInsuranceProject.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Runtime.Serialization;
-
-    [DataContract]
+    
     public partial class tbl_Vehicle_Price
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,13 +19,10 @@ namespace VehicleInsuranceProject.Models
         {
             this.tbl_VehicleInfo = new HashSet<tbl_VehicleInfo>();
         }
-    [DataMember]
+    
         public string Vehicle_Model { get; set; }
-        [DataMember]
         public int Vehicle_Showroom_Price { get; set; }
-        [DataMember]
         public Nullable<int> Vehicle_Age { get; set; }
-        [DataMember]
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_VehicleInfo> tbl_VehicleInfo { get; set; }

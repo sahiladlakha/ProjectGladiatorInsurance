@@ -18,5 +18,6 @@ namespace VehicleInsuranceProject.Models
         public string Registration_Number { get; set; }
         public int Total_IDV { get; set; }
         public int UserId { get; set; }
+        public Nullable<System.DateTime> Policy_Expiry_Date { get; set; }
     }
 }

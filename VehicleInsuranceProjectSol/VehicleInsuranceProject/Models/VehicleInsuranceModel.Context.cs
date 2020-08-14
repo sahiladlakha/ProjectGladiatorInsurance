@@ -31,7 +31,7 @@ namespace VehicleInsuranceProject.Models
         public virtual DbSet<tbl_Claims> tbl_Claims { get; set; }
         public virtual DbSet<tbl_Payment> tbl_Payment { get; set; }
         public virtual DbSet<tbl_Policies> tbl_Policies { get; set; }
-        public virtual DbSet<tbl_RenewPolicy> tbl_RenewPolicy { get; set; }
+        public virtual DbSet<tbl_RenewPolicies> tbl_RenewPolicies { get; set; }
         public virtual DbSet<tbl_User> tbl_User { get; set; }
         public virtual DbSet<tbl_Vehicle_Price> tbl_Vehicle_Price { get; set; }
         public virtual DbSet<tbl_VehicleInfo> tbl_VehicleInfo { get; set; }
@@ -43,15 +43,6 @@ namespace VehicleInsuranceProject.Models
                 new ObjectParameter("Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_activateStatus", idParameter);
-        }
-    
-        public virtual int sp_claimApprove(string mobile_No)
-        {
-            var mobile_NoParameter = mobile_No != null ?
-                new ObjectParameter("Mobile_No", mobile_No) :
-                new ObjectParameter("Mobile_No", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_claimApprove", mobile_NoParameter);
         }
     
         public virtual int sp_passwordReset(string email, string password)
@@ -85,6 +76,47 @@ namespace VehicleInsuranceProject.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_paymentStatuses", idParameter);
         }
     
+        public virtual int sp_paymentStatusesforRenew(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_paymentStatusesforRenew", idParameter);
+        }
+    
+        public virtual int us_claimApprove(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("us_claimApprove", idParameter);
+        }
+    
+        public virtual int us_claimDecline(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("us_claimDecline", idParameter);
+        }
+    
+        public virtual ObjectResult<us_claimDetails_Result> us_claimDetails()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<us_claimDetails_Result>("us_claimDetails");
+        }
+    
+        public virtual int usp_ClaimDetails(Nullable<int> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_ClaimDetails", userIdParameter);
+        }
+    
         public virtual ObjectResult<usp_GetRoleDetails_Result> usp_GetRoleDetails(Nullable<int> userId)
         {
             var userIdParameter = userId.HasValue ?
@@ -92,6 +124,43 @@ namespace VehicleInsuranceProject.Models
                 new ObjectParameter("UserId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetRoleDetails_Result>("usp_GetRoleDetails", userIdParameter);
+        }
+    
+        public virtual ObjectResult<usp_RenewDetails_Result> usp_RenewDetails(Nullable<int> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_RenewDetails_Result>("usp_RenewDetails", userIdParameter);
+        }
+    
+        public virtual ObjectResult<us_ClaimDetails1_Result> us_ClaimDetails1(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<us_ClaimDetails1_Result>("us_ClaimDetails1", idParameter);
+        }
+    
+        public virtual ObjectResult<us_ClaimDetailForUser_Result> us_ClaimDetailForUser(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<us_ClaimDetailForUser_Result>("us_ClaimDetailForUser", idParameter);
+        }
+    
+        public virtual ObjectResult<us_claimDetails2_Result> us_claimDetails2()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<us_claimDetails2_Result>("us_claimDetails2");
+        }
+    
+        public virtual ObjectResult<us_claimDetailsofAllUsers_Result> us_claimDetailsofAllUsers()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<us_claimDetailsofAllUsers_Result>("us_claimDetailsofAllUsers");
         }
     }
 }
