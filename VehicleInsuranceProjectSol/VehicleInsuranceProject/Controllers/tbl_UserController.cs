@@ -38,7 +38,7 @@ namespace VehicleInsuranceProject.Controllers
             }
            
             List<usp_GetRoleDetails_Result> list = db.usp_GetRoleDetails(id).ToList();
-            return Ok(db.usp_GetRoleDetails(id));
+            return Ok(db.usp_GetPolicyDetailsForUserDashboard1(id));
         }
 
         // PUT: api/tbl_User/5
@@ -87,6 +87,15 @@ namespace VehicleInsuranceProject.Controllers
             string x = tbl_User.Date_of_Birth.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
             DateTime oDate = Convert.ToDateTime(x);
             tbl_User.Date_of_Birth = oDate;
+            string email = tbl_User.Email;
+
+
+            int myUser = db.tbl_User.Where(u => u.Email == tbl_User.Email).Count();
+            if(myUser==1)
+            {
+                return BadRequest();
+
+            }
             db.tbl_User.Add(tbl_User);
             db.SaveChanges();
 

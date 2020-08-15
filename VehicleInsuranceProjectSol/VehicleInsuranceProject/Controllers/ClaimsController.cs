@@ -84,7 +84,13 @@ namespace VehicleInsuranceProject.Controllers
             int? policyId = tbl_Claims.Pol_Id;
 
             tbl_Policies tbl_Policies = db.tbl_Policies.Find(policyId);
+
+            if(tbl_Policies.Policy_Approve_Status=="Deactivated")
+            {
+                return BadRequest();
+            }
             int claimAmount = tbl_Policies.Total_IDV;
+
             tbl_Claims.Claim_Amount = claimAmount;
 
             tbl_Claims.Claim_Approved = "Pending";

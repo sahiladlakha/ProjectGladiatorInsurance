@@ -104,7 +104,7 @@ namespace VehicleInsuranceProject.Controllers
                 if (myUser == 1)
                 {
                     //tbl_User tbl_User1 = db.tbl_User.Find(email);
-                    return Ok(tbl_User2);
+                    return Ok(tbl_User2.Email);
 
                 }
 

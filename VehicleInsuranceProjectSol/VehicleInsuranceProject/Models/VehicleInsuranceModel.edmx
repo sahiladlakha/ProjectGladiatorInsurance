@@ -53,6 +53,7 @@
           <Property Name="Policy_Approve_Status" Type="nvarchar" MaxLength="50" />
           <Property Name="Policy_Payment_Status" Type="nvarchar" MaxLength="50" />
           <Property Name="Cust_Id" Type="int" />
+          <Property Name="Prev_Policy" Type="int" />
         </EntityType>
         <EntityType Name="tbl_RenewPolicies">
           <Key>
@@ -248,7 +249,14 @@
         <Function Name="sp_activateStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_deactivatePolicy" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_passwordReset" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_passwordResetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Email" Type="varchar" Mode="In" />
           <Parameter Name="Password" Type="varchar" Mode="In" />
         </Function>
@@ -272,6 +280,12 @@
         </Function>
         <Function Name="us_claimDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="us_claimDetailsofAllUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_GetPolicyDetailsForUserDashboard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_GetPolicyDetailsForUserDashboard1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
         <Function Name="usp_GetRoleDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserId" Type="int" Mode="In" />
         </Function>
@@ -393,6 +407,7 @@
           <NavigationProperty Name="tbl_User" Relationship="Self.FK__tbl_Polic__Cust___05A3D694" FromRole="tbl_Policies" ToRole="tbl_User" />
           <NavigationProperty Name="tbl_VehicleInfo" Relationship="Self.FK__tbl_Polic__Veh_I__02C769E9" FromRole="tbl_Policies" ToRole="tbl_VehicleInfo" />
           <NavigationProperty Name="tbl_RenewPolicies" Relationship="Self.FK__tbl_Renew__previ__13F1F5EB" FromRole="tbl_Policies" ToRole="tbl_RenewPolicies" />
+          <Property Name="Prev_Policy" Type="Int32" />
         </EntityType>
         <EntityType Name="tbl_RenewPolicies">
           <Key>
@@ -691,6 +706,19 @@
           </FunctionImport>
           <FunctionImport Name="us_claimDetails2" ReturnType="Collection(db_ProjectGladiatorModel.us_claimDetails2_Result)" />
           <FunctionImport Name="us_claimDetailsofAllUsers" ReturnType="Collection(db_ProjectGladiatorModel.us_claimDetailsofAllUsers_Result)" />
+          <FunctionImport Name="sp_deactivatePolicy">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetPolicyDetailsForUserDashboard" ReturnType="Collection(db_ProjectGladiatorModel.usp_GetPolicyDetailsForUserDashboard_Result)">
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_passwordResetUser">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetPolicyDetailsForUserDashboard1" ReturnType="Collection(db_ProjectGladiatorModel.usp_GetPolicyDetailsForUserDashboard1_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="us_claimDetails_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -758,6 +786,24 @@
           <Property Type="Int32" Name="Pol_Id" Nullable="true" />
           <Property Type="Int32" Name="Customer_Id" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="usp_GetPolicyDetailsForUserDashboard_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Veh_Model" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Registration_Number" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="Total_IDV" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="DateTime" Name="Policy_Expiry_Date" Nullable="true" />
+          <Property Type="String" Name="Policy_Approve_Status" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="usp_GetPolicyDetailsForUserDashboard1_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Veh_Model" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Registration_Number" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="Total_IDV" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="DateTime" Name="Policy_Expiry_Date" Nullable="true" />
+          <Property Type="String" Name="Policy_Approve_Status" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -801,6 +847,7 @@
           <EntitySetMapping Name="tbl_Policies">
             <EntityTypeMapping TypeName="db_ProjectGladiatorModel.tbl_Policies">
               <MappingFragment StoreEntitySet="tbl_Policies">
+                <ScalarProperty Name="Prev_Policy" ColumnName="Prev_Policy" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Policy_Type" ColumnName="Policy_Type" />
                 <ScalarProperty Name="Duration" ColumnName="Duration" />
@@ -946,6 +993,34 @@
                 <ScalarProperty Name="Claim_Amount" ColumnName="Claim_Amount" />
                 <ScalarProperty Name="Pol_Id" ColumnName="Pol_Id" />
                 <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_deactivatePolicy" FunctionName="db_ProjectGladiatorModel.Store.sp_deactivatePolicy" />
+          <FunctionImportMapping FunctionImportName="usp_GetPolicyDetailsForUserDashboard" FunctionName="db_ProjectGladiatorModel.Store.usp_GetPolicyDetailsForUserDashboard">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db_ProjectGladiatorModel.usp_GetPolicyDetailsForUserDashboard_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Veh_Model" ColumnName="Veh_Model" />
+                <ScalarProperty Name="Registration_Number" ColumnName="Registration_Number" />
+                <ScalarProperty Name="Total_IDV" ColumnName="Total_IDV" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Policy_Expiry_Date" ColumnName="Policy_Expiry_Date" />
+                <ScalarProperty Name="Policy_Approve_Status" ColumnName="Policy_Approve_Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_passwordResetUser" FunctionName="db_ProjectGladiatorModel.Store.sp_passwordResetUser" />
+          <FunctionImportMapping FunctionImportName="usp_GetPolicyDetailsForUserDashboard1" FunctionName="db_ProjectGladiatorModel.Store.usp_GetPolicyDetailsForUserDashboard1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db_ProjectGladiatorModel.usp_GetPolicyDetailsForUserDashboard1_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Veh_Model" ColumnName="Veh_Model" />
+                <ScalarProperty Name="Registration_Number" ColumnName="Registration_Number" />
+                <ScalarProperty Name="Total_IDV" ColumnName="Total_IDV" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Policy_Expiry_Date" ColumnName="Policy_Expiry_Date" />
+                <ScalarProperty Name="Policy_Approve_Status" ColumnName="Policy_Approve_Status" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

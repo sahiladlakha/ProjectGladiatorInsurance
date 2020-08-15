@@ -35,6 +35,7 @@ namespace VehicleInsuranceProject.Models
         public string Policy_Approve_Status { get; set; }
         public string Policy_Payment_Status { get; set; }
         public Nullable<int> Cust_Id { get; set; }
+        public Nullable<int> Prev_Policy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_Claims> tbl_Claims { get; set; }

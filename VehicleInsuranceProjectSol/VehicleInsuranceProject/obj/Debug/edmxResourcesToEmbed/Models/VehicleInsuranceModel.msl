@@ -38,6 +38,7 @@
     <EntitySetMapping Name="tbl_Policies">
       <EntityTypeMapping TypeName="db_ProjectGladiatorModel.tbl_Policies">
         <MappingFragment StoreEntitySet="tbl_Policies">
+          <ScalarProperty Name="Prev_Policy" ColumnName="Prev_Policy" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Policy_Type" ColumnName="Policy_Type" />
           <ScalarProperty Name="Duration" ColumnName="Duration" />
@@ -183,6 +184,34 @@
           <ScalarProperty Name="Claim_Amount" ColumnName="Claim_Amount" />
           <ScalarProperty Name="Pol_Id" ColumnName="Pol_Id" />
           <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_deactivatePolicy" FunctionName="db_ProjectGladiatorModel.Store.sp_deactivatePolicy" />
+    <FunctionImportMapping FunctionImportName="usp_GetPolicyDetailsForUserDashboard" FunctionName="db_ProjectGladiatorModel.Store.usp_GetPolicyDetailsForUserDashboard">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db_ProjectGladiatorModel.usp_GetPolicyDetailsForUserDashboard_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Veh_Model" ColumnName="Veh_Model" />
+          <ScalarProperty Name="Registration_Number" ColumnName="Registration_Number" />
+          <ScalarProperty Name="Total_IDV" ColumnName="Total_IDV" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Policy_Expiry_Date" ColumnName="Policy_Expiry_Date" />
+          <ScalarProperty Name="Policy_Approve_Status" ColumnName="Policy_Approve_Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_passwordResetUser" FunctionName="db_ProjectGladiatorModel.Store.sp_passwordResetUser" />
+    <FunctionImportMapping FunctionImportName="usp_GetPolicyDetailsForUserDashboard1" FunctionName="db_ProjectGladiatorModel.Store.usp_GetPolicyDetailsForUserDashboard1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db_ProjectGladiatorModel.usp_GetPolicyDetailsForUserDashboard1_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Veh_Model" ColumnName="Veh_Model" />
+          <ScalarProperty Name="Registration_Number" ColumnName="Registration_Number" />
+          <ScalarProperty Name="Total_IDV" ColumnName="Total_IDV" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Policy_Expiry_Date" ColumnName="Policy_Expiry_Date" />
+          <ScalarProperty Name="Policy_Approve_Status" ColumnName="Policy_Approve_Status" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

@@ -162,5 +162,45 @@ namespace VehicleInsuranceProject.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<us_claimDetailsofAllUsers_Result>("us_claimDetailsofAllUsers");
         }
+    
+        public virtual int sp_deactivatePolicy(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_deactivatePolicy", idParameter);
+        }
+    
+        public virtual ObjectResult<usp_GetPolicyDetailsForUserDashboard_Result> usp_GetPolicyDetailsForUserDashboard(Nullable<int> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetPolicyDetailsForUserDashboard_Result>("usp_GetPolicyDetailsForUserDashboard", userIdParameter);
+        }
+    
+        public virtual int sp_passwordResetUser(string email, string password)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_passwordResetUser", emailParameter, passwordParameter);
+        }
+    
+        public virtual ObjectResult<usp_GetPolicyDetailsForUserDashboard1_Result> usp_GetPolicyDetailsForUserDashboard1(Nullable<int> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetPolicyDetailsForUserDashboard1_Result>("usp_GetPolicyDetailsForUserDashboard1", userIdParameter);
+        }
     }
 }

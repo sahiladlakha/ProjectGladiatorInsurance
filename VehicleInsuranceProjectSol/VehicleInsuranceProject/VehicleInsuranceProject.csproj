@@ -112,8 +112,13 @@
     <Compile Include="Controllers\AdminLoginController.cs" />
     <Compile Include="Controllers\ClaimApproveController.cs" />
     <Compile Include="Controllers\ClaimsController.cs" />
+    <Compile Include="Controllers\EstimateController.cs" />
+    <Compile Include="Controllers\InsertVehicleModelController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PasswordResetController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PoliciesControllerforRenew.cs" />
+    <Compile Include="Controllers\PoliciesRenewFromPrevController.cs" />
     <Compile Include="Controllers\PolicyController.cs" />
     <Compile Include="Controllers\RenewedPolicyController.cs" />
     <Compile Include="Controllers\RenewPoliciesController.cs" />
@@ -148,6 +153,12 @@
       <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_Vehicle_Price.cs">
+      <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPolicyDetailsForUserDashboard1_Result.cs">
+      <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPolicyDetailsForUserDashboard_Result.cs">
       <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_GetRoleDetails_Result.cs">

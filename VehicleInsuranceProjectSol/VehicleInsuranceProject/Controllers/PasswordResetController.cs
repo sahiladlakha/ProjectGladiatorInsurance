@@ -14,38 +14,30 @@ using VehicleInsuranceProject.Models;
 namespace VehicleInsuranceProject.Controllers
 {
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-    public class UserDashboardController : ApiController
+    public class PasswordResetController : ApiController
     {
         private db_ProjectGladiatorEntities db = new db_ProjectGladiatorEntities();
 
-        // GET: api/UserDashboard
+        // GET: api/PasswordReset
         public IQueryable<tbl_User> Gettbl_User()
         {
             return db.tbl_User;
         }
 
-        // GET: api/UserDashboard/5
+        // GET: api/PasswordReset/5
         [ResponseType(typeof(tbl_User))]
         public IHttpActionResult Gettbl_User(int id)
         {
+            tbl_User tbl_User = db.tbl_User.Find(id);
+            if (tbl_User == null)
+            {
+                return NotFound();
+            }
 
-            List<usp_GetRoleDetails_Result> list = db.usp_GetRoleDetails(id).ToList();
-
-
-           // return Ok(db.usp_GetPolicyDetailsForUserDashboard1(id));
-            return Ok(db.usp_GetRoleDetails(id));
-            
-
-            //tbl_User tbl_User = db.tbl_User.Find(id);
-           // if (tbl_User == null)
-           //// {
-                //return NotFound();
-            //}
-
-            
+            return Ok(tbl_User);
         }
 
-        // PUT: api/UserDashboard/5
+        // PUT: api/PasswordReset/5
         [ResponseType(typeof(void))]
         public IHttpActionResult Puttbl_User(int id, tbl_User tbl_User)
         {
@@ -80,7 +72,7 @@ namespace VehicleInsuranceProject.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/UserDashboard
+        // POST: api/PasswordReset
         [ResponseType(typeof(tbl_User))]
         public IHttpActionResult Posttbl_User(tbl_User tbl_User)
         {
@@ -89,13 +81,31 @@ namespace VehicleInsuranceProject.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.tbl_User.Add(tbl_User);
-            db.SaveChanges();
+            int myUser = db.tbl_User.Where(u => u.Email == tbl_User.Email).Count();
+            tbl_User tbl_User2 = db.tbl_User.ToList().Find(u => u.Email == tbl_User.Email);
 
-            return CreatedAtRoute("DefaultApi", new { id = tbl_User.Id }, tbl_User);
+            if (myUser == 1)
+            {
+                db.sp_passwordResetUser(tbl_User.Email,tbl_User.Password);
+                db.SaveChanges();
+                //tbl_User tbl_User1 = db.tbl_User.Find(email);
+                return Ok(tbl_User2.Id);
+
+            }
+
+            else
+            {
+                return BadRequest();
+            }
+
+
+            //db.tbl_User.Add(tbl_User);
+            //db.SaveChanges();
+
+           // return CreatedAtRoute("DefaultApi", new { id = tbl_User.Id }, tbl_User);
         }
 
-        // DELETE: api/UserDashboard/5
+        // DELETE: api/PasswordReset/5
         [ResponseType(typeof(tbl_User))]
         public IHttpActionResult Deletetbl_User(int id)
         {
