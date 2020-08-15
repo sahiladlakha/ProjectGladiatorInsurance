@@ -23,6 +23,7 @@ export class PaymentComponent implements OnInit {
   paymentdetails;
   result;
   error;
+  userId;
   
   constructor(private paymentService:PaymentService,private routes:Router,private sharedService:SharedService) 
   
@@ -82,6 +83,12 @@ export class PaymentComponent implements OnInit {
     this.totalIDV=this.paymentdetails[2];
     this.vehicleId=this.paymentdetails[3];
     this.customerId=this.paymentdetails[4];
+
+    this.userId=this.service.getuserId();
+    if(this.userId==null)
+    {
+         this.routes.navigate(["/userlogin"]);
+    }
     
   }
 

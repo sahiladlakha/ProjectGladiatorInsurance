@@ -2,7 +2,35 @@
 
   <body>
   
-  <h1>Your Policies</h1>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Vehicle Insurance </a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Contact</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> About Us </a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Help</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> FAQ </a></li>
+          <li><a routerLink="/userhome" routerLinkActive="active">Home</a></li>
+          <li><a routerLink="/userlogin" routerLinkActive="active">LogOut</a></li>
+          <li><a routerLink="/claimdisplay" routerLinkActive="active">Claim Status</a></li>
+          
+          
+
+  
+  
+  
+        </ul>
+      </div>
+    </nav>
+
+
+
+
+
+    
+ 
 
   <div *ngIf="showPolicies === false">
 
@@ -15,16 +43,18 @@
   <div class="card" *ngIf="showPolicies">
     <img src="../../assets/images/policy.jpg" alt="Avatar" style="width:100%">
     <div class="container">
+      <h1>Your Policies!!!</h1>
       <p *ngFor="let pol of policyDetails">
        <br> Policy ID {{pol.Id}}<br/>
         Vehicle Model {{pol.Veh_Model}}<br/>
         Max Possible Claim {{pol.Total_IDV}}<br/>
          User Id  {{pol.UserId}} <br/>
-         Policy Expiry Date {{pol.Policy_Expiry_Date}}
-         <button (click)="claim(pol.Id)">File a Claim</button>
-         <button (click)="renew(pol.Id)">Renew Your Policy</button>
+         Policy Expiry Date {{pol.Policy_Expiry_Date}} <br/>
+         Policy Status {{pol.Policy_Approve_Status}} <br/>
+         <button class="btn btn-primary" (click)="claim(pol.Id)">File a Claim</button><br/>
+         <button class="btn btn-primary" (click)="renew(pol.Id)">Renew Your Policy</button>
 
-         <button (click)="claimstatus()" class="btn btn-primary">Check For Your Claim Status</button>
+         
          <!--<button (click)="renew(pol.Id,pol.Total_IDV)">File a Claim</button>-->
      </p>
     </div>
@@ -47,7 +77,7 @@
   
 
  </section>
-<section>
+<!-- <section>
  
  
   
@@ -68,4 +98,4 @@
   
   </div>
 </div>
-</section>
+</section> -->

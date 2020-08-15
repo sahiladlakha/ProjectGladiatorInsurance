@@ -93,6 +93,13 @@ export class VehicleComponent implements OnInit {
     this.vehicle.Cust_Id=this.userId;
     console.log(this.vehicle.Cust_Id);
 
+    
+       
+        if(this.userId==null)
+           {
+                this.routes.navigate(["/userlogin"]);
+           }
+
 
 
   }

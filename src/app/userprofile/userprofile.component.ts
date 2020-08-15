@@ -61,7 +61,7 @@ showPolicies:boolean;
     if(this.policyIdForClaim!=null)
       {
 
-      this.routes.navigate(["/renew"]);
+      this.routes.navigate(["/renewfromprev"]);
       }
 
    }
@@ -84,6 +84,20 @@ showPolicies:boolean;
      })
 
    }
+
+   logout()
+    {
+      this.routes.navigate(["/userlogin"]);
+
+    }
+
+
+    home()
+    {
+      this.routes.navigate(["/userhome"]);
+
+    }
+    
    
    buyInsurance()
    {

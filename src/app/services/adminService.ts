@@ -13,9 +13,7 @@ constructor(private http:HttpClient)
 }
 
 
-public approveClaim(claim:Claim){
-    return this.http.post("https://localhost:44308/api/Claims",claim);
-}
+
 
 public fetchClaimStatus()
 {
@@ -29,7 +27,7 @@ public approveClaims(id){
 
 public fetchClaimTable()
 {
-    return this.http.get("https://localhost:44308/api/ClaimApprove");
+    return this.http.get("https://localhost:44308/api/Claims");
 
 }
 

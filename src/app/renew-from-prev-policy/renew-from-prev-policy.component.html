@@ -1,0 +1,17 @@
+<div class="row3">
+    <label>Choose you Policy Duration</label>
+</div>
+    <div class="row4">
+       
+        <br/>
+        <input list = "years" [(ngModel)]="policy.Duration">
+        <datalist id="years">
+           <option *ngFor="let c of years" [value]="c">{{c}}</option>
+          
+        </datalist>
+        <br/>
+    </div>
+
+    <div class="row5">
+        <button (click)="renewPolicy()" class="alert-success">Check Out </button>
+    </div>

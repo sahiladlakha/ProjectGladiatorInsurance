@@ -24,5 +24,10 @@ public adminlogin(login:Login){
     return this.http.post("https://localhost:44308/api/AdminLogin",login);
 }
 
+
+public resetPassword(login:Login){
+    return this.http.post("https://localhost:44308/api/PasswordReset",login);
+}
+
 }
 

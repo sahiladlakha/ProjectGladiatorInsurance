@@ -28,6 +28,8 @@ import { VehicleService } from './services/vehicleService';
 import { PolicyService } from './services/policyService';
 import { PaymentService } from './services/paymentService';
 
+import { InsertModelsService } from './services/insertModelService';
+
 
 import { ProfileService } from './services/profileService';
 
@@ -38,6 +40,13 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
 import { RenewPolicyComponent } from './renew-policy/renew-policy.component';
 import { RenewService } from './services/renewService';
 import { AdminService } from './services/adminService';
+import { RenewFromPrevPolicyComponent } from './renew-from-prev-policy/renew-from-prev-policy.component';
+import { RenewFromPrevPolicy } from './services/renewFromPrevPolicy';
+import { EstimateService } from './services/estimateService';
+import { ClaimdisplayComponent } from './claimdisplay/claimdisplay.component';
+
+import { FetchClaimsComponent } from './fetch-claims/fetch-claims.component';
+import { InsertVehicleModelComponent } from './insert-vehicle-model/insert-vehicle-model.component';
 
 
 var myRoutes:Routes=[
@@ -60,8 +69,19 @@ var myRoutes:Routes=[
   {path:"profile",component:UserprofileComponent},
   {path:"renew",component:RenewPolicyComponent},
   {path:"admindashboard",component:AdmindashboardComponent},
+  {path:"estimate",component:EstimateComponent},
+  {path:"renewfromprev",component:RenewFromPrevPolicyComponent},
+  {path:"claimdisplay",component:ClaimdisplayComponent},
+  {path:"home",component:HomepageComponent},
 
-  {path:'**',component:HomepageComponent}
+  {path:"fetchclaimforadmin",component:FetchClaimsComponent},
+  
+  {path:'home',component:HomepageComponent},
+  {path:"claim",component:ClaimComponent},
+  {path:"insertModel",component:InsertVehicleModelComponent},
+
+
+  {path:'**',component:UserhomeComponent}
   
   
 ]
@@ -86,7 +106,11 @@ var myRoutes:Routes=[
     SuccessComponent,
     ClaimsuccessComponent,
     UserprofileComponent,
-    RenewPolicyComponent
+    RenewPolicyComponent,
+    RenewFromPrevPolicyComponent,
+    ClaimdisplayComponent,
+    FetchClaimsComponent,
+    InsertVehicleModelComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +119,7 @@ var myRoutes:Routes=[
     HttpClientModule,
     RouterModule.forRoot(myRoutes)
   ],
-  providers: [RegisterationService,DatePipe,LoginService,SharedService,VehicleService,PolicyService,PaymentService,ClaimService,ProfileService,RenewService,AdminService],
+  providers: [RegisterationService,DatePipe,LoginService,SharedService,VehicleService,PolicyService,PaymentService,ClaimService,ProfileService,RenewService,AdminService,RenewFromPrevPolicy,EstimateService,InsertModelsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

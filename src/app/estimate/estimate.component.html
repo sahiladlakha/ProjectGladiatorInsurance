@@ -1,28 +1,82 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body style="background-color:lightskyblue">
+
+  <body style="background-color:powderblue;">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">LTI</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a class="nav-link" routerLink="/userdashboard"><span class="glyphicon glyphicon-log-in"></span> Home</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-left">
+            <li><a class="nav-link" routerLink="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a class="nav-link" routerLink="/userlogin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            
+          </ul>
+        </div>
+      </nav>
+    
+<div class="w3-container">
+   <h1> Go Ahead And Check The Estimate For Your Vehicle</h1>
+
+  <p *ngIf="details">
+
+    <label>Select Car Model</label>
+      <br/>
+      <input list = "models" [(ngModel)]="estimate.Vehicle_Model">
+      <datalist id="models">
+         <option *ngFor="let c of models" [value]="c.Vehicle_Model">{{c.Vehicle_Model}}</option>
+        
+      </datalist> <br/>
+    <lable>Vehicle Age : </lable> 
+     <input type="number" class="form-control" [(ngModel)]="estimate.Vehicle_Age"><br/>
+
+    
+  
+       
+
+    <button (click)="checkEstimate()" class="btn btn-primary">Check Estimate</button>
+    
+  </div>
 <section>
-    <div class="form-group">
-        <label for="pwd">Policy Number</label>
-        <input type="text" class="form-control" id="policy" required>
-      </div>
+ 
+    <div>
+    <p *ngIf="showestimate">
+       
+           <div class="container" *ngIf="showestimate">
+            <h2>Estimate For Your Vehicle</h2>
+            <p></p>            
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Total Insured Value Offered On Your Vehicle</th>
+                  <th>Price Of The Policy</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{totalInsuredValue}}</td>
+                  <td>Rs. {{policyPrice}}</td>
+                  
+                </tr>
+                
+              </tbody>
+            </table>
+            <button (click)="loginpage()" class="btn btn-primary">Go Ahead And Buy Yourself One!</button>
+          </div>
 
-      <div class="form-group">
-        <label for="pwd">Vehicle Model</label>
-        <input type="text" class="form-control" id="policy" required>
-      </div>
-
-      <div class="form-group">
-        <label for="pwd">Registeration Number</label>
-        <input type="text" class="form-control" id="policy" required>
-      </div>
-
-
-      <div class="form-group">
-        <label for="pwd">Claim Amount</label>
-        <input type="text" class="form-control" id="policy" required>
-      </div>
-
-
-
-
-      <button type="submit" class="btn btn-default">Renew</button>
-      <button type="submit" class="btn btn-default">Claim</button>
+      
+    </div>
 </section>
+
+</body>

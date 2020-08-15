@@ -1,0 +1,77 @@
+
+<div>
+<!-- <p *ngFor="let pol of result">
+    Policy ID     :  {{pol.Id}}<br/>
+    Mobile No     :  {{pol.Mobile_No}}<br/>
+    Reason        :  {{pol.Reason_of_Claim}}<br/>
+   Date of Claim  :  {{pol.Date_Of_Claim}} <br/>
+   Claim Approved : {{pol.Claim_Approved}}<br/>
+   Claim Amount   :  {{pol.Claim_Amount}}<br/>
+   Policy Id      :  {{pol.Pol_Id}}<br/>
+   Customer Id    : {{pol.Customer_Id}}<br/>
+        
+  </p> -->
+
+
+</div>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Admin Page </a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        
+        
+       
+        <li><a routerLink="/fetchclaimforadmin" routerLinkActive="active">See All Claims</a></li>
+        <li><a routerLink="/policiesdisplay" routerLinkActive="active">See All Policies</a></li>
+        <li><a routerLink="/insertModel" routerLinkActive="active">Insert Models</a></li>
+        <li><a routerLink="/admindashboard" routerLinkActive="active">Pending Requests</a></li>
+        <li><a routerLink="/userlogin" routerLinkActive="active">LogOut</a></li>
+        
+        
+
+
+
+
+      </ul>
+    </div>
+  </nav>
+
+
+
+<table class="table table-dark" >
+    <p *ngFor="let pol of result">
+    <thead>
+      <tr>
+        
+        <th scope="col">Policy Id &nbsp; &nbsp;</th>
+        <th scope="col">Mobile No &nbsp;&nbsp;</th>
+        
+        <th scope="col">Reason &nbsp;&nbsp;</th>
+        <th scope="col">Claim Filed On &nbsp;&nbsp; </th>
+        <th scope="col">Status &nbsp;&nbsp;</th>
+        <th scope="col">Amount &nbsp;&nbsp;</th>
+        <th scope="col">Policy ID &nbsp;&nbsp;</th>
+        <th scope="col">Customer ID &nbsp;&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          
+          <td>{{pol.Id}}&nbsp;&nbsp;</td>
+          <td>{{pol.Mobile_No}}&nbsp;&nbsp;</td>
+          <td>{{pol.Reason_of_Claim}}&nbsp;&nbsp;</td>
+          <td>{{pol.Date_Of_Claim}}&nbsp;&nbsp;</td>
+          <td>{{pol.Claim_Approved}}&nbsp;&nbsp;</td>
+          <td>{{pol.Claim_Amount}}&nbsp;&nbsp;</td>
+          <td>{{pol.Pol_Id}}&nbsp;&nbsp;</td>
+          <td>{{pol.Customer_Id}}&nbsp;&nbsp;</td>
+
+
+
+          
+     
+        
+        </tr>

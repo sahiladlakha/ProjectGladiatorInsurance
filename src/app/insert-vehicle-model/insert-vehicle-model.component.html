@@ -1,0 +1,65 @@
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Admin Page </a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        
+        
+       
+        <li><a routerLink="/seeallclaimsforadmin" routerLinkActive="active">See All Claims</a></li>
+        <li><a routerLink="/policiesdisplay" routerLinkActive="active">See All Policies</a></li>
+        <li><a routerLink="/insertModel" routerLinkActive="active">Insert Models</a></li>
+        <li><a routerLink="/userlogin" routerLinkActive="active">LogOut</a></li>
+        <li><button (click)="fetchModels()" > See All Models </button></li>
+        
+        
+
+
+
+
+      </ul>
+    </div>
+  </nav>
+
+
+
+
+
+
+
+<div class="w3-container">
+    <h1> </h1>
+ 
+  
+ 
+     <label>Select Car Model</label>
+       <br/>
+       <input type="text" class="form-control" [(ngModel)]="vehicleModel.Vehicle_Model"><br/>
+
+     <label>Vehicle Price : </label> 
+      <input type="number" class="form-control" [(ngModel)]="vehicleModel.Vehicle_Showroom_Price"><br/>
+ 
+     
+   
+        
+ 
+     <button (click)="insertModel()" class="btn btn-primary">Insert</button>
+     
+   </div>
+
+
+   <div *ngIf="details">
+
+    <p *ngFor="let pol of allModels">
+        Vehicle Model {{pol.Vehicle_Model}}<br/>
+        Vehicle ShowRoomPrice {{pol.Vehicle_Showroom_Price}}
+          
+         
+    
+          
+        
+      </p>
+
+   </div>

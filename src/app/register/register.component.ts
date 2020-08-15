@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   result;
   dateformat;
   nomatch:boolean;
+  userId;
   public service;
   constructor(private registerationService:RegisterationService,private routes:Router,public datePipe:DatePipe, public sharedService:SharedService) {
     this.register=new Register();
@@ -120,6 +121,13 @@ export class RegisterComponent implements OnInit {
        ngOnInit(): void {
 
         this.nomatch=false;
+        this.userId=this.service.getuserId();
+        if(this.userId==null)
+           {
+                this.routes.navigate(["/userlogin"]);
+           }
+        
+
         
       }
     

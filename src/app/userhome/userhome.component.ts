@@ -15,18 +15,23 @@ export class UserhomeComponent implements OnInit {
   public service;
   userId;
   result1;
+  showLogout;
 
   constructor(private routes:Router,private profileService:ProfileService,private sharedService:SharedService) 
   
   { 
 
     this.service=sharedService;
+    this.showLogout=false;
 
   }
 
   myProfile()
   {
-    
+    if(this.userId==null)
+           {
+                this.routes.navigate(["/userlogin"]);
+           }
     
        
      this.profileService.fetchProfile(this.userId).subscribe((data)=>
@@ -35,7 +40,11 @@ export class UserhomeComponent implements OnInit {
          console.log("Before Renewing");
          console.log(this.result);
          console.log("Normal Over");
- 
+
+         if(this.userId==null)
+           {
+                this.routes.navigate(["/userlogin"]);
+           }
          if(this.result!=null)
          {
            this.service.setprofileDatass(this.result);
@@ -50,52 +59,112 @@ export class UserhomeComponent implements OnInit {
  
       })
  
-      this.profileService.fetchRenewProfile(this.userId).subscribe((data)=>
-    {
-        this.result1=data;
-        console.log(this.result1);
-
-        if(this.result1!=null)
-        {
-          this.service.setrenewProfileData(this.result1);
-          console.log(this.result1);
-        
-        }
-
-        console.log("In renew before redirect");
-        console.log(this.result);
-        if(this.result!=null)
-          {
-        this.routes.navigate(["/profile"]);
-          }
-
-        if(this.result==null)
-        {
-         this.error=true;
-        }
-
-
-     })
- 
- 
     }
+
+      renewInsurance()
+  {
+    if(this.userId==null)
+    {
+    this.routes.navigate(["/userlogin"]);
+    }
+
+    this.profileService.fetchProfile(this.userId).subscribe((data)=>
+     {
+         this.result=data;
+         console.log("Before Renewing");
+         console.log(this.result);
+         console.log("Normal Over");
+
+         if(this.userId==null)
+           {
+                this.routes.navigate(["/userlogin"]);
+           }
+         if(this.result!=null)
+         {
+           this.service.setprofileDatass(this.result);
+           //console.log("After setting in userhome")
+           //console.log(this.service.getprofileDatass());
+           //console.log(this.result);
+           this.routes.navigate(["/profile"]);
+           
+         }
+
+ 
+ 
+      })
+ 
+
+  }
+
+
+  claimInsurance()
+  {
+    if(this.userId==null)
+    {
+    this.routes.navigate(["/userlogin"]);
+    }
+
+    this.profileService.fetchProfile(this.userId).subscribe((data)=>
+     {
+         this.result=data;
+         console.log("Before Renewing");
+         console.log(this.result);
+         console.log("Normal Over");
+
+         if(this.userId==null)
+           {
+                this.routes.navigate(["/userlogin"]);
+           }
+         if(this.result!=null)
+         {
+           this.service.setprofileDatass(this.result);
+           //console.log("After setting in userhome")
+           //console.log(this.service.getprofileDatass());
+           //console.log(this.result);
+           this.routes.navigate(["/profile"]);
+           
+         }
+
+ 
+ 
+      })
+    
+  }
+    
+  estimateCalculation()
+  {
+    this.routes.navigate(["/estimate"]);
+  }
+ 
+    
     logout()
     {
-      this.routes.navigate(["/login"]);
+      this.routes.navigate(["/userlogin"]);
 
     }
     
   
 
-
-  buyInsurance()
-  {
-  this.routes.navigate(["/vehicle"]);
-  }
+    buyInsurance()
+    {
+      if(this.userId==null)
+      {
+      this.routes.navigate(["/userlogin"]);
+      }
+  
+      else{
+        this.routes.navigate(["/vehicle"]);
+      }
+    }
 
   ngOnInit(): void {
     this.userId=this.service.getuserId();
     //console.log(this.userId);
+
+    if(this.userId==null)
+    {
+      this.showLogout=false;
+    }
 
   }
 
