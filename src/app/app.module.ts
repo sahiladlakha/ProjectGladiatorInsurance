@@ -39,7 +39,7 @@ import { ClaimService } from './services/claimService';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { RenewPolicyComponent } from './renew-policy/renew-policy.component';
 import { RenewService } from './services/renewService';
-import { AdminService } from './services/adminService';
+import { AdminService} from './services/adminService';
 import { RenewFromPrevPolicyComponent } from './renew-from-prev-policy/renew-from-prev-policy.component';
 import { RenewFromPrevPolicy } from './services/renewFromPrevPolicy';
 import { EstimateService } from './services/estimateService';
@@ -47,6 +47,8 @@ import { ClaimdisplayComponent } from './claimdisplay/claimdisplay.component';
 
 import { FetchClaimsComponent } from './fetch-claims/fetch-claims.component';
 import { InsertVehicleModelComponent } from './insert-vehicle-model/insert-vehicle-model.component';
+import { CardDetailsComponent } from './card-details/card-details.component';
+import { ErrorpageComponent } from './errorpage/errorpage.component';
 
 
 var myRoutes:Routes=[
@@ -73,15 +75,17 @@ var myRoutes:Routes=[
   {path:"renewfromprev",component:RenewFromPrevPolicyComponent},
   {path:"claimdisplay",component:ClaimdisplayComponent},
   {path:"home",component:HomepageComponent},
+  {path:"card",component:CardDetailsComponent},
 
   {path:"fetchclaimforadmin",component:FetchClaimsComponent},
   
   {path:'home',component:HomepageComponent},
   {path:"claim",component:ClaimComponent},
+  {path:"error",component:ErrorpageComponent},
   {path:"insertModel",component:InsertVehicleModelComponent},
 
 
-  {path:'**',component:UserhomeComponent}
+  
   
   
 ]
@@ -110,7 +114,9 @@ var myRoutes:Routes=[
     RenewFromPrevPolicyComponent,
     ClaimdisplayComponent,
     FetchClaimsComponent,
-    InsertVehicleModelComponent
+    InsertVehicleModelComponent,
+    CardDetailsComponent,
+    ErrorpageComponent
   ],
   imports: [
     BrowserModule,

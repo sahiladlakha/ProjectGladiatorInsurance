@@ -49,14 +49,21 @@ claimFound;
        this.claimStatus=data;
        
        console.log(this.result);
-       if(this.claimStatus)
-       {
-           this.claimFound=true;
-       }
+      
 
-
+       
 
     })
+
+    if(this.claimStatus!=null)
+    {
+        this.claimFound=true;
+    }
+
+    if(this.claimStatus==null)
+    {
+        this.claimFound=false;
+    }
 
     // if(this.userId==null)
     // {

@@ -39,7 +39,7 @@ export class ClaimComponent implements OnInit {
       this.claimService.fileClaim(this.claim).subscribe((data)=>
       {
           this.result=data;
-  
+          console.log(this.result);
           if(this.result!=null)
           {
             console.log(this.result);
@@ -49,13 +49,16 @@ export class ClaimComponent implements OnInit {
           }
   
   
-          else
-          {
-           this.error=true;
-          }
+          
+    
   
   
        })
+
+       if(this.result==null)
+       {
+        this.routes.navigate(["/error"]);
+       }
 
     }
 

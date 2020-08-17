@@ -1,20 +1,3 @@
-<body style="background-color:powderblue;">
-  <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">LTI</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li><a class="nav-link" routerLink="/userhome"><span class="glyphicon glyphicon-log-in"></span> Home</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          
-          
-          <li><a class="nav-link" routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-          
-        </ul>
-      </div>
-    </nav>
 
 
 
@@ -43,6 +26,7 @@
       <p class="alert alert-danger" *ngIf="con.touched && con.invalid">
            <span class="alert alert-danger" *ngIf="con.errors.required">Contact cannot be empty</span>
            <span class="alert alert-danger" *ngIf="con.errors.pattern">Contact should be valid</span>
+           <span class="alert alert-danger" *ngIf="con.errors.minlength">Contact should has minimum length 7</span>
       </p>
         <label>Date of Birth</label>
         <input type="date" class="form-control" formControlName="dob">
@@ -56,17 +40,17 @@
            <span class="alert alert-danger" *ngIf="add.errors.required">Address cannot be empty</span>
      </p>
        <label>Password</label>
-       <input type="text" class="form-control"formControlName="password" >
+       <input type="password" class="form-control"formControlName="password" >
        <p class="alert alert-danger" *ngIf="pw.touched && pw.invalid">
         <span class="alert alert-danger" *ngIf="pw.errors.required">Password cannot be empty</span>
-        <span class="alert alert-danger" *ngIf="pw.errors.minlength">Password should has minimum length 4</span>
+        <span class="alert alert-danger" *ngIf="pw.errors.minlength">Password should has minimum length 7</span>
     </p>
 
     <label> Confirm Password</label>
-    <input type="text" class="form-control"formControlName="confirmpassword" >
+    <input type="password" class="form-control"formControlName="confirmpassword" >
     <p class="alert alert-danger" *ngIf="confirmpw.touched && confirmpw.invalid">
      <span class="alert alert-danger" *ngIf="confirmpw.errors.required"> Confirm Password cannot be empty</span>
-     <span class="alert alert-danger" *ngIf="confirmpw.errors.minlength">Confirm Password should has minimum length 4</span>
+     <span class="alert alert-danger" *ngIf="confirmpw.errors.minlength">Confirm Password should has minimum length 7</span>
  </p>
 
 
@@ -77,7 +61,14 @@
     <button (click)="registeruser()" class="btn btn-primary">Register</button>  
      </form>
      </div>
-     <p class ="alert alert-primary" *ngIf="nomatch">
-        Password and Confirm Password Does Not Matches
+
+     <div style="text-align: center;" *ngIf="nomatch">
+      <span style="border:1px solid red;">
+       <b> 1. Password and Confirm Password Does Not Matches <br/>
+        2. Check Your Entries Again
+       </b>
+      </span>
+  </div>
+     
       
-    </p>
+     

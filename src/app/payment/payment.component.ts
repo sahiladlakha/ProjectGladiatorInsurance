@@ -51,7 +51,7 @@ export class PaymentComponent implements OnInit {
           console.log(this.result);
          // this.service.setpaymentDetails(this.result);
          this.service.setfinalDetails(this.result);
-          this.routes.navigate(["/success"]);
+          this.routes.navigate(["/card"]);
         }
 
 

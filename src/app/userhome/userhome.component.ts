@@ -15,14 +15,15 @@ export class UserhomeComponent implements OnInit {
   public service;
   userId;
   result1;
-  showLogout;
+  showLogin;
+  showProfile;
 
   constructor(private routes:Router,private profileService:ProfileService,private sharedService:SharedService) 
   
   { 
 
     this.service=sharedService;
-    this.showLogout=false;
+    this.showProfile=false;
 
   }
 
@@ -157,13 +158,20 @@ export class UserhomeComponent implements OnInit {
       }
     }
 
+
+
   ngOnInit(): void {
     this.userId=this.service.getuserId();
-    //console.log(this.userId);
+    console.log(this.userId);
 
     if(this.userId==null)
     {
-      this.showLogout=false;
+      this.showLogin=false;
+    }
+
+    if(this.userId!=null)
+    {
+      this.showProfile=true;
     }
 
   }

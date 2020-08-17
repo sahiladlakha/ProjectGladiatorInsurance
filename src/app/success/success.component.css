@@ -1,0 +1,16 @@
+h1 {
+    text-align: center;
+}
+
+#search {
+    position:relative;
+    top:2px;
+    width: 13em;
+    height: 2em;
+}
+p{
+    text-align: center;
+}
+#aref{
+    color: white;
+}

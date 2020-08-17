@@ -1,21 +1,16 @@
+
+
+<!--
 <h1>Register Your Vehicle With Us !!</h1>
     <label>Enter Car/Bike Manufacturer</label>
         <input type="text" class="form-control" [(ngModel)]="vehicle.Manufacturer" > 
         
        
-       <!--
-           <label>Enter Car/Bike Model</label>
-          <input type="text" class="form-control" [(ngModel)]="vehicle.Veh_Model">  
+      
         
 
-          <label>Select Car/Bike Model</label>
-          <br/>
-
-           <select [(ngModel)]="vehicle.Veh_Model">
-            <option *ngFor="let c of models" [value]="c.Vehicle_Model">{{c.Vehicle_Model}}</option>
-         </select>` 
-      <br/>
-      -->
+          
+      
 
       <label>Select Car/Bike Model</label>
       <br/>
@@ -68,7 +63,79 @@
        </p>
 
 
-       {{userId}}
+      -->
+
+      <h1>Register Your Vehicle With Us !!</h1>
+<div class="alert alert-success center form-group">
+   <form [formGroup]="myvehicle">
+    <label>Enter Car/Bike Manufacturer</label>
+        <input type="text"  class="form-control" formControlName="manufacturer" > 
+        <p class="alert alert-danger" *ngIf="mf.touched && mf.invalid">
+         <span class="alert alert-danger" *ngIf="mf.errors.required">Manufacturer cannot be empty</span>
+    </p>
+       
+       <!--
+           <label>Enter Car/Bike Model</label>
+          <input type="text" class="form-control" [(ngModel)]="vehicle.Veh_Model">  
+        
+          <label>Select Car/Bike Model</label>
+          <br/>
+           <select [(ngModel)]="vehicle.Veh_Model">
+            <option *ngFor="let c of models" [value]="c.Vehicle_Model">{{c.Vehicle_Model}}</option>
+         </select>` 
+      <br/>
+      -->
+
+      <label>Select Car Model</label>
+      <input list = "models" class="form-control" formControlName="vehiclemodel" >
+      <p class="alert alert-danger" *ngIf="ln.touched && ln.invalid">
+      <span class="alert alert-danger" *ngIf="ln.errors.required">Model Name cannot be empty</span>
+      </p>
+      <datalist id="models">
+         <option *ngFor="let c of models" [value]="c.Vehicle_Model">{{c.Vehicle_Model}}</option>
+        
+      </datalist>      
+    
+          <label>Enter Driving License</label>
+          <input type="text" class="form-control" formControlName="drivinglicense">
+          <p class="alert alert-danger" *ngIf="dl.touched && dl.invalid" >
+            <span class="alert alert-danger" *ngIf="dl.errors.required">Driving License cannot be empty</span>
+            <span class="alert alert-danger" *ngIf="dl.errors.minlength">Invalid Driving License</span>
+          </p>
+      
+          <label>Enter Purchase Date</label>
+          <input type="date" class="form-control" formControlName="purchasedate">
+          <p class="alert alert-danger" *ngIf="pd.touched && pd.invalid" >
+            <span class="alert alert-danger" *ngIf="pd.errors.required">Purchase Date cannot be empty</span>
+      </p>
+       
+          <label>Enter Registeration Number</label>
+          <input type="text" class="form-control" formControlName="registrationnumber">
+          <p class="alert alert-danger" *ngIf="rn.touched && rn.invalid" >
+            <span class="alert alert-danger" *ngIf="rn.errors.required">Registration Number cannot be empty</span>
+            <span class="alert alert-danger" *ngIf="rn.errors.minlength">Invalid Registration Number</span>
+      </p>
+        
+       <label>Enter Engine Number </label>
+       <input type="text" class="form-control" formControlName="engineno">
+       <p class="alert alert-danger" *ngIf="en.touched && en.invalid" >
+         <span class="alert alert-danger" *ngIf="en.errors.required">Engine Number cannot be empty</span>
+         <span class="alert alert-danger" *ngIf="en.errors.minlength">Invalid Engine Number</span>
+   </p>
+    
+    <label>Enter Chasis Number</label>
+    <input type="text" class="form-control" formControlName="chasisno">
+    <p class="alert alert-danger" *ngIf="cn.touched && cn.invalid" >
+      <span class="alert alert-danger" *ngIf="cn.errors.required">Chasissis Number cannot be empty</span>
+      <span class="alert alert-danger" *ngIf="cn.errors.minlength">Invalid Chasis Number</span>
+   </p>
+
+      <button (click)="insertVehicleDetails()" class="btn btn-primary">Submit</button>  
+</form>
+</div>
+       <p *ngIf="error">
+          Error Inserting . Check Your Entries Again.
+       </p>
 
 
 

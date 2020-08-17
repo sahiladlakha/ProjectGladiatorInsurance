@@ -24,7 +24,7 @@ export class PolicyComponent implements OnInit {
   policy:Policy;
   customerId;
   userId;
-  
+  mypolicy:FormGroup;
   constructor(private policyService:PolicyService,private routes:Router,private sharedService:SharedService)
    
   {
@@ -34,16 +34,31 @@ export class PolicyComponent implements OnInit {
     this.policy=new Policy();
     this.error=false;
    // this.types=['Third Party Liability','Comprehensive'];
+   this.mypolicy=new FormGroup({
+    policyduration:new FormControl(null,[Validators.required]),
+    policytype:new FormControl(null,[Validators.required]),
+  })
     
     
 
    }
 
+   public get pt(){
+    return this.mypolicy.get('policytype');
+  }
+  public get pd(){
+   return this.mypolicy.get('policyduration');
+ }
   
 
    
    generatePolicyDetails()
    {
+    if(this.mypolicy.valid)
+    {
+      this.policy.Policy_Type=this.pt.value;
+      this.policy.Duration=this.pd.value;
+    
       console.log(this.policy);
     this.policyService.insertPolicy(this.policy).subscribe((data)=>
     {
@@ -64,7 +79,7 @@ export class PolicyComponent implements OnInit {
 
 
      })
-
+    }
 
 
 
@@ -96,10 +111,10 @@ export class PolicyComponent implements OnInit {
     this.policy.Veh_Id =this.fromVehicle[2];
     this.policy.Cust_Id=this.fromVehicle[3];
     this.userId=this.service.getuserId();
-    if(this.userId==null)
-    {
-         this.routes.navigate(["/userlogin"]);
-    }
+    // if(this.userId==null)
+    // {
+    //      this.routes.navigate(["/userlogin"]);
+    // }
     //console.log(this.policy.Total_IDV);
   // console.log(this.policy.Policy_Amount);
     // console.log(this.policy.Veh_Id);

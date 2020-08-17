@@ -18,10 +18,12 @@ export class UserloginComponent implements OnInit {
   result;
   userDetails;
   public service;
+  showError;
   constructor(private loginService:LoginService,private routes:Router,private sharedService:SharedService) 
   {
     this.service=sharedService;
     this.login=new Login();
+    this.showError=false;
     //console.log(this.service.getuserData());
    }
 
@@ -32,15 +34,22 @@ export class UserloginComponent implements OnInit {
        this.loginService.login(this.login).subscribe((data)=>
       {
           this.result=data;
-
+          console.log("In user login");
           if(this.result!=null)
           {
+            
             this.service.setuserId(this.result);
             this.routes.navigate(["/userhome"]);
           }
 
+         
 
        })
+
+       if(this.result==null)
+       {
+        this.showError=true;
+       }
     }
 
 

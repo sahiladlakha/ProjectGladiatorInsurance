@@ -1,4 +1,4 @@
-<section  class="alert alert-success">
+<!-- <section  class="alert alert-success">
    
 
 
@@ -23,12 +23,7 @@
               
             </datalist>
             <br/> 
-<!--
-             <select name="types" [(ngModel)]="policy.Policy_Type"> 
-                <option *ngFor="let c of types" [value]="c">{{c}}</option> 
-            </select>  
-           
-        -->
+
 
         </div>
     <div class="row3">
@@ -52,11 +47,50 @@
 
         <div class="row5">
             <button (click)="generatePolicyDetails()" class="alert-success">Check Out </button>
-        </div>
+        </div> -->
 
-       
+        <section  class="alert alert-success center">
+            <form [formGroup]="mypolicy">
+            <label>Plans</label>
+            <br/>
+            <div class="row1">
+                <label>Choose your Policy Type</label>
+            </div>
+            <div class="row2">
+            <input list = "types" class="form-control" formControlName="policytype">
+            <p class="alert alert-danger" *ngIf="pt.touched && pt.invalid">
+                <span class="alert alert-danger" *ngIf="pt.errors.required">Policy Type cannot be empty</span>
+            </p>
+            <datalist id="types">
+               <option *ngFor="let c of types" [value]="c">{{c}}</option> 
+            </datalist>
+            </div>
+            <div class="row3">
+                <label>Choose you Policy Duartion</label>
+            </div>
+                <div class="row4">
+                <input list = "years" class="form-control" formControlName="policyduration">
+                <p class="alert alert-danger" *ngIf="pd.touched && pd.invalid">
+                    <span class="alert alert-danger" *ngIf="pd.errors.required">Policy Duration cannot be empty</span>
+                </p>
+                <datalist id="years">
+                    <option *ngFor="let c of years" [value]="c">{{c}}</option>
+                 </datalist>
+                </div>
+                <div class="row5">
+                    <button type="button" (click)="generatePolicyDetails()" class="alert-success">Payment</button>
+                </div>
+            </form>
+            </section>
 
+            
 
-
-        
+            <div style="text-align: center;" *ngIf="error">
+                <span style="border:1px solid red;">
+                 <b> 
+                  1. Check Your Entries Again
+                 </b>
+                </span>
+            </div>
+               
 

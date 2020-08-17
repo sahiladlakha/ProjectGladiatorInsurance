@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Login</h1>
-    <form name="frmLogin">
+   
         <table align="center">
             <tr>
                 <td>
@@ -42,18 +42,28 @@
             </tr>
             <tr>
                 <td>
-                    <input type="submit" class="btn btn-danger" value="Cancel" class="btn btn-danger" /> &nbsp; &nbsp;
-                    <label>Forgot </label> <a class="nav-link" routerLink="/forgotpassword"><u>password?</u></a>
+                   
+                    <label>Forgot</label> <a class="nav-link" routerLink="/forgotpassword"><u>password?</u></a>
                 </td>
             </tr>
         </table>
         <br/>
         <p>
+           
             <label>Not having Account ? </label> <a class="nav-link" routerLink="/register"><u>Register here</u></a>
         </p>
-    </form>
+   
     
+
+
+
+<div style="text-align: center;" *ngIf="showError">
+    <span style="border:1px solid red;">
+     <b> 
+      Invalid Credentials!!
+     </b>
+    </span>
+</div>
+
 </body>
 </html>
-
-

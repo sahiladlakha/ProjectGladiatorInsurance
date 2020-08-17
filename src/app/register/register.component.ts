@@ -30,11 +30,11 @@ export class RegisterComponent implements OnInit {
             firstname:new FormControl(null,[Validators.required,Validators.min(4)]),
             lastname:new FormControl(null,[Validators.required]),
             email:new FormControl(null,[Validators.required,Validators.pattern('[a-zA-Z 0-9 @ .]*')]),
-            contact:new FormControl(null,[Validators.required,Validators.min(4)]),
+            contact:new FormControl(null,[Validators.required,Validators.minLength(9)]),
             dob:new FormControl(null,[Validators.required]),
             address:new FormControl(null,[Validators.required]),
-            password:new FormControl(null,[Validators.required]),
-            confirmpassword:new FormControl(null,[Validators.required])
+            password:new FormControl(null,[Validators.required,Validators.minLength(7)]),
+            confirmpassword:new FormControl(null,[Validators.required,Validators.minLength(7)])
 
             })
             this.showDetails=false;
@@ -106,6 +106,12 @@ export class RegisterComponent implements OnInit {
                     this.routes.navigate(["/userlogin"]);
                   }
 
+                  if(this.result==null)
+                  {
+                    this.nomatch=true;
+                    
+                  }
+
 
               })
     }
@@ -122,10 +128,7 @@ export class RegisterComponent implements OnInit {
 
         this.nomatch=false;
         this.userId=this.service.getuserId();
-        if(this.userId==null)
-           {
-                this.routes.navigate(["/userlogin"]);
-           }
+        
         
 
         

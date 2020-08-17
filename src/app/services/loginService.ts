@@ -20,8 +20,8 @@ public login(login:Login){
 
 
 
-public adminlogin(login:Login){
-    return this.http.post("https://localhost:44308/api/AdminLogin",login);
+public adminlogin(admin:Admin){
+    return this.http.post("https://localhost:44308/api/AdminLogin",admin);
 }
 
 

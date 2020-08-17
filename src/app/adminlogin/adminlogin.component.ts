@@ -3,10 +3,11 @@ import { Admin } from '../models/admin';
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import{Register} from '../models/register';
+
 import {FormGroup,FormControl,Validators} from '@angular/forms';
+
 import {LoginService} from '../services/loginService';
-import { Login } from '../models/login';
+
 import { Router } from '@angular/router';
 import { SharedService } from '../services/sharedService';
 

@@ -22,15 +22,16 @@ userId;
 result;
 claimStatus;
 showClaim:boolean;
-showRenewed:boolean;
+
 showPolicies:boolean;
 
   constructor(private routes:Router,private profileService:ProfileService,private sharedService:SharedService) 
   {
     this.service=sharedService;
     this.showClaim=false;
-    this.showRenewed=false;
-    this.showPolicies=false;
+    this.showPolicies=true;
+   
+    
 
    }
 
@@ -110,29 +111,19 @@ showPolicies:boolean;
   ngOnInit(): void {
 
     this.policyDetails=this.service.getprofileDatass();
-    //console.log(this.policyDetails);
+    console.log(this.policyDetails);
     this.userId=this.service.getuserId();
-    this.renewPolicyDetails=this.service.getrenewProfileData();
-    if(this.policyDetails)
+    
+    if(!this.policyDetails)
     {
-      this.showPolicies=true;
+      this.showPolicies==false;
     }
 
-
-
-    this.profileService.fetchRenewProfile(this.userId).subscribe((data)=>
-    {
-        this.result=data;
-        console.log(this.result);
-
-        if(this.result)
-        {
-          this.showRenewed=true;
-        }
+    
 
 
 
-     })
+    
 
 
 

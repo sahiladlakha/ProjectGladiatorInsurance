@@ -57,13 +57,15 @@ export class RenewFromPrevPolicyComponent implements OnInit {
         }
 
 
-        else
-        {
-         this.error=true;
-        }
+       
 
 
      })
+
+     if(this.result==null)
+     {
+       this.routes.navigate(["/error"]);
+     }
 
   }
 

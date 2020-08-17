@@ -9,7 +9,7 @@
             
            
             <li><a routerLink="/fetchclaimforadmin" routerLinkActive="active">See All Claims</a></li>
-            <li><a routerLink="/policiesdisplay" routerLinkActive="active">See All Policies</a></li>
+            
             <li><a routerLink="/insertModel" routerLinkActive="active">Insert Models</a></li>
             <li><a routerLink="/userlogin" routerLinkActive="active">LogOut</a></li>
             
@@ -24,6 +24,87 @@
 
 
 
+      <button class="btn btn-primary" (click)="fetchPolicyTable()">See All Policies</button>
+
+<section>
+
+
+  <!-- <table class="table table-dark" border="1">
+    <p *ngFor="let pol of policyTable">
+    <thead>
+      <tr>
+        
+        <th scope="col">Policy Id &nbsp; &nbsp;</th>
+        <th scope="col">Type &nbsp;&nbsp;</th>
+        
+        <th scope="col">Duration &nbsp;&nbsp;</th>
+        <th scope="col">Vehicle ID &nbsp;&nbsp; </th>
+        <th scope="col">Policy Amount &nbsp;&nbsp;</th>
+        <th scope="col">Policy Date &nbsp;&nbsp;</th>
+        <th scope="col">Total IDV &nbsp;&nbsp;</th>
+        <th scope="col">Customer ID &nbsp;&nbsp;</th>
+        <th scope="col">Payment Status &nbsp;&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          
+          <td>{{pol.Id}}&nbsp;&nbsp;</td>
+          <td>{{pol.Policy_Type}}&nbsp;&nbsp;</td>
+          <td>{{pol.Duration}}&nbsp;&nbsp;</td>
+          <td>{{pol.Veh_Id}}&nbsp;&nbsp;</td>
+          <td>{{pol.Policy_Amount}}&nbsp;&nbsp;</td>
+          <td>{{pol.Policy_Date}}&nbsp;&nbsp;</td>
+          <td>{{pol.Total_IDV}}&nbsp;&nbsp;</td>
+          <td>{{pol.Cust_Id}}&nbsp;&nbsp;</td>
+          <td>{{pol.Policy_Payment_Status}}&nbsp;&nbsp;</td>
+
+
+
+          
+     
+        
+        </tr> -->
+
+
+
+
+<section>
+
+        <table class="table table-dark" border="1px">
+          <p *ngFor="let pol of policyTable">
+          <thead>
+            <tr>
+              <th scope="col">Claim Id</th>
+              <th scope="col">Mobile No</th>
+              
+              <th scope="col">Reason </th>
+              <th scope="col">Claim Filed On </th>
+              <th scope="col">Status </th>
+              <th scope="col">Policy ID </th>
+              <th scope="col">Customer ID </th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                
+                <td>{{pol.Id}}</td>
+                <td>{{pol.Mobile_No}}</td>
+                <td>{{pol.Reason_of_Claim}}</td>
+                <td>{{pol.Date_Of_Claim}}</td>
+                <td>{{pol.Claim_Approved}}</td>
+                <td>{{pol.Pol_Id}}</td>
+                <td>{{pol.Customer_Id}}</td>
+              
+              </tr>
+    
+
+</tbody>
+</table>
+</section>
+
+
+      
 
 
 
@@ -32,10 +113,7 @@
 
 
 
-<!--Main
-
-
-<p *ngFor="let pol of result">
+<!-- <p *ngFor="let pol of pendingResult">
     Policy ID {{pol.Id}}<br/>
     Mobile No {{pol.Mobile_No}}<br/>
     Reason {{pol.Reason_of_Claim}}<br/>
@@ -49,16 +127,16 @@
 
 
     
-  </p>
--->
+</p> -->
+
 
 
   <table class="table table-dark" border="1">
-    <p *ngFor="let pol of result">
+    <p *ngFor="let pol of pendingResult">
     <thead>
       <tr>
         
-        <th scope="col">Policy Id &nbsp; &nbsp;</th>
+        <th scope="col">Claim Id &nbsp; &nbsp;</th>
         <th scope="col">Mobile No &nbsp;&nbsp;</th>
         
         <th scope="col">Reason &nbsp;&nbsp;</th>
@@ -84,6 +162,7 @@
 
 
           <button (click)="Approveclaim(pol.Id)">Approve Claim</button>
+          <button (click)="Declineclaim(pol.Id)">Reject Claim</button>
      
         
         </tr>
