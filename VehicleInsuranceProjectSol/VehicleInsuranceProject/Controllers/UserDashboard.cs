@@ -33,7 +33,7 @@ namespace VehicleInsuranceProject.Controllers
 
 
            // return Ok(db.usp_GetPolicyDetailsForUserDashboard1(id));
-            return Ok(db.usp_GetRoleDetails(id));
+            return Ok(db.usp_GetPolicyDetailsForUserDashboardWithReg(id));
             
 
             //tbl_User tbl_User = db.tbl_User.Find(id);

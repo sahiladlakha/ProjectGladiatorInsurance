@@ -85,10 +85,20 @@ namespace VehicleInsuranceProject.Controllers
 
             string x = tbl_VehicleInfo.Purchase_Date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
             DateTime oDate = Convert.ToDateTime(x);
-            tbl_VehicleInfo.Purchase_Date = oDate; ;
+            tbl_VehicleInfo.Purchase_Date = oDate;
+            int value = DateTime.Compare(tbl_VehicleInfo.Purchase_Date, DateTime.Now);
+            if(value>0)
+            {
+                tbl_VehicleInfo.Purchase_Date = DateTime.Now.AddDays(-1);
+            }
             tbl_VehicleInfo.Vehicle_Type = "Four Wheeler";
             string model = tbl_VehicleInfo.Veh_Model;
+           
             tbl_Vehicle_Price tbl_vehicleprice = db.tbl_Vehicle_Price.Find(model);
+            if(tbl_vehicleprice==null)
+            {
+               return BadRequest();
+            }
             int showroomPrice = tbl_vehicleprice.Vehicle_Showroom_Price;
             
             
@@ -155,7 +165,13 @@ namespace VehicleInsuranceProject.Controllers
 
             policyPrice = IDV/60;
 
-            if(policyPrice<1000)
+
+            if (policyPrice > 50000)
+            {
+                policyPrice = 45890;
+            }
+
+            if (policyPrice<1000)
             {
                 policyPrice = 3500;
             }

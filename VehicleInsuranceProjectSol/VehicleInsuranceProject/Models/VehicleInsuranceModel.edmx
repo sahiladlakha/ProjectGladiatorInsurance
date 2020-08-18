@@ -249,7 +249,14 @@
         <Function Name="sp_activateStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_claimApprovewithAmount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="amount" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_deactivatePolicy" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_fetchVehiclesOfUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_passwordReset" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -266,11 +273,21 @@
         <Function Name="sp_paymentStatuses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_paymentStatusesFinal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_paymentStatusesforRenew" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_PaymentStatuss" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
         <Function Name="us_claimApprove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="us_claimApprovewithAmount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="amount" Type="int" Mode="In" />
         </Function>
         <Function Name="us_claimDecline" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -284,6 +301,9 @@
           <Parameter Name="UserId" Type="int" Mode="In" />
         </Function>
         <Function Name="usp_GetPolicyDetailsForUserDashboard1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_GetPolicyDetailsForUserDashboardWithReg" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserId" Type="int" Mode="In" />
         </Function>
         <Function Name="usp_GetRoleDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -717,7 +737,27 @@
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="usp_GetPolicyDetailsForUserDashboard1" ReturnType="Collection(db_ProjectGladiatorModel.usp_GetPolicyDetailsForUserDashboard1_Result)">
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_fetchVehiclesOfUser" ReturnType="Collection(db_ProjectGladiatorModel.sp_fetchVehiclesOfUser_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetPolicyDetailsForUserDashboardWithReg" ReturnType="Collection(db_ProjectGladiatorModel.usp_GetPolicyDetailsForUserDashboardWithReg_Result)">
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="us_claimApprovewithAmount">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="amount" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_claimApprovewithAmount">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="amount" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_paymentStatusesFinal">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_PaymentStatuss">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="us_claimDetails_Result">
@@ -803,6 +843,28 @@
           <Property Type="Int32" Name="UserId" Nullable="false" />
           <Property Type="DateTime" Name="Policy_Expiry_Date" Nullable="true" />
           <Property Type="String" Name="Policy_Approve_Status" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_fetchVehiclesOfUser_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Vehicle_Type" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Manufacturer" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Veh_Model" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Driving_Licence" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="Purchase_Date" Nullable="false" />
+          <Property Type="String" Name="Registration_Number" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Engine_No" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="ChasisNo" Nullable="false" MaxLength="300" />
+          <Property Type="Int32" Name="Cust_Id" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_GetPolicyDetailsForUserDashboardWithReg_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Veh_Model" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Registration_Number" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="Total_IDV" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="DateTime" Name="Policy_Expiry_Date" Nullable="true" />
+          <Property Type="String" Name="Policy_Approve_Status" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Registration_Number1" Nullable="false" MaxLength="200" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1024,6 +1086,40 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_fetchVehiclesOfUser" FunctionName="db_ProjectGladiatorModel.Store.sp_fetchVehiclesOfUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db_ProjectGladiatorModel.sp_fetchVehiclesOfUser_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Vehicle_Type" ColumnName="Vehicle_Type" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="Veh_Model" ColumnName="Veh_Model" />
+                <ScalarProperty Name="Driving_Licence" ColumnName="Driving_Licence" />
+                <ScalarProperty Name="Purchase_Date" ColumnName="Purchase_Date" />
+                <ScalarProperty Name="Registration_Number" ColumnName="Registration_Number" />
+                <ScalarProperty Name="Engine_No" ColumnName="Engine_No" />
+                <ScalarProperty Name="ChasisNo" ColumnName="ChasisNo" />
+                <ScalarProperty Name="Cust_Id" ColumnName="Cust_Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetPolicyDetailsForUserDashboardWithReg" FunctionName="db_ProjectGladiatorModel.Store.usp_GetPolicyDetailsForUserDashboardWithReg">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db_ProjectGladiatorModel.usp_GetPolicyDetailsForUserDashboardWithReg_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Veh_Model" ColumnName="Veh_Model" />
+                <ScalarProperty Name="Registration_Number" ColumnName="Registration_Number" />
+                <ScalarProperty Name="Total_IDV" ColumnName="Total_IDV" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Policy_Expiry_Date" ColumnName="Policy_Expiry_Date" />
+                <ScalarProperty Name="Policy_Approve_Status" ColumnName="Policy_Approve_Status" />
+                <ScalarProperty Name="Registration_Number1" ColumnName="Registration_Number1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="us_claimApprovewithAmount" FunctionName="db_ProjectGladiatorModel.Store.us_claimApprovewithAmount" />
+          <FunctionImportMapping FunctionImportName="sp_claimApprovewithAmount" FunctionName="db_ProjectGladiatorModel.Store.sp_claimApprovewithAmount" />
+          <FunctionImportMapping FunctionImportName="sp_paymentStatusesFinal" FunctionName="db_ProjectGladiatorModel.Store.sp_paymentStatusesFinal" />
+          <FunctionImportMapping FunctionImportName="sp_PaymentStatuss" FunctionName="db_ProjectGladiatorModel.Store.sp_PaymentStatuss" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

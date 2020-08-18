@@ -84,6 +84,10 @@ namespace VehicleInsuranceProject.Controllers
             int? policyId = tbl_Claims.Pol_Id;
 
             tbl_Policies tbl_Policies = db.tbl_Policies.Find(policyId);
+            if(tbl_Policies==null)
+            {
+                return BadRequest();
+            }
 
             if(tbl_Policies.Policy_Approve_Status=="Deactivated")
             {
@@ -95,10 +99,24 @@ namespace VehicleInsuranceProject.Controllers
 
             tbl_Claims.Claim_Approved = "Pending";
             tbl_Claims.Date_Of_Claim = DateTime.Now;
+
+          
+
+            int prevClaim = db.tbl_Claims.Where(u => u.Pol_Id == tbl_Claims.Pol_Id && u.Claim_Approved=="Pending").Count();
+            
+
+            if (prevClaim >= 1)
+            {
+                //tbl_User tbl_User1 = db.tbl_User.Find(email);
+                 return BadRequest();
+
+            }
+
+
             db.tbl_Claims.Add(tbl_Claims);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = tbl_Claims.Id }, tbl_Claims);
+            return CreatedAtRoute("DefaultApi", new { id = tbl_Claims.Id }, tbl_Claims.Id);
         }
 
         // DELETE: api/Claims/5

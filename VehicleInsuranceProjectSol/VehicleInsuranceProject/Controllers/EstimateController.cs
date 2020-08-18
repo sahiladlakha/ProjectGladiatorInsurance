@@ -97,8 +97,12 @@ namespace VehicleInsuranceProject.Controllers
 
 
             tbl_Vehicle_Price tbl_VehiclePrice3 = db.tbl_Vehicle_Price.Find(model);
+            if (tbl_VehiclePrice3 == null)
+            {
+                return BadRequest();
+            }
 
-            if(tbl_VehiclePrice3==null)
+            if (tbl_VehiclePrice3==null)
 
             {
                 return BadRequest();
@@ -166,10 +170,19 @@ namespace VehicleInsuranceProject.Controllers
                 {
                     policyPrice = 3500;
                 }
+
+
+                if (policyPrice >50000)
+                {
+                    policyPrice = 45890;
+                }
+
                 if (IDV < 20000)
                 {
                     IDV = 25000;
                 }
+
+
 
                 if(policyPrice>IDV)
                 {

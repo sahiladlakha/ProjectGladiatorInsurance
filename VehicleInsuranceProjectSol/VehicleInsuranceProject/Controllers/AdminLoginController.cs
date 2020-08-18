@@ -31,13 +31,14 @@ namespace VehicleInsuranceProject.Controllers
         public IHttpActionResult Gettbl_Admin(string id)
         {
             
-            tbl_Admin tbl_Admin = db.tbl_Admin.Find(id);
-            if (tbl_Admin == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(tbl_Admin);
+            //tbl_Admin tbl_Admin = db.tbl_Admin.Find(id);
+            //if (tbl_Admin == null)
+            //{
+            //    return NotFound();
+            //}
+            int claimid = Convert.ToInt32(id);
+            db.us_claimDecline(claimid);
+            return Ok(claimid);
         }
 
         // PUT: api/AdminLogin/5

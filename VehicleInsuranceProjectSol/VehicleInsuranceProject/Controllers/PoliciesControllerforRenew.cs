@@ -96,6 +96,7 @@ namespace VehicleInsuranceProject.Controllers
 
 
             tbl_Policies.Policy_Approve_Status = "Activated";
+            tbl_Policies.Approved_By = "Admin";
             tbl_Policies.Policy_Payment_Status = "Not Done";
             tbl_Policies.Cust_Id = tbl_policy.Cust_Id;
 

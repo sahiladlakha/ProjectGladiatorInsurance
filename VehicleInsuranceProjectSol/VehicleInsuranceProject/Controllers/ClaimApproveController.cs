@@ -30,14 +30,14 @@ namespace VehicleInsuranceProject.Controllers
         public IHttpActionResult Gettbl_Claims(int id)
         {
            
-
+            
 
             tbl_Claims tbl_Claims = db.tbl_Claims.Find(id);
             if (tbl_Claims == null)
             {
                 return NotFound();
             }
-            db.us_claimApprove(id);
+            //db.sp_claimApprove(id);
             try
             {
                 db.SaveChanges();
@@ -102,10 +102,13 @@ namespace VehicleInsuranceProject.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.tbl_Claims.Add(tbl_Claims);
+            int approvedAmount = tbl_Claims.Claim_Amount;
+            int claimId = tbl_Claims.Id;
+            db.us_claimApprovewithAmount(claimId,approvedAmount);
+           // db.tbl_Claims.Add(tbl_Claims);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = tbl_Claims.Id }, tbl_Claims);
+            return CreatedAtRoute("DefaultApi", new { id = tbl_Claims.Id }, approvedAmount);
         }
 
         // DELETE: api/ClaimAprrove/5

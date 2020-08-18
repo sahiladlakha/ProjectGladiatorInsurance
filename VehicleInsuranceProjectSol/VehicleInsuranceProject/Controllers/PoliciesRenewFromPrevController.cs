@@ -80,9 +80,31 @@ namespace VehicleInsuranceProject.Controllers
             {
                 return BadRequest(ModelState);
             }
+           if( tbl_Policies.Duration > 3)
+            {
+                return BadRequest();
+            }
+
+            if (tbl_Policies.Duration == 0)
+            {
+                return BadRequest();
+            }
+
+            if (tbl_Policies.Duration < 0)
+            {
+                return BadRequest();
+            }
+
 
             int[] paymentDetails = new int[5];
             int? previousPolicyId = tbl_Policies.Prev_Policy;
+            tbl_Policies tbl_Policiesexception = db.tbl_Policies.Find(previousPolicyId);
+
+            if (tbl_Policiesexception == null)
+            {
+                return BadRequest();
+            }
+
             tbl_Policies tbl_policy = db.tbl_Policies.Where(m => m.Id == previousPolicyId).First();
 
             tbl_Policies prevPolicy = db.tbl_Policies.Find(previousPolicyId);
@@ -112,8 +134,10 @@ namespace VehicleInsuranceProject.Controllers
             tbl_Policies.Cust_Id = tbl_policy.Cust_Id;
 
 
-
+            prevPolicy.Policy_Expiry_Date = DateTime.Now;
             db.sp_deactivatePolicy(previousPolicyId);
+
+
             db.tbl_Policies.Add(tbl_Policies);
             db.SaveChanges();
 

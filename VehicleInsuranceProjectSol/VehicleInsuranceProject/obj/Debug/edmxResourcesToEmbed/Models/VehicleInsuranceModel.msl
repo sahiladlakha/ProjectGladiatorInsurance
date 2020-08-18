@@ -215,5 +215,39 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_fetchVehiclesOfUser" FunctionName="db_ProjectGladiatorModel.Store.sp_fetchVehiclesOfUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db_ProjectGladiatorModel.sp_fetchVehiclesOfUser_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Vehicle_Type" ColumnName="Vehicle_Type" />
+          <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+          <ScalarProperty Name="Veh_Model" ColumnName="Veh_Model" />
+          <ScalarProperty Name="Driving_Licence" ColumnName="Driving_Licence" />
+          <ScalarProperty Name="Purchase_Date" ColumnName="Purchase_Date" />
+          <ScalarProperty Name="Registration_Number" ColumnName="Registration_Number" />
+          <ScalarProperty Name="Engine_No" ColumnName="Engine_No" />
+          <ScalarProperty Name="ChasisNo" ColumnName="ChasisNo" />
+          <ScalarProperty Name="Cust_Id" ColumnName="Cust_Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_GetPolicyDetailsForUserDashboardWithReg" FunctionName="db_ProjectGladiatorModel.Store.usp_GetPolicyDetailsForUserDashboardWithReg">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db_ProjectGladiatorModel.usp_GetPolicyDetailsForUserDashboardWithReg_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Veh_Model" ColumnName="Veh_Model" />
+          <ScalarProperty Name="Registration_Number" ColumnName="Registration_Number" />
+          <ScalarProperty Name="Total_IDV" ColumnName="Total_IDV" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Policy_Expiry_Date" ColumnName="Policy_Expiry_Date" />
+          <ScalarProperty Name="Policy_Approve_Status" ColumnName="Policy_Approve_Status" />
+          <ScalarProperty Name="Registration_Number1" ColumnName="Registration_Number1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="us_claimApprovewithAmount" FunctionName="db_ProjectGladiatorModel.Store.us_claimApprovewithAmount" />
+    <FunctionImportMapping FunctionImportName="sp_claimApprovewithAmount" FunctionName="db_ProjectGladiatorModel.Store.sp_claimApprovewithAmount" />
+    <FunctionImportMapping FunctionImportName="sp_paymentStatusesFinal" FunctionName="db_ProjectGladiatorModel.Store.sp_paymentStatusesFinal" />
+    <FunctionImportMapping FunctionImportName="sp_PaymentStatuss" FunctionName="db_ProjectGladiatorModel.Store.sp_PaymentStatuss" />
   </EntityContainerMapping>
 </Mapping>

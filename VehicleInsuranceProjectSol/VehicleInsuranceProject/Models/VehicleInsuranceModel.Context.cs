@@ -202,5 +202,67 @@ namespace VehicleInsuranceProject.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetPolicyDetailsForUserDashboard1_Result>("usp_GetPolicyDetailsForUserDashboard1", userIdParameter);
         }
+    
+        public virtual ObjectResult<sp_fetchVehiclesOfUser_Result> sp_fetchVehiclesOfUser(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_fetchVehiclesOfUser_Result>("sp_fetchVehiclesOfUser", idParameter);
+        }
+    
+        public virtual ObjectResult<usp_GetPolicyDetailsForUserDashboardWithReg_Result> usp_GetPolicyDetailsForUserDashboardWithReg(Nullable<int> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetPolicyDetailsForUserDashboardWithReg_Result>("usp_GetPolicyDetailsForUserDashboardWithReg", userIdParameter);
+        }
+    
+        public virtual int us_claimApprovewithAmount(Nullable<int> id, Nullable<int> amount)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var amountParameter = amount.HasValue ?
+                new ObjectParameter("amount", amount) :
+                new ObjectParameter("amount", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("us_claimApprovewithAmount", idParameter, amountParameter);
+        }
+    
+        public virtual int sp_claimApprovewithAmount(Nullable<int> id, Nullable<int> amount)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var amountParameter = amount.HasValue ?
+                new ObjectParameter("amount", amount) :
+                new ObjectParameter("amount", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_claimApprovewithAmount", idParameter, amountParameter);
+        }
+    
+        public virtual int sp_paymentStatusesFinal(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_paymentStatusesFinal", idParameter);
+        }
+    
+        public virtual int sp_PaymentStatuss(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_PaymentStatuss", idParameter);
+        }
     }
 }

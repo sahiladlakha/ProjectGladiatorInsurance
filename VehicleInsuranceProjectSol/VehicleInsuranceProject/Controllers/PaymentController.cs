@@ -94,7 +94,15 @@ namespace VehicleInsuranceProject.Controllers
             //int? customerId = db.tbl_VehicleInfo.ToList().Find(m => m.Id == vehicleid).Cust_Id;
 
             int? policyid = db.tbl_Payment.ToList().Find(m => m.Id == tbl_Payment.Id).Pol_Id;
+
+            tbl_Policies tbl_Policiesss = db.tbl_Policies.Find(policyid);
+            if (tbl_Policiesss == null)
+            {
+                return NotFound();
+            }
+
             tbl_Policies tbl_Policy = db.tbl_Policies.Where(m => m.Id == policyid).First();
+
             int? vehicleId = db.tbl_Policies.ToList().Find(m => m.Id == policyid).Veh_Id;
             tbl_VehicleInfo tbl_VehicleInfo2 = db.tbl_VehicleInfo.Where(m => m.Id == vehicleId).First();
             int? customerId = db.tbl_VehicleInfo.ToList().Find(m => m.Id == vehicleId).Cust_Id;
@@ -115,8 +123,9 @@ namespace VehicleInsuranceProject.Controllers
             success[5] = tbl_Payment.Id.ToString();
            
 
-            db.sp_paymentStatuses(tbl_Payment.Pol_Id);
-            db.sp_paymentStatusesforRenew(tbl_Payment.Pol_Id);
+            //db.sp_paymentStatuses(tbl_Payment.Pol_Id);
+            db.sp_PaymentStatuss(tbl_Payment.Pol_Id);
+           // db.sp_paymentStatusesforRenew(tbl_Payment.Pol_Id);
 
             return CreatedAtRoute("DefaultApi", new { id = tbl_Payment.Id }, success);
         }

@@ -131,6 +131,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ClaimDetails.cs" />
+    <Compile Include="Models\sp_fetchVehiclesOfUser_Result.cs">
+      <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbl_Admin.cs">
       <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
     </Compile>
@@ -156,6 +159,9 @@
       <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_GetPolicyDetailsForUserDashboard1_Result.cs">
+      <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetPolicyDetailsForUserDashboardWithReg_Result.cs">
       <DependentUpon>VehicleInsuranceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_GetPolicyDetailsForUserDashboard_Result.cs">

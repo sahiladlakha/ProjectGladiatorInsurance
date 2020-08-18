@@ -79,13 +79,40 @@ namespace VehicleInsuranceProject.Controllers
         [ResponseType(typeof(tbl_Policies))]
         public IHttpActionResult Posttbl_Policy(tbl_Policies tbl_Policy)
         {
+
+
+
+            if (tbl_Policy.Policy_Type != "Third Party")
+            {
+                if (tbl_Policy.Policy_Type != "Comprehensive")
+                {
+                    return BadRequest();
+
+                }
+            }
+
+            if (tbl_Policy.Duration > 3)
+            {
+                return BadRequest();
+            }
+
+            if (tbl_Policy.Duration == 0)
+            {
+                return BadRequest();
+            }
+
+            if (tbl_Policy.Duration < 0)
+            {
+                return BadRequest();
+            }
             tbl_Policy.Policy_Purchase_Date = DateTime.Today;
             int year = tbl_Policy.Duration;
             tbl_Policy.Policy_Date = DateTime.Today;
 
-            tbl_Policy.Policy_Expiry_Date =  tbl_Policy.Policy_Purchase_Date.AddDays(year);
-            tbl_Policy.Policy_Approve_Status = "Activated";
+            tbl_Policy.Policy_Expiry_Date =  tbl_Policy.Policy_Purchase_Date.AddYears(year);
+            tbl_Policy.Policy_Approve_Status = "Deactivated";
             tbl_Policy.Policy_Payment_Status = "Not Done";
+            tbl_Policy.Approved_By = "Admin";
             int[] paymentDetails = new int[5];
             if(tbl_Policy.Policy_Type=="Third Party")
             {
@@ -110,7 +137,7 @@ namespace VehicleInsuranceProject.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+           
             db.tbl_Policies.Add(tbl_Policy);
             db.SaveChanges();
             paymentDetails[0] = tbl_Policy.Id;
