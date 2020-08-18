@@ -1,0 +1,82 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<div>
+<!-- <p *ngFor="let pol of result">
+    Policy ID     :  {{pol.Id}}<br/>
+    Mobile No     :  {{pol.Mobile_No}}<br/>
+    Reason        :  {{pol.Reason_of_Claim}}<br/>
+   Date of Claim  :  {{pol.Date_Of_Claim}} <br/>
+   Claim Approved : {{pol.Claim_Approved}}<br/>
+   Claim Amount   :  {{pol.Claim_Amount}}<br/>
+   Policy Id      :  {{pol.Pol_Id}}<br/>
+   Customer Id    : {{pol.Customer_Id}}<br/>
+        
+  </p> -->
+
+
+</div>
+
+<nav class="navbar navbar-expand-sl bg-light">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" routerLink="/admindashboard">Admin Page </a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        
+        
+       
+       
+        <li class="nav-item"><a routerLink="/insertModel" routerLinkActive="active">Insert Models</a></li>
+        <li class="nav-item"><a routerLink="/admindashboard" routerLinkActive="active">Pending Requests</a></li>
+        <li class="nav-item"><a routerLink="/adminlogin" routerLinkActive="active">LogOut</a></li>
+        
+        
+
+
+
+
+      </ul>
+    </div>
+  </nav>
+
+
+ 
+  <table class="table table-bordered">
+  <p *ngFor="let pol of result">
+ 
+    <thead>
+      
+      <tr>
+       
+        <th>Claim Id &nbsp; &nbsp;</th>
+        <th>Mobile No &nbsp;&nbsp;</th>
+        
+        <th scope="col">Reason &nbsp;&nbsp;</th>
+        <th scope="col">Claim Filed On &nbsp;&nbsp; </th>
+        <th scope="col">Status &nbsp;&nbsp;</th>
+        <th scope="col">Amount &nbsp;&nbsp;</th>
+        <th scope="col">Policy ID &nbsp;&nbsp;</th>
+        <th scope="col">Customer ID &nbsp;&nbsp;</th>
+      </tr>
+    </thead>
+   
+    <tbody>
+        <tr>
+          
+          <td>{{pol.Id}}&nbsp;&nbsp;</td>
+          <td>{{pol.Mobile_No}}&nbsp;&nbsp;</td>
+          <td>{{pol.Reason_of_Claim}}&nbsp;&nbsp;</td>
+          <td>{{pol.Date_Of_Claim}}&nbsp;&nbsp;</td>
+          <td>{{pol.Claim_Approved}}&nbsp;&nbsp;</td>
+          <td>Rs. {{pol.Claim_Amount}}&nbsp;&nbsp;</td>
+          <td>{{pol.Pol_Id}}&nbsp;&nbsp;</td>
+          <td>{{pol.Customer_Id}}&nbsp;&nbsp;</td>
+
+
+
+          
+     
+        
+        </tr>

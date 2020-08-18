@@ -1,0 +1,98 @@
+
+
+  <body>
+  
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" routerLink="/userhome">Vehicle Insurance </a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+         
+          <li><a routerLink="/userlogin" routerLinkActive="active">LogOut</a></li>
+          <li><a routerLink="/claimdisplay" routerLinkActive="active">Claim Status</a></li>
+          <li><a routerLink="/forgotpassword" routerLinkActive="active">Change Password</a></li>
+          
+          
+
+  
+  
+  
+        </ul>
+      </div>
+    </nav>
+
+
+
+<div class="right">
+  <img src="../../assets//images/image5.jpg" alt="Italian Trulli" width="300" height="200">
+</div>
+
+   
+ 
+
+  <div *ngIf="showPolicies === false">
+
+    <h1>You Don't Have Any Insurance.Please Go Buy One!</h1>
+    <button (click)="buyInsurance()" class="btn btn-primary">Buy Insurance</button>  
+
+  </div>
+  
+  
+  <div class="card" *ngIf="showPolicies">
+    <img src="../../assets/images/policy.jpg" alt="Avatar" style="width:50%">
+    <div class="container">
+      <h1>Your Policies!!!</h1>
+      <p *ngFor="let pol of policyDetails">
+       <br> <strong>Policy ID :{{pol.Id}}</strong><br/>
+        <strong>Vehicle Model : </strong>{{pol.Veh_Model}}<br/>
+       <strong> Max Possible Claim : </strong>{{pol.Total_IDV}}<br/>
+        <strong> User Id : </strong> {{pol.UserId}} <br/>
+        <strong> Policy Expiry Date: </strong> {{pol.Policy_Expiry_Date | date}} <br/>
+        <strong> Policy Status : </strong>{{pol.Policy_Approve_Status}} <br/>
+        <strong> Car Registeration Number : </strong>{{pol.Registration_Number}} <br/>
+        <br/>
+         <button class="btn btn-primary" (click)="claim(pol.Id)">File a Claim</button><br/>
+         <br/>
+         <button class="btn btn-primary" (click)="renew(pol.Id)">Renew Your Policy</button>
+
+     </p>
+     
+    </div>
+    
+      
+
+  </div>
+  
+  
+
+
+
+  
+
+
+<!-- <section>
+ 
+ 
+  
+  
+ <div class="card" *ngIf="showRenewed">
+   <h1>Your Renewed Policies</h1>
+  <img src="../../assets/images/policy.jpg" alt="Avatar" style="width:100%">
+  <div class="container">
+    <p *ngFor="let pol of result">
+     <br> Policy ID {{pol.Id}}<br/>
+      Vehicle Model {{pol.Veh_Model}}<br/>
+      Max Possible Claim {{pol.Total_IDV}}<br/>
+       User Id  {{pol.UserId}} <br/>
+       Policy Expiry Date {{pol.Policy_Expiry_Date}}
+      
+       
+   </p>
+  
+  </div>
+</div>
+</section> -->
+
+
+

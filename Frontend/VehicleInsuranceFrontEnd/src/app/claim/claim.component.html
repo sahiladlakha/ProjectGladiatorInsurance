@@ -1,0 +1,95 @@
+<!-- <body style="background-color:aqua;">
+    <div class="bodyContainer">
+
+<div class="center" >
+
+    
+
+
+      <div class="form-group">
+        <label for="pwd">Policy Number</label>
+        <input type="text" class="form-control"  required [(ngModel)]="claim.Pol_Id" readonly >
+      </div>
+
+      <div class="form-group">
+        <label for="pwd">Mobile Number</label>
+        <input type="text" class="form-control"  required [(ngModel)]="claim.Mobile_No">
+      </div>
+      
+      <label for="pwd"> Reason To Claim</label>
+      
+      <div class="row3">
+        
+    </div>
+        <div class="row4">
+           
+            <br/>
+            <input list = "reasons" [(ngModel)]="claim.Reason_of_Claim">
+            <datalist id="reasons">
+               <option *ngFor="let c of reasons" [value]="c">{{c}}</option>
+              
+            </datalist>
+            <br/>
+        </div>
+
+
+      <button (click)="fileClaim()">File Claim</button>
+
+</div>
+
+</div>
+</body> -->
+<nav class="navbar nav">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Vehicle Insurance </a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+     
+      
+        <button  (click)="myProfile()" class="btn btn-danger navbar-btn">My Profile</button>
+     
+      <li><a routerLink="/userlogin" routerLinkActive="active">LogOut</a></li>
+      
+      
+  
+      
+
+
+
+
+    </ul>
+  </div>
+</nav>
+
+<h1 style="text-align:center">File New Claim!</h1>
+<body style="background-color:white;">
+  <div class="bodyContainer">
+  <div class="center" >
+    <div class="alert alert-success">
+      <form [formGroup]="myclaim">
+      <label>Policy Number</label>
+      <input type="text" class="form-control" formControlName="policynumber" [(ngModel)]="claim.Pol_Id" readonly>
+      <p class="alert alert-danger" *ngIf="pn.touched && pn.invalid">
+      <span class="alert alert-danger" *ngIf="pn.errors.required">Policy Number cannot be empty</span>
+    </p>
+      <label >Mobile Number</label>
+      <input type="text" class="form-control" formControlName="claimmobilenumber">
+      <p class="alert alert-danger" *ngIf="cn.touched && cn.invalid">
+        <span class="alert alert-danger" *ngIf="cn.errors.required">Mobile Number cannot be empty</span>
+       <span class="alert alert-danger" *ngIf="cn.errors.pattern">Mobile should contain 10 digits</span>
+      </p>
+    <label> Reason To Claim</label>
+          <input list = "reasons" class="form-control" formControlName="claimreasons">
+          <p class="alert alert-danger" *ngIf="cr.touched && cr.invalid">
+            <span class="alert alert-danger" *ngIf="cr.errors.required">Choose Claim Reason</span>
+          </p>
+          <datalist id="reasons">
+             <option *ngFor="let c of reasons" [value]="c">{{c}}</option>
+          </datalist>
+      <button (click)="fileClaim()" class="btn btn-primary">File Claim</button>
+    </form>
+  </div>
+  </div>
+  </div>
+</body>

@@ -1,0 +1,165 @@
+<!-- <section>
+    <div class="form-group">
+        <label for="pwd">Policy Number</label>
+        <input type="text" class="form-control" id="policy" required>
+      </div>
+
+      <div class="form-group">
+        <label for="pwd">Vehicle Model</label>
+        <input type="text" class="form-control" id="policy" required>
+      </div>
+
+      <div class="form-group">
+        <label for="pwd">Registeration Number</label>
+        <input type="text" class="form-control" id="policy" required>
+      </div>
+
+
+      <div class="form-group">
+        <label for="pwd">Claim Amount</label>
+        <input type="text" class="form-control" id="policy" required>
+      </div>
+
+
+
+
+      <button type="submit" class="btn btn-default">Renew</button>
+      <button type="submit" class="btn btn-default">Claim</button>
+
+
+
+      <div align="center" id="a"> 
+        <br/>
+        <br/> -->
+
+
+
+
+
+
+  <!--
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">Vehicle Insurance </a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Contact</a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> About Us </a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Help</a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> FAQ </a></li>
+              <button (click)="myProfile()" class="btn btn-primary">My Profile</button>  
+              <button (click)="logout()" class="btn btn-primary">Log Out</button>  
+    
+      
+      
+      
+            </ul>
+          </div>
+        </nav>
+  
+      
+        <div align="center" id="a"> 
+          <br/>
+          <br/>
+    
+        
+        
+
+
+
+        <button (click)="buyInsurance()" class="btn btn-primary">Buy Insurance</button>  
+    
+        <button type="button" class="btn btn-primary custom">Renew Insurance</button><br/>
+        <button type="button" class="btn btn-primary custom">Claim Insurance</button><br/>
+        <button type="button" class="btn btn-primary custom">Estimate Calculation</button><br/>
+        <br/>
+        <br/>
+        
+    
+    
+      </div>
+
+      
+      
+      <br/>
+      <br/>
+      
+  
+  
+    -->
+
+
+
+
+
+    <body style="background-color:powderblue;">
+      
+     
+      
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" routerLink="/userhome"><b style="color:black;">Vehicle Insurance</b> </a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+              <p *ngIf="showProfile === false" style="text-align:center;">
+              <li><a class="nav-link" routerLink="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a class="nav-link" routerLink="/userlogin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+              </p>
+              <li><a routerLink="/aboutUs"><span class="glyphicon glyphicon-user"></span> About</a></li>
+              <li><a routerLink="/contactUs"><span class="glyphicon glyphicon-user"></span> Contact Us</a></li>
+            </ul>
+            <p   *ngIf="showProfile">
+            <button  (click)="myProfile()" class="btn btn-danger navbar-btn">My Profile</button>
+            
+            </p>
+          </div>
+        </nav>
+        <p align="right">
+        <!-- <button (click)="myProfile()" class="btn btn-primary">My Profile</button>  <br/> -->
+      </p>
+      
+        <div id="b">
+         
+      
+          <img src="../../assets//images/insurance2.jpg" alt="Italian Trulli" width="700" height="400">
+      
+      
+      
+      
+        </div>
+        <div align="center" id="a"> 
+            <br/>
+            <br/>
+      
+            <button (click)="buyInsurance()" class="btn btn-primary custom">Buy Insurance</button>  <br/>
+      
+          
+      
+          <button type="button" (click)="renewInsurance()" class="btn btn-primary custom">Renew Insurance</button><br/>
+          <button type="button" (click)="claimInsurance()" class="btn btn-primary custom">Claim Insurance</button><br/>
+          <button type="button" (click)="estimateCalculation()" class="btn btn-primary custom">Estimate Calculation</button><br/>
+          <img src="../../assets//images/image4.jpg" alt="Italian Trulli" width="450" height="200">
+          
+      
+          <br/>
+          <br/>
+          
+      
+      
+        </div>
+      <div>
+      
+      
+      
+       
+          
+      </div>
+      </body>
+
+
+
+      
+
+    

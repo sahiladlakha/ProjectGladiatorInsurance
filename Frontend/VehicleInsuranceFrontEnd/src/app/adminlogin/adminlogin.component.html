@@ -1,0 +1,86 @@
+<!-- <!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+   
+</head>
+<body>
+    <h1>Admin Login</h1>
+    <form name="frmLogin">
+        <table align="center">
+            <tr>
+                <td>
+                    <label>Username</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" name="txtUN" placeholder="Enter Email" class="form-control" [(ngModel)]="admin.Email" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Password</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="password" name="txtPass" placeholder="Enter Password" class="form-control" [(ngModel)]="admin.Password" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button (click)="adminLogin()" class="btn btn-primary">Login</button>  
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" value="Remember me" checked/> Remember me
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" class="btn btn-danger" value="Cancel" class="btn btn-danger" /> &nbsp; &nbsp;
+                    <label>Forgot </label> <a class="nav-link" routerLink="/forgotpassword"><u>password?</u></a>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        
+    </form>
+    
+</body>
+</html>
+
+ -->
+
+ <h1>ADMIN LOGIN</h1>
+ <form [formGroup]="adminlogin">
+
+ <label>Email</label>
+ <input type="text" class="form-control" formControlName="em">
+<p class="alert alert-danger" *ngIf="em.touched && em.invalid">
+    <span class="alert alert-danger" *ngIf="em.errors.required">Email cannot be empty</span>
+    <span class="alert alert-danger" *ngIf="em.errors.pattern">Email should be valid</span>
+</p>
+
+  <label>Password</label>
+  <input type="password" class="form-control" formControlName="password" />
+  <p class="alert alert-danger" *ngIf="pd.touched && pd.invalid">
+      <span class="alert alert-danger" *ngIf="pd.errors.required">Password cannot be empty</span>    
+ </p>
+   <button (click)="adminLogin()" class="btn btn-primary">Login</button>
+            <!----<input type="checkbox" value="Remember me" checked/> Remember me-->
+          
+               <br/><br/>
+              
+</form>
+<div style="text-align: center;" *ngIf="showError">
+  <span style="border:1px solid red;">
+   <b> 
+    Invalid Credentials!!
+   </b>
+  </span>
+</div>

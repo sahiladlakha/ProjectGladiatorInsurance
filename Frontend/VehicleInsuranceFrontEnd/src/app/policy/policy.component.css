@@ -1,0 +1,51 @@
+#section
+{
+       box-sizing: border-box;
+}
+.alert
+{
+
+    color: blue;
+    text-decoration:white;
+    width:300px;
+}
+.btn
+{
+    width:200px;
+}
+.row1{
+
+    color: Black;
+    border: 2px solid black;
+    size:15px;
+    padding:10px;
+
+}
+.row2{
+    color: blue;
+    size: 30px;
+    padding:10px;
+}
+.row3{
+    color: Black;
+    border: 2px solid black;
+    size:15px;
+    padding:10px;
+}
+.row4{
+    color: blue;
+    size:30px;
+    padding:10px;
+}
+.row5{
+padding:10px;
+border: 2px solid black;
+
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    border: 3px solid black;
+    padding: 10px;
+  }

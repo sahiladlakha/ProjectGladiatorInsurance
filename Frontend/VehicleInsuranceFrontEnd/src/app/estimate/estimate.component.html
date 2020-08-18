@@ -1,0 +1,140 @@
+<!-- <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body style="background-color:lightskyblue">
+
+ 
+<div class="w3-container">
+   <h1> Go Ahead And Check The Estimate For Your Vehicle</h1>
+
+  <p *ngIf="details">
+
+    <label>Select Car Model</label>
+      <br/>
+      <input list = "models" [(ngModel)]="estimate.Vehicle_Model">
+      <datalist id="models">
+         <option *ngFor="let c of models" [value]="c.Vehicle_Model">{{c.Vehicle_Model}}</option>
+        
+      </datalist> <br/>
+    <lable>Vehicle Age : </lable> 
+     <input type="number" class="form-control" [(ngModel)]="estimate.Vehicle_Age"><br/>
+
+    
+  
+       
+
+    <button (click)="checkEstimate()" class="btn btn-primary">Check Estimate</button>
+    
+  </div>
+<section>
+ 
+    <div>
+    <p *ngIf="showestimate">
+       
+           <div class="container" *ngIf="showestimate">
+            <h2>Estimate For Your Vehicle</h2>
+            <p></p>            
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Total Insured Value Offered On Your Vehicle</th>
+                  <th>Price Of The Policy</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{totalInsuredValue}}</td>
+                  <td>Rs. {{policyPrice}}</td>
+                  
+                </tr>
+                
+              </tbody>
+            </table>
+            <button (click)="loginpage()" class="btn btn-primary">Go Ahead And Buy Yourself One!</button>
+          </div>
+
+      
+    </div>
+</section>
+
+</body> -->
+
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body style="background-color:lightskyblue">
+
+ 
+<div class="w3-container">
+   <h1> Go Ahead And Check The Estimate For Your Vehicle</h1>
+
+  <p *ngIf="details">
+    <form [formGroup]="myestimate">
+    <label>Select Car Model</label>
+    <input list = "models"  class="form-control" formControlName="vehiclemodel">
+      <p class="alert alert-danger" *ngIf="ln.touched && ln.invalid">
+        <span class="alert alert-danger" *ngIf="ln.errors.required">Choose Car Model</span>
+        </p>
+      <datalist id="models">
+         <option *ngFor="let c of models" [value]="c.Vehicle_Model">{{c.Vehicle_Model}}</option>
+      </datalist>
+    
+
+
+     <label>Vehicle Age </label>
+    
+        <div class="row4">
+        <input list = "years" class="form-control" formControlName="policyduration">
+        <p class="alert alert-danger" *ngIf="pd.touched && pd.invalid">
+            <span class="alert alert-danger" *ngIf="pd.errors.required">Age cannot be empty</span>
+        </p>
+
+     
+    <button (click)="checkEstimate()" class="btn btn-primary">Check Estimate</button>
+    
+  </div>
+  </form>
+<section>
+ 
+    <div>
+    <p *ngIf="showestimate">
+       
+           <div class="container" *ngIf="showestimate">
+            <h2>Estimate For Your Vehicle</h2>
+            <p></p>            
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Total Insured Value Offered On Your Vehicle</th>
+                  <th>Price Of The Policy</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{totalInsuredValue}}</td>
+                  <td>Rs. {{policyPrice}}</td>
+                  
+                </tr>
+                
+              </tbody>
+            </table>
+            <button (click)="loginpage()" class="btn btn-primary">Go Ahead And Buy Yourself One!</button>
+          </div>
+
+      
+    </div>
+</section>
+

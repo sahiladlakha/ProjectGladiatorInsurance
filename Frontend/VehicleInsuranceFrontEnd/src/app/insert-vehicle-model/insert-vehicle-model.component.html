@@ -1,0 +1,89 @@
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Admin Page </a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        
+        
+       
+        
+        
+        
+        <li><button (click)="fetchModels()" class="btn btn-danger navbar-btn"> See All Models </button></li>
+        <li><button (click)="admindashboard()" class="btn btn-danger navbar-btn"> Dashboard </button></li>
+        
+        
+
+
+
+
+      </ul>
+    </div>
+  </nav>
+
+
+
+
+
+
+
+<div class="w3-container">
+    <h1> </h1>
+ 
+  
+ 
+     <label>Select Car Model</label>
+       <br/>
+       <input type="text" class="form-control" [(ngModel)]="vehicleModel.Vehicle_Model"><br/>
+
+     <label>Vehicle Price : </label> 
+      <input type="number" class="form-control" [(ngModel)]="vehicleModel.Vehicle_Showroom_Price"><br/>
+ 
+     
+   
+        
+ 
+     <button (click)="insertModel()" class="btn btn-primary">Insert</button>
+     
+   </div>
+
+
+   <div *ngIf="details">
+
+    <!-- <p *ngFor="let pol of allModels">
+        Vehicle Model {{pol.Vehicle_Model}}<br/>
+        Vehicle ShowRoomPrice {{pol.Vehicle_Showroom_Price}}
+          
+         
+    
+          
+        
+      </p> -->
+
+      <table class="table table-dark" border="1px">
+        <p *ngFor="let pol of allModels">
+        <thead>
+          <tr>
+            <th scope="col">Vehicle Model</th>
+            <th scope="col">Vehicle Showroom Price</th>
+            
+           
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              
+              <td>{{pol.Vehicle_Model}}</td>
+              <td>{{pol.Vehicle_Showroom_Price}}</td>
+             
+            
+            </tr>
+  
+
+
+
+
+
+

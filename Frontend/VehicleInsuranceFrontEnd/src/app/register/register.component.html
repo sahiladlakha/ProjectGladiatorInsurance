@@ -1,0 +1,74 @@
+
+
+
+
+
+<div class="alert alert-success center" >
+    <form [formGroup]="myregister">
+    <label>Firstname</label>
+       <input type="text" class="form-control" formControlName="firstname">
+     <p class="alert alert-danger" *ngIf="fn.touched && fn.invalid">
+          <span class="alert alert-danger" *ngIf="fn.errors.required">Firstname cannot be empty</span>
+     </p>
+        <label>Lastname</label>
+        <input type="text" class="form-control" formControlName="lastname">
+      <p class="alert alert-danger" *ngIf="ln.touched && ln.invalid">
+           <span class="alert alert-danger" *ngIf="ln.errors.required">Lastname cannot be empty</span>
+     </p>
+        <label>Email</label>
+        <input type="text" class="form-control" formControlName="email">
+      <p class="alert alert-danger" *ngIf="em.touched && em.invalid">
+           <span class="alert alert-danger" *ngIf="em.errors.required">Email cannot be empty</span>
+           <span class="alert alert-danger" *ngIf="em.errors.pattern">Email should be valid</span>
+     </p>
+        <label>Contact</label>
+        <input type="text" class="form-control" formControlName="contact">
+      <p class="alert alert-danger" *ngIf="con.touched && con.invalid">
+           <span class="alert alert-danger" *ngIf="con.errors.required">Contact cannot be empty</span>
+           <span class="alert alert-danger" *ngIf="con.errors.pattern">Contact should be valid</span>
+           <span class="alert alert-danger" *ngIf="con.errors.minlength">Contact should has minimum length 7</span>
+      </p>
+        <label>Date of Birth</label>
+        <input type="date" class="form-control" formControlName="dob">
+      <p class="alert alert-danger" *ngIf="dob.touched && dob.invalid">
+           <span class="alert alert-danger" *ngIf="dob.errors.required">DOB cannot be empty</span>
+           <span class="alert alert-danger" *ngIf="dob.errors.pattern">DOB should be valid</span>
+     </p>
+        <label>Address</label>
+        <input type="text" class="form-control" formControlName="address">
+      <p class="alert alert-danger" *ngIf="add.touched && add.invalid">
+           <span class="alert alert-danger" *ngIf="add.errors.required">Address cannot be empty</span>
+     </p>
+       <label>Password</label>
+       <input type="password" class="form-control"formControlName="password" >
+       <p class="alert alert-danger" *ngIf="pw.touched && pw.invalid">
+        <span class="alert alert-danger" *ngIf="pw.errors.required">Password cannot be empty</span>
+        <span class="alert alert-danger" *ngIf="pw.errors.minlength">Password should has minimum length 7</span>
+    </p>
+
+    <label> Confirm Password</label>
+    <input type="password" class="form-control"formControlName="confirmpassword" >
+    <p class="alert alert-danger" *ngIf="confirmpw.touched && confirmpw.invalid">
+     <span class="alert alert-danger" *ngIf="confirmpw.errors.required"> Confirm Password cannot be empty</span>
+     <span class="alert alert-danger" *ngIf="confirmpw.errors.minlength">Confirm Password should has minimum length 7</span>
+ </p>
+
+
+    
+
+
+
+    <button (click)="registeruser()" class="btn btn-primary">Register</button>  
+     </form>
+     </div>
+
+     <div style="text-align: center;" *ngIf="nomatch">
+      <span style="border:1px solid red;">
+       <b> 1. Password and Confirm Password Does Not Matches <br/>
+        2. Check Your Entries Again
+       </b>
+      </span>
+  </div>
+     
+      
+     

@@ -1,0 +1,87 @@
+
+
+<nav class="navbar nav">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Vehicle Insurance </a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+       
+        
+          <button  (click)="myProfile()" class="btn btn-danger navbar-btn">My Profile</button>
+       
+        <li><a routerLink="/userlogin" routerLinkActive="active">LogOut</a></li>
+        
+        
+    
+        
+
+
+
+
+      </ul>
+    </div>
+  </nav>
+
+
+
+  
+
+
+
+<section>
+
+  
+    <!-- <p *ngFor="let pol of claimStatus">
+     Policy ID {{pol.Id}}<br/>
+     Mobile No {{pol.Mobile_No}}<br/>
+     Reason {{pol.Reason_of_Claim}}<br/>
+    Date of Claim  {{pol.Date_Of_Claim}} <br/>
+    Status  {{pol.Claim_Approved}} <br/> 
+   
+    </p>
+
+-->
+
+
+
+    <table class="table table-dark" border="1px">
+        <p *ngFor="let pol of claimStatus">
+        <thead>
+          <tr>
+            <th scope="col">Claim Id</th>
+            <th scope="col">Mobile No</th>
+            
+            <th scope="col">Reason </th>
+            <th scope="col">Claim Filed On </th>
+            <th scope="col">Status </th>
+            <th scope="col">Claim Amount </th>
+            <th scope="col">Policy ID </th>
+            <th scope="col">Customer ID </th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              
+              <td>{{pol.Id}}</td>
+              <td>{{pol.Mobile_No}}</td>
+              <td>{{pol.Reason_of_Claim}}</td>
+              <td>{{pol.Date_Of_Claim}}</td>
+              <td>{{pol.Claim_Approved}}</td>
+              <td>{{pol.Claim_Amount}}</td>
+              <td>{{pol.Pol_Id}}</td>
+              <td>{{pol.Customer_Id}}</td>
+            
+            </tr>
+  
+
+</tbody>
+</p>
+</table>
+
+<div *ngIf="showNothing == true">
+
+  <h1>Nothing More Found</h1>
+    
+
+</div>
